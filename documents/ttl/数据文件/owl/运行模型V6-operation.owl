@@ -1,0 +1,2516 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:msg="http://langdale.com.au/2005/Message#"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:uml="http://langdale.com.au/2005/UML#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns="http://iec.ch/TC57/2016/CIM-schema-cim17#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+  xml:base="http://iec.ch/TC57/2016/CIM-schema-cim17" > 
+  <rdf:Description rdf:about="">
+     <rdfs:label xml:lang="zh-cn">运行模型</rdfs:label>
+    <rdfs:comment xml:lang="zh-cn"> 面向电网运行应用的模型 </rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
+  </rdf:Description>
+   <rdf:Description rdf:about="#SwitchActionKind.close">
+    <rdf:type rdf:resource="#SwitchActionKind"/>
+    <uml:id>EAID_3492915F_C6CA_4315_ADC6_B3CBF8240948</uml:id>
+    <rdfs:label>close</rdfs:label>
+    <rdfs:comment>Close the switch.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="#ClearanceDocument">
+    <rdfs:comment>Safety document used to authorise work on conducting equipment in the field. Tagged equipment is not allowed to be operated.</rdfs:comment>
+    <rdfs:label>ClearanceDocument</rdfs:label>
+    <uml:id>EAID_99D01537_9D57_421f_B795_AD2E5C40B628</uml:id>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="#SafetyDocument"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#OutageStatusKind.confirmed">
+    <rdf:type rdf:resource="#OutageStatusKind"/>
+    <rdfs:comment>the outage has been verified</rdfs:comment>
+    <rdfs:label>confirmed</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">停电状态类型.确认的</rdfs:label>
+    <uml:id>EAID_C25C7C45_AC9E_492c_AC84_68A1C56F7730</uml:id>
+  </rdf:Description>
+    <rdf:Description rdf:about="#Outage.Equipments">
+    <rdfs:comment>All equipments associated with this outage.</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:range rdf:resource="#Equipment"/>
+    <rdfs:isDefinedBy rdf:resource="#Package_Core"/>
+    <rdfs:domain rdf:resource="#Outage"/>
+    <uml:id>EAID_7CB5F824_2EAC_4c6e_B3CE_B2B245253D31-B</uml:id>
+    <owl:inverseOf rdf:resource="#Equipment.Outages"/>
+    <rdfs:label>Equipments</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">停电.所有受该停电影响的设备</rdfs:label>
+  </rdf:Description>
+   <rdf:Description rdf:about="#Outage.Faults">
+    <uml:id>EAID_B23C14B3_6E9C_4b0c_82C5_781ED12E4406-B</uml:id>
+    <rdfs:domain rdf:resource="#Outage"/>
+    <rdfs:comment>All faults involved in this outage.</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+    <rdfs:label>Faults</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">停电.所有和该停电相关的故障</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:isDefinedBy rdf:resource="#Package_Faults"/>
+    <rdfs:range rdf:resource="#Fault"/>
+    <owl:inverseOf rdf:resource="#Fault.Outage"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Fault.FaultyEquipment">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:label>FaultyEquipment</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">故障.导致该故障的设备</rdfs:label>
+    <rdfs:domain rdf:resource="#Fault"/>
+    <owl:inverseOf rdf:resource="#Equipment.Faults"/>
+    <uml:id>EAID_6B3EA616_0934_425c_A898_1D84DADF5261-B</uml:id>
+    <rdfs:comment>Equipment carrying this fault.</rdfs:comment>
+    <rdfs:range rdf:resource="#Equipment"/>
+    <rdfs:isDefinedBy rdf:resource="#Package_Faults"/>
+  </rdf:Description>
+    <rdf:Description rdf:about="#Fault.FaultCauseTypes">
+    <rdfs:range rdf:resource="#FaultCauseType"/>
+    <rdfs:isDefinedBy rdf:resource="#Package_Faults"/>
+    <rdfs:label>FaultCauseTypes</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">故障.故障发生原因类型</rdfs:label>
+    <uml:id>EAID_76F2310A_9AC3_4fb7_87A4_E24B2A669076-B</uml:id>
+    <rdfs:domain rdf:resource="#Fault"/>
+    <rdfs:comment>All types of fault cause.</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <owl:inverseOf rdf:resource="#FaultCauseType.Faults"/>
+  </rdf:Description>
+   <rdf:Description rdf:about="#LineFault.ACLineSegment">
+    <rdfs:label>ACLineSegment</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">线上设备故障.发生该故障的导线段</rdfs:label>
+    <owl:inverseOf rdf:resource="#ACLineSegment.LineFaults"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="#LineFault"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:comment>The line segment of this line fault.</rdfs:comment>
+    <rdfs:range rdf:resource="#ACLineSegment"/>
+    <uml:id>EAID_BBA661BB_92B7_4934_988B_DF65931690EE-B</uml:id>
+    <rdfs:isDefinedBy rdf:resource="#Package_Faults"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#ACLineSegment.LineFaults">
+    <uml:id>EAID_BBA661BB_92B7_4934_988B_DF65931690EE-A</uml:id>
+    <rdfs:domain rdf:resource="#ACLineSegment"/>
+    <owl:inverseOf rdf:resource="#LineFault.ACLineSegment"/>
+    <rdfs:isDefinedBy rdf:resource="#Package_Faults"/>
+    <rdfs:range rdf:resource="#LineFault"/>
+    <rdfs:comment>The line faults of the line segment.</rdfs:comment>
+    <rdfs:label>LineFaults</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">导线段.发生的线上设备故障</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#LineFault">
+    <rdfs:isDefinedBy rdf:resource="#Package_Faults"/>
+    <rdfs:subClassOf rdf:resource="#Fault"/>
+    <rdfs:comment>A fault that occurs on an AC line segment at some point along the length.</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <uml:id>EAID_784DAFDE_99A3_4b69_A759_169FFD08E627</uml:id>
+    <rdfs:label>LineFault</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">线上设备故障</rdfs:label>
+  </rdf:Description>
+   <rdf:Description rdf:about="#EquipmentFault">
+    <rdfs:subClassOf rdf:resource="#Fault"/>
+    <uml:id>EAID_565ED47F_1E02_464b_8D9C_517ED5726DF3</uml:id>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:isDefinedBy rdf:resource="#Package_Faults"/>
+    <rdfs:label>EquipmentFault</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">设备外故障</rdfs:label>
+    <rdfs:comment>A fault applied at the terminal, external to the equipment. This class is not used to specify faults internal to the equipment.</rdfs:comment>
+   </rdf:Description>
+    <rdf:Description rdf:about="#Fault.kind">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <uml:id>EAID_D4AF3A43_0D83_418f_997A_3957B4A762CC</uml:id>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:range rdf:resource="#PhaseConnectedFaultKind"/>
+    <rdfs:domain rdf:resource="#Fault"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdfs:isDefinedBy rdf:resource="#Package_Faults"/>
+    <rdfs:label>kind</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">故障.类型</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdfs:comment>The kind of phase fault.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="#EquipmentFault.Terminal">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:isDefinedBy rdf:resource="#Package_Faults"/>
+    <rdfs:domain rdf:resource="#EquipmentFault"/>
+    <rdfs:comment>The terminal connecting to the bus to which the fault is applied.</rdfs:comment>
+    <uml:id>EAID_2CF11C93_156B_4725_864D_F54BFFEBEEB6-B</uml:id>
+    <rdfs:range rdf:resource="#Terminal"/>
+    <owl:inverseOf rdf:resource="#Terminal.EquipmentFaults"/>
+    <rdfs:label>Terminal</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">设备外故障.故障的端点</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  </rdf:Description>
+    <rdf:Description rdf:about="#Terminal.EquipmentFaults">
+    <rdfs:domain rdf:resource="#Terminal"/>
+    <rdfs:label>EquipmentFaults</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">故障的端点.对应的设备外故障</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="#Package_Faults"/>
+    <owl:inverseOf rdf:resource="#EquipmentFault.Terminal"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+    <rdfs:comment>The equipment faults at this terminal.</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <uml:id>EAID_2CF11C93_156B_4725_864D_F54BFFEBEEB6-A</uml:id>
+    <rdfs:range rdf:resource="#EquipmentFault"/>
+  </rdf:Description>
+    <rdf:Description rdf:about="#Location.Fault">
+    <uml:id>EAID_7F84E357_68DD_4257_BD11_EE226FADA1E6-A</uml:id>
+    <rdfs:isDefinedBy rdf:resource="#Package_Faults"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <owl:inverseOf rdf:resource="#Fault.Location"/>
+    <rdfs:label>Fault</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">故障的位置.发生的故障</rdfs:label>
+    <rdfs:range rdf:resource="#Fault"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+    <rdfs:domain rdf:resource="#Location"/>
+  </rdf:Description>
+   <rdf:Description rdf:about="#Fault.Location">
+    <rdfs:domain rdf:resource="#Fault"/>
+    <rdfs:label>Location</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">故障.发生的位置</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <owl:inverseOf rdf:resource="#Location.Fault"/>
+    <rdfs:isDefinedBy rdf:resource="#Package_Faults"/>
+    <uml:id>EAID_7F84E357_68DD_4257_BD11_EE226FADA1E6-B</uml:id>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:range rdf:resource="#Location"/>
+  </rdf:Description>
+   <rdf:Description rdf:about="#LineFault.lengthFromTerminal1">
+    <uml:id>EAID_39244DFF_5709_4fd8_AE0A_F5BA2C171329</uml:id>
+    <rdfs:range rdf:resource="#Length"/>
+    <rdfs:comment>The length to the place where the fault is located starting from terminal with sequence number 1 of the faulted line segment.</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="#Package_Faults"/>
+    <rdfs:domain rdf:resource="#LineFault"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:label>lengthFromTerminal1</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">线上设备故障.离端点1的距离</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+  </rdf:Description>
+   <rdf:Description rdf:about="#Equipment.Faults">
+    <rdfs:range rdf:resource="#Fault"/>
+    <rdfs:label>Faults</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">设备.该设备上所发生的故障</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="#Equipment"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+    <uml:id>EAID_6B3EA616_0934_425c_A898_1D84DADF5261-A</uml:id>
+    <rdfs:comment>All faults on this equipment.</rdfs:comment>
+    <owl:inverseOf rdf:resource="#Fault.FaultyEquipment"/>
+    <rdfs:isDefinedBy rdf:resource="#Package_Faults"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Fault.occurredDateTime">
+    <rdfs:isDefinedBy rdf:resource="#Package_Faults"/>
+    <uml:id>EAID_A564D5B3_A502_4507_A8B7_8134E17FDA4E</uml:id>
+    <rdfs:label>occurredDateTime</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">故障.发生的时间</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    <rdfs:comment>The date and time at which the fault occurred.</rdfs:comment>
+    <rdfs:domain rdf:resource="#Fault"/>
+  </rdf:Description>
+   <rdf:Description rdf:about="#Fault.impedance">
+    <rdfs:label>impedance</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">故障.阻抗</rdfs:label>
+    <rdfs:comment>Fault impedance. Its usage is described by 'kind'.</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:isDefinedBy rdf:resource="#Package_Faults"/>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdfs:range rdf:resource="#FaultImpedance"/>
+    <rdfs:domain rdf:resource="#Fault"/>
+    <uml:id>EAID_4DFBDAF9_B528_44d1_A3D3_8CBABD131499</uml:id>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+  </rdf:Description>
+    <rdf:Description rdf:about="#Fault.phases">
+    <rdfs:comment>The phases participating in the fault. The fault connections into these phases are further specified by the type of fault.</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:range rdf:resource="#PhaseCode"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:label>phases</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">故障.相别</rdfs:label>
+    <uml:id>EAID_18AAE005_424C_4b89_941E_5D72E4C2075B</uml:id>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdfs:domain rdf:resource="#Fault"/>
+    <rdfs:isDefinedBy rdf:resource="#Package_Faults"/>
+  </rdf:Description>
+    <rdf:Description rdf:about="#FaultCauseType">
+    <rdfs:label>FaultCauseType</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">引起故障的类型</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="#IdentifiedObject"/>
+    <uml:id>EAID_FA0CB393_8E7C_411c_B4F1_14073D940EED</uml:id>
+    <rdfs:comment>Type of cause of the fault.</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="#Package_Faults"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#VerificationAction.verificationCondition">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment>freeform description of the condition to be verified</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdfs:domain rdf:resource="#VerificationAction"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdfs:label>verificationCondition</rdfs:label>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <uml:id>EAID_202ED7E9_A314_41a6_AC6B_E62E30281DB7</uml:id>
+  </rdf:Description>
+  <rdf:Description rdf:about="#TroubleOrder.Incident">
+    <uml:id>EAID_3D79F2D5_BE8F_4d59_A6FE_14060E81D5FA-B</uml:id>
+    <rdfs:label>Incident</rdfs:label>
+     <rdfs:label xml:lang="zh-cn">抢修工单.处理的停电事件</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:range rdf:resource="#Incident"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+    <rdfs:domain rdf:resource="#TroubleOrder"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <owl:inverseOf rdf:resource="#Incident.TroubleOrder"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Customer">
+    <uml:id>EAID_80011596_1798_4c9c_94A2_182EE31D017B</uml:id>
+    <rdfs:label>Customer</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="#SwitchActionKind.open">
+    <rdf:type rdf:resource="#SwitchActionKind"/>
+    <uml:id>EAID_6A4C2BE8_9771_457b_9011_D9023B75840F</uml:id>
+    <rdfs:comment>Open the switch.</rdfs:comment>
+    <rdfs:label>open</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="#ControlAction.discreteValue">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment>The integer value used for the command or the accumulator reset.</rdfs:comment>
+    <rdfs:label>discreteValue</rdfs:label>
+    <uml:id>EAID_9FC1AB85_0AD0_4300_8927_62A216B594C0</uml:id>
+    <rdfs:domain rdf:resource="#ControlAction"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://langdale.com.au/2005/UML#uriHasPrefix">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#SwitchingAction.plannedDateTime">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment>Planned date and time of this switching step.</rdfs:comment>
+    <rdfs:label>plannedDateTime</rdfs:label>
+    <uml:id>EAID_D13229D6_80A4_4bfa_94B0_A8E0295D18AD</uml:id>
+    <rdfs:domain rdf:resource="#SwitchingAction"/>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#OperationsSafetySupervisor">
+    <uml:id>EAID_15BBC9FA_EEB7_4283_8B46_0438BEA468AC</uml:id>
+    <rdfs:comment>Operator with responsibility that the work in high voltage installation is executed in a safe manner and according to safety regulation.</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>OperationsSafetySupervisor</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="#SafetyDocument.IssuedToSupervisor">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <owl:inverseOf rdf:resource="#FieldSafetySupervisor.IssuedSafetyDocuments"/>
+    <uml:id>EAID_9928D926_C37A_4b01_9B70_087C54DA13DA-A</uml:id>
+    <rdfs:range rdf:resource="#FieldSafetySupervisor"/>
+    <rdfs:domain rdf:resource="#SafetyDocument"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label>IssuedToSupervisor</rdfs:label>
+    <rdfs:comment>Supervisor to whom this safety document is issued.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://langdale.com.au/2005/UML#byreference">
+    <rdfs:label>By Reference</rdfs:label>
+    <rdf:type rdf:resource="http://langdale.com.au/2005/UML#Stereotype"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#SwitchingOrder.plannedExecutionInterval">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:domain rdf:resource="#SwitchingOrder"/>
+    <rdfs:comment>The planned start and end time for the switching order.</rdfs:comment>
+    <rdfs:label>plannedExecutionInterval</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">调度指令票下令.计划执行的时间段</rdfs:label>
+    <uml:id>EAID_94F12B92_AB9B_428e_9771_3064A2E98519</uml:id>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdfs:isDefinedBy rdf:resource="#Package_Operations"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:range rdf:resource="#DateTimeInterval"/>
+  </rdf:Description>  
+  
+  <rdf:Description rdf:about="#AreaKind.parish">
+    <rdf:type rdf:resource="#AreaKind"/>
+    <uml:id>EAID_8D29E3D2_4B18_461f_9BF6_B0408BB573CA</uml:id>
+    <rdfs:label>parish</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="#SwitchingStepGroup">
+    <rdfs:comment>A logical step, grouping atomic switching steps that are important to distinguish when they may change topology (e.g. placing a jumper between two cuts).</rdfs:comment>
+    <uml:id>EAID_A45191CC_01B4_4f9d_BD30_806616AC04C8</uml:id>
+    <rdfs:label>SwitchingStepGroup</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">综合指令</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://langdale.com.au/2005/UML#ofComposite">
+    <rdfs:label>Of Composite</rdfs:label>
+    <rdf:type rdf:resource="http://langdale.com.au/2005/UML#Stereotype"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Jumper">
+    <uml:id>EAID_1D1D3E1A_76FB_4219_90DD_F6AE687989FC</uml:id>
+    <rdfs:label>Jumper</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="#SwitchingPlan.SwitchingPlanRequest">
+    <owl:inverseOf rdf:resource="#SwitchingPlanRequest.SwitchingPlan"/>
+    <rdfs:range rdf:resource="#SwitchingPlanRequest"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <uml:id>EAID_648AFF78_8D22_4600_A50C_89FA5615F248-A</uml:id>
+    <rdfs:label>SwitchingPlanRequest</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">调度指令票.拟票申请单</rdfs:label>
+    <rdfs:domain rdf:resource="#SwitchingPlan"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Document">
+    <uml:id>EAID_EF39687B_42C9_4204_972C_0F1A9520DC31</uml:id>
+    <rdfs:label>Document</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="#SwitchingAction.issuedDateTime">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <uml:id>EAID_A84B8EC5_9192_4165_B659_B7586A377D0F</uml:id>
+    <rdfs:comment>Date and time when the crew was given the instruction to execute the action; not applicable if the action is performed by operator remote control.</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdfs:label>issuedDateTime</rdfs:label>
+    <rdfs:domain rdf:resource="#SwitchingAction"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#SwitchingAction.SwitchingStep">
+    <rdfs:domain rdf:resource="#SwitchingAction"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:range rdf:resource="#SwitchingStep"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+    <uml:id>EAID_AEB3B57B_446D_4886_89F5_9B26EA823237-A</uml:id>
+    <rdfs:label>SwitchingStep</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">操作动作.对应的逐项指令</rdfs:label>
+    <owl:inverseOf rdf:resource="#SwitchingStep.SwitchingAction"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#GroundAction.kind">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <uml:id>EAID_66457754_0A36_4354_B043_81FCC23B4478</uml:id>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdfs:domain rdf:resource="#GroundAction"/>
+    <rdfs:label>kind</rdfs:label>
+    <rdfs:comment>Switching action to perform.</rdfs:comment>
+    <rdfs:range rdf:resource="#TempEquipActionKind"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#SwitchingPlanRequest.isolationPoints">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdfs:label>isolationPoints</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">调度指令票拟票申请单.隔离操作涉及的设备</rdfs:label>
+    <rdfs:comment>free-form list of equipment to be operated or other actions to be taken in order to accomplish the required isolation.</rdfs:comment>
+    <rdfs:domain rdf:resource="#SwitchingPlanRequest"/>
+    <uml:id>EAID_7AB55350_D4E8_4305_9491_041737EFB40D</uml:id>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#SwitchingEvent.SwitchingAction">
+    <uml:id>EAID_D6B0C16A_D051_4e89_A8B6_F922CDD37B8A-A</uml:id>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:range rdf:resource="#SwitchingAction"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+    <owl:inverseOf rdf:resource="#SwitchingAction.SwitchingEvent"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="#SwitchingEvent"/>
+    <rdfs:label>SwitchingAction</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="#OutageOrder">
+    <rdfs:isDefinedBy rdf:resource="#Package_Operations"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>OutageOrder</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">现场停电指令</rdfs:label>
+    <rdfs:comment>Transmits an outage plan to a crew in order for the planned outage to be executed.</rdfs:comment>
+    <uml:id>EAID_E92F410F_17D3_497b_B612_3B1693031AA4</uml:id>
+    <rdfs:subClassOf rdf:resource="#Document"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#SwitchingOrder.SwitchingPlan">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="#SwitchingOrder"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+    <rdfs:range rdf:resource="#SwitchingPlan"/>
+    <owl:inverseOf rdf:resource="#SwitchingPlan.SwitchingOrder"/>
+    <uml:id>EAID_997A942D_55D5_453f_8757_284E88136668-B</uml:id>
+    <rdfs:label>SwitchingPlan</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">调度指令票下令.所属的调度指令票</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://langdale.com.au/2005/UML#extension">
+    <rdfs:label>Extension Class</rdfs:label>
+    <rdf:type rdf:resource="http://langdale.com.au/2005/UML#Stereotype"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#WorkTask">
+    <uml:id>EAID_E374758E_4AC0_4b81_9D2E_D56E1D8C5F50</uml:id>
+    <rdfs:label>WorkTask</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://langdale.com.au/2005/UML#base">
+    <rdfs:label>Base</rdfs:label>
+    <rdf:type rdf:resource="http://langdale.com.au/2005/UML#Stereotype"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#SafetyDocument.ReleasedToSupervisor">
+    <rdfs:range rdf:resource="#OperationsSafetySupervisor"/>
+    <rdfs:comment>Supervisor to which this safety document is released.</rdfs:comment>
+    <owl:inverseOf rdf:resource="#OperationsSafetySupervisor.ReleasedSafetyDocuments"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <uml:id>EAID_9101B352_8544_44a4_9F4A_B24425BA24E4-A</uml:id>
+    <rdfs:label>ReleasedToSupervisor</rdfs:label>
+    <rdfs:domain rdf:resource="#SafetyDocument"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#PlannedOutage.OutagePlan">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:label>OutagePlan</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">计划停电.相关的停电计划</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+    <owl:inverseOf rdf:resource="#OutagePlan.PlannedOutage"/>
+    <rdfs:comment>Outage plan for executing a planned outage.</rdfs:comment>
+    <rdfs:domain rdf:resource="#PlannedOutage"/>
+    <rdfs:range rdf:resource="#OutagePlan"/>
+    <uml:id>EAID_D5052A16_C1AA_4cfa_B0E4_1C79BE08873C-A</uml:id>
+  </rdf:Description>
+  <rdf:Description rdf:about="#SwitchingPlan.SwitchingOrder">
+    <rdfs:domain rdf:resource="#SwitchingPlan"/>
+    <owl:inverseOf rdf:resource="#SwitchingOrder.SwitchingPlan"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <uml:id>EAID_997A942D_55D5_453f_8757_284E88136668-A</uml:id>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:range rdf:resource="#SwitchingOrder"/>
+    <rdfs:label>SwitchingOrder</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">调度指令票.相关的调度指令票下令</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#SwitchingPlanRequest.isolationArea">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:comment>free-form description of the area to be isolated by the switching</rdfs:comment>
+    <rdfs:label>isolationArea</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">调度指令票拟票申请单.开关操作隔离的区域</rdfs:label>
+    <uml:id>EAID_312AEED1_5F56_47b8_9A2F_4A7AC8812FAA</uml:id>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="#SwitchingPlanRequest"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Outage.metersAffected">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdfs:comment>The updated number of meters affected by the outage as reported by the OMS within the utility.  It is assumed this number will be updated repeatedly until the full outage is resolved.</rdfs:comment>
+    <rdfs:label>metersAffected</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">停电.影响的表计数量</rdfs:label>
+    <uml:id>EAID_5793A622_95C4_41c3_B43A_075FBD01DCC4</uml:id>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    <rdfs:domain rdf:resource="#Outage"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#SwitchAction.PlannedOutage">
+    <rdfs:label>PlannedOutage</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">调度计划.产生的计划停电</rdfs:label>
+    <rdfs:comment>Planned outage for whose scope this switch action applies.</rdfs:comment>
+    <rdfs:domain rdf:resource="#SwitchAction"/>
+    <owl:inverseOf rdf:resource="#Outage.PlannedSwitchActions"/>
+    <uml:id>EAID_7DAECB14_3133_4fec_91BB_CBC4E6C8147D-A</uml:id>
+    <rdfs:range rdf:resource="#Outage"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#OperationalTag">
+    <rdfs:label>OperationalTag</rdfs:label>
+    <rdfs:comment>Operational tag placed on a power system resource or asset in the context of switching plan execution or other work in the field.</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <uml:id>EAID_2F8EE3CF_2319_4078_A5C2_CA89E6C8B884</uml:id>
+  </rdf:Description>
+  <rdf:Description rdf:about="#SafetyDocument.releasedDateTime">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    <rdfs:label>releasedDateTime</rdfs:label>
+    <uml:id>EAID_05643D1D_FFC2_43e3_AB97_CAB50A908FC3</uml:id>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdfs:comment>Date and time this safety document has been released.</rdfs:comment>
+    <rdfs:domain rdf:resource="#SafetyDocument"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#SafetyDocument.issuedDateTime">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment>Date and time this safety document has been issued.</rdfs:comment>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:id>EAID_06B39557_E213_45e4_BA87_EF6E23458375</uml:id>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdfs:label>issuedDateTime</rdfs:label>
+    <rdfs:domain rdf:resource="#SafetyDocument"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+  </rdf:Description>
+   <rdf:Description rdf:about="#PlannedOutage">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="#Outage"/>
+    <rdfs:isDefinedBy rdf:resource="#Package_Operations"/>
+    <uml:id>EAID_0BCDD7D7_E6DF_41ea_BE54_19C927ADCFF9</uml:id>
+    <rdfs:label>PlannedOutage</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">计划停电</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="#EstimatedRestorationTime.confidenceKind">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="#EstimatedRestorationTime"/>
+    <rdfs:comment>provides the confidence level that this ERT can be accomplished.  This may be changed/updated as needed.</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdfs:range rdf:resource="#ERTConfidenceKind"/>
+    <uml:id>EAID_0EDCEE1C_781D_4e73_BBAF_7CC348F50C47</uml:id>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdfs:label>confidenceKind</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="#OperationalUpdatedRating">
+    <rdfs:label>OperationalUpdatedRating</rdfs:label>
+    <rdfs:comment>Lowered capability because of deterioration or inadequacy (sometimes referred to as derating or partial outage) or other kind of operational rating change.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#OperationalRestriction"/>
+    <uml:id>EAID_5C9A09CF_769C_44fe_99C6_461466362FF0</uml:id>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#TagActionKind.place">
+    <rdf:type rdf:resource="#TagActionKind"/>
+    <uml:id>EAID_1F2B4888_B888_4453_87C4_FF46E0BF28A9</uml:id>
+    <rdfs:comment>Place the tag.</rdfs:comment>
+    <rdfs:label>place</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="#OutageCauseKind.poleDown">
+    <rdf:type rdf:resource="#OutageCauseKind"/>
+    <uml:id>EAID_8A6D9D6D_1EA9_4ba2_8DFA_33AA85571B0B</uml:id>
+    <rdfs:label>poleDown</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">停电原因类型.电杆倒塌</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Outage.OutageArea">
+    <rdfs:range rdf:resource="#OutageArea"/>
+    <rdfs:domain rdf:resource="#Outage"/>
+    <owl:inverseOf rdf:resource="#OutageArea.Outage"/>
+    <uml:id>EAID_FA533EAF_39C8_41ca_8599_A37602141D77-A</uml:id>
+    <rdfs:label>OutageArea</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">停电.停电影响区域</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#OperationalRestriction.restrictedValue">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="#FloatQuantity"/>
+    <rdfs:comment>Restricted (new) value; includes unit of measure and potentially multiplier.</rdfs:comment>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdfs:label>restrictedValue</rdfs:label>
+    <uml:id>EAID_E7974231_35DC_4526_BC91_D229A5682DF4</uml:id>
+    <rdfs:domain rdf:resource="#OperationalRestriction"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://langdale.com.au/2005/UML#xmlelement">
+    <rdfs:label>XML Element</rdfs:label>
+    <rdf:type rdf:resource="http://langdale.com.au/2005/UML#Stereotype"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#TagActionKind">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>TagActionKind</rdfs:label>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
+    <rdfs:comment>Kind of action on tag.</rdfs:comment>
+    <uml:id>EAID_6BC03167_2A28_4eab_8411_8FDAE36C1B3F</uml:id>
+  </rdf:Description>
+  <rdf:Description rdf:about="#TroubleOrder">
+    <rdfs:label>TroubleOrder</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">抢修工单</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="#Package_Operations"/>
+    <rdfs:comment>Trouble order sends an incident to a crew to initiate a response to an unplanned outage.</rdfs:comment>
+    <uml:id>EAID_7C67A635_A909_4e41_82B5_2A786790D362</uml:id>
+    <rdfs:subClassOf rdf:resource="#Document"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#TagAction.kind">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <uml:id>EAID_8ED3BAEC_B5E3_42ee_9454_4335FA916550</uml:id>
+    <rdfs:range rdf:resource="#TagActionKind"/>
+    <rdfs:domain rdf:resource="#TagAction"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdfs:label>kind</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">挂牌动作.类型</rdfs:label>
+    <rdfs:comment>Kind of tag action.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="#OutageStatusKind.restored">
+    <rdf:type rdf:resource="#OutageStatusKind"/>
+    <uml:id>EAID_CF0793F6_AC4F_4c31_BF02_A8CB5561A60C</uml:id>
+    <rdfs:comment>All usage points associated with the outage have been restored</rdfs:comment>
+    <rdfs:label>restored</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://langdale.com.au/2005/UML#compositeOf">
+    <rdfs:label>Composite Of</rdfs:label>
+    <rdf:type rdf:resource="http://langdale.com.au/2005/UML#Stereotype"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://langdale.com.au/2005/UML#baseprefix">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#SwitchingStep.SwitchingStepGroup">
+    <owl:inverseOf rdf:resource="#SwitchingStepGroup.SwitchingStep"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:range rdf:resource="#SwitchingStepGroup"/>
+    <uml:id>EAID_9979325A_954B_4a3c_8836_B2C1A866D545-B</uml:id>
+    <rdfs:label>SwitchingStepGroup</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">逐项指令.归属的综合指令</rdfs:label>
+    <rdfs:domain rdf:resource="#SwitchingStep"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Outage.outageKind">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdfs:comment>Defines if the outage has been verified or is only estimated</rdfs:comment>
+    <uml:id>EAID_4EEF77FC_63B4_44f5_9831_FB5BBDD0FD98</uml:id>
+    <rdfs:domain rdf:resource="#Outage"/>
+    <rdfs:range rdf:resource="#OutageStatusKind"/>
+    <rdfs:label>outageKind</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">停电.停电类型</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="#SwitchingPlan.purpose">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdfs:label>purpose</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">调度计划.目的</rdfs:label>
+    <rdfs:comment>Purpose of  this plan, such as whether it is to move the state from normal to some abnormal condition, or to restore the normal state after an abnormal condition, or to perform some kind of optimisation such as correction of overload, voltage control, etc.</rdfs:comment>
+    <rdfs:domain rdf:resource="#SwitchingPlan"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:id>EAID_1FDFFB30_E37C_4c09_9813_A53FBB508F22</uml:id>
+  </rdf:Description>
+  <rdf:Description rdf:about="#GroundAction">
+    <rdfs:label>GroundAction</rdfs:label>
+    <rdfs:comment>Action on ground as a switching step.</rdfs:comment>
+    <uml:id>EAID_2EC03659_4055_4b75_AD25_BA805A479D1D</uml:id>
+    <rdfs:subClassOf rdf:resource="#SwitchingAction"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#SwitchingStepGroup.purpose">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment>Describes the overall purpose of the steps in this switching step group.</rdfs:comment>
+    <rdfs:label>purpose</rdfs:label>
+    <uml:id>EAID_69B7E904_C2ED_4643_BF74_843C42E1502D</uml:id>
+    <rdfs:domain rdf:resource="#SwitchingStepGroup"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#PSREventKind">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
+    <rdfs:label>PSREventKind</rdfs:label>
+    <rdfs:comment>Kind of power system resource event.</rdfs:comment>
+    <uml:id>EAID_ACC00459_6F3B_4c7a_8BCA_3A885E34C9AB</uml:id>
+  </rdf:Description>
+  <rdf:Description rdf:about="#SwitchingAction.description">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label>description</rdfs:label>
+    <rdfs:comment>Free text description of this activity.</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdfs:domain rdf:resource="#SwitchingAction"/>
+    <uml:id>EAID_36196D20_DADC_4f10_9DC0_624BA20C3EA7</uml:id>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Outage.originalMetersAffected">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment>The original number of meters that were affected as reported by the OMS within the utility. That is, this is the total number of meters that were out at the beginning of the outage.</rdfs:comment>
+    <rdfs:domain rdf:resource="#Outage"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdfs:label>originalMetersAffected</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">停电.初始影响的表计数量</rdfs:label>
+    <uml:id>EAID_831EAA33_59E8_45c6_A7E0_AD1E0F65E806</uml:id>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#SwitchingStep.sequenceNumber">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment>Order of this activity in the sequence of activities within the switching plan.</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    <rdfs:label>sequenceNumber</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">逐项指令.执行步骤</rdfs:label>
+    <rdfs:domain rdf:resource="#SwitchingStep"/>
+    <uml:id>EAID_4444250A_B1C3_43e3_87D5_EF82219CFCDA</uml:id>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#OutageCauseKind.lineDown">
+    <rdf:type rdf:resource="#OutageCauseKind"/>
+    <rdfs:label>lineDown</rdfs:label>
+    <uml:id>EAID_C5493BB6_87C3_4a7b_A960_1193D6B9D548</uml:id>
+  </rdf:Description>
+  <rdf:Description rdf:about="#SwitchingOrder.comment">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#SwitchingOrder"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment>Free-form comment associated with the switching order.</rdfs:comment>
+    <uml:id>EAID_490032F6_F824_4c73_BB3B_ADD2B11F1225</uml:id>
+    <rdfs:label>comment</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">调度指令票下令.注释</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://langdale.com.au/2005/UML#xmlattribute">
+    <rdfs:label>XML Attribute</rdfs:label>
+    <rdf:type rdf:resource="http://langdale.com.au/2005/UML#Stereotype"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://langdale.com.au/2005/UML#hasMaxCardinality">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+  </rdf:Description>
+   <rdf:Description rdf:about="#PSREventKind.pendingRemove">
+    <rdf:type rdf:resource="#PSREventKind"/>
+    <uml:id>EAID_13C5B546_C97A_4168_A19E_8FEA5167FED3</uml:id>
+    <rdfs:comment>Power system resource state change to pending remove.</rdfs:comment>
+    <rdfs:label>pendingRemove</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="#FloatQuantity">
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
+    <rdfs:label>FloatQuantity</rdfs:label>
+    <uml:id>EAID_6E887B5A_F340_462c_9186_8556588ACE6C</uml:id>
+  </rdf:Description>
+  <rdf:Description rdf:about="#VerificationAction">
+    <rdfs:label>VerificationAction</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:comment>Verification of a switch position or other condition as a switching step</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#SwitchingAction"/>
+    <uml:id>EAID_D7D96493_B36A_45b9_9FC4_D765897756EF</uml:id>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Outage.summary">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <uml:id>EAID_092BCE4E_C750_42c7_8623_55B144F00805</uml:id>
+    <rdfs:range rdf:resource="#ServicePointOutageSummary"/>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdfs:comment>Summary counts of service points (customers) affected by this outage.</rdfs:comment>
+    <rdfs:domain rdf:resource="#Outage"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdfs:label>summary</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">停电.受电点统计</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://langdale.com.au/2005/UML#roleALabel">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#SwitchingPlanRequest.outageDateTimeInterval">
+    <rdfs:comment>The window of time during which one or more customers will be de-energized during execution of the switching plan.</rdfs:comment>
+    <rdfs:range rdf:resource="#DateTimeInterval"/>
+    <rdfs:domain rdf:resource="#SwitchingPlanRequest"/>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdfs:isDefinedBy rdf:resource="#Package_Operations"/>
+    <uml:id>EAID_16EB8BE0_A988_4316_9CE8_FC73C73875CC</uml:id>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdfs:label>outageDateTimeInterval</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">调度指令票拟票申请单.停电时间间隔</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://langdale.com.au/2005/UML#enumeration">
+    <rdfs:label>Enumeration</rdfs:label>
+    <rdf:type rdf:resource="http://langdale.com.au/2005/UML#Stereotype"/>
+    <rdfs:label>enumeration</rdfs:label>
+    <uml:id>EAID_D4CBF8AE_4994_4c7c_8655_836A400FB76D</uml:id>
+  </rdf:Description>
+  <rdf:Description rdf:about="#CrewMember">
+    <uml:id>EAID_4A7EA6E5_C75B_4670_B62D_3011D27EC685</uml:id>
+    <rdfs:label>CrewMember</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://langdale.com.au/2005/UML#extendedby">
+    <rdfs:label>Extended By</rdfs:label>
+    <rdf:type rdf:resource="http://langdale.com.au/2005/UML#Stereotype"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Outage.actualPeriod">
+    <rdfs:label>actualPeriod</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">停电.实际停电时段</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:id>EAID_0AD368D5_C6D0_47a8_B938_051F2AC57B2C</uml:id>
+    <rdfs:comment>Actual outage period; end of the period corresponds to the actual restoration time.</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdfs:isDefinedBy rdf:resource="#Package_Operations"/>
+    <rdfs:range rdf:resource="#DateTimeInterval"/>
+    <rdfs:domain rdf:resource="#Outage"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  </rdf:Description>
+  
+  <rdf:Description rdf:about="#ClearanceActionKind.update">
+    <rdf:type rdf:resource="#ClearanceActionKind"/>
+    <rdfs:comment>Update clearance.</rdfs:comment>
+    <rdfs:label>update</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">安全许可动作类型.更新</rdfs:label>
+    <uml:id>EAID_831A7582_9199_409c_96F5_1F83E93C159D</uml:id>
+  </rdf:Description>
+  <rdf:Description rdf:about="#SwitchActionKind">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>SwitchActionKind</rdfs:label>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
+    <uml:id>EAID_4B2B08CF_4F3C_4dba_871B_CC48F7241111</uml:id>
+    <rdfs:comment>Kind of action on switch.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="#OutagePlan.cancelledDateTime">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <uml:id>EAID_DEA72F1F_9BAF_48d7_B194_94075F7F99C1</uml:id>
+    <rdfs:label>cancelledDateTime</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">停电计划.取消的日期</rdfs:label>
+    <rdfs:comment>Date and Time the planned outage was canceled.</rdfs:comment>
+    <rdfs:domain rdf:resource="#OutagePlan"/>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#ClearanceDocument.mustBeDeenergised">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    <rdfs:comment>If true, the equipment must be deenergised.</rdfs:comment>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdfs:label>mustBeDeenergised</rdfs:label>
+    <uml:id>EAID_8102C6B9_BFDF_4102_8071_C547C8984D08</uml:id>
+    <rdfs:domain rdf:resource="#ClearanceDocument"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#AreaKind.county">
+    <rdf:type rdf:resource="#AreaKind"/>
+    <uml:id>EAID_715CA34A_30C0_41d4_8EB1_2CFA88D71E16</uml:id>
+    <rdfs:label>county</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="#ERTConfidenceKind">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <uml:id>EAID_F71CD8B5_221E_4900_B9AF_51866AC236F1</uml:id>
+    <rdfs:label>ERTConfidenceKind</rdfs:label>
+    <rdfs:comment>The estimated time of restoration can have a confidence factor applied such as high or low confidence that the ERT will be accomplished.  This confidence factor may be updated as needed during the outage period - just as the actual ERT can be updated.</rdfs:comment>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#SwitchingPlanRequest.purpose">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label>purpose</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">调度指令票拟票申请单.目的</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <uml:id>EAID_2DEAA8AD_4456_4d11_81DA_53395F86D1BE</uml:id>
+    <rdfs:domain rdf:resource="#SwitchingPlanRequest"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#PSREventKind.pendingAdd">
+    <rdf:type rdf:resource="#PSREventKind"/>
+    <uml:id>EAID_D08E54ED_D1FB_4fe7_AB1D_6D39615186AB</uml:id>
+    <rdfs:label>pendingAdd</rdfs:label>
+    <rdfs:comment>Power system resource state change to pending add.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="#SwitchingPlan.plannedPeriod">
+    <uml:id>EAID_1F964C14_A51B_47aa_9AF9_8840741E6592</uml:id>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdfs:range rdf:resource="#DateTimeInterval"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdfs:comment>the planned start and end times for the switching plan.</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:domain rdf:resource="#SwitchingPlan"/>
+    <rdfs:label>plannedPeriod</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">调度指令票.计划执行时间段</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="#Package_Operations"/>
+  </rdf:Description>  
+  
+  <rdf:Description rdf:about="http://langdale.com.au/2005/UML#baseuri">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#TagAction.OperationalTag">
+    <rdfs:comment>Tag associated with this tag action.</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+    <rdfs:range rdf:resource="#OperationalTag"/>
+    <rdfs:domain rdf:resource="#TagAction"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <uml:id>EAID_987DD03E_CEAD_487e_B8AA_EDF24171399B-B</uml:id>
+    <owl:inverseOf rdf:resource="#OperationalTag.TagAction"/>
+    <rdfs:label>OperationalTag</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="#TroubleOrder.comment">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdfs:domain rdf:resource="#TroubleOrder"/>
+    <rdfs:label>comment</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">抢修工单.注释</rdfs:label>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <uml:id>EAID_DAB0A2E8_48FB_45e5_A8CF_B7D88FCDB254</uml:id>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdfs:comment>Free-form comment associated with the trouble order.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.w3.org/2001/XMLSchema#string">
+    <uml:id>eaxmiid1</uml:id>
+    <rdfs:label>String</rdfs:label>
+    <uml:id>EAID_E50DF78B_84CE_42e9_A275_A956DEF45490</uml:id>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Common">
+    <uml:id>EAID_EE877146_D323_4066_AB0A_FCE1513C20A4</uml:id>
+    <rdfs:label>Common</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Operations">
+    <uml:id>EAID_CE6EBADC_B316_4fe1_AC5C_D4888139657D</uml:id>
+    <rdfs:label>Operations</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://langdale.com.au/2005/UML#concrete">
+    <rdfs:label>Concrete</rdfs:label>
+    <rdf:type rdf:resource="http://langdale.com.au/2005/UML#Stereotype"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#OperationalUpdatedRating.PlannedOutage">
+    <rdfs:comment>Planned equipment outage with this updated rating.</rdfs:comment>
+    <rdfs:domain rdf:resource="#OperationalUpdatedRating"/>
+    <rdfs:range rdf:resource="#PlannedOutage"/>
+    <owl:inverseOf rdf:resource="#PlannedOutage.UpdatedRatings"/>
+    <rdfs:label>PlannedOutage</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <uml:id>EAID_C5F3A5B0_064B_4cc4_AA34_0296D8D7919A-B</uml:id>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Work">
+    <uml:id>EAID_BBD91857_52A1_4304_AC16_27142B5B76FB</uml:id>
+    <rdfs:label>Work</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://langdale.com.au/2005/UML#hasMinCardinality">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#PSREventKind.pendingReplace">
+    <rdf:type rdf:resource="#PSREventKind"/>
+    <rdfs:label>pendingReplace</rdfs:label>
+    <rdfs:comment>Power system resource state change to pending replace.</rdfs:comment>
+    <uml:id>EAID_5BC2039C_C41D_48f8_BD82_D823A3CE3F81</uml:id>
+  </rdf:Description>
+  <rdf:Description rdf:about="#SwitchingPlanRequest.SwitchingPlan">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+    <rdfs:label>SwitchingPlan</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">调度指令票拟票申请单.调度指令票</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="#SwitchingPlanRequest"/>
+    <rdfs:range rdf:resource="#SwitchingPlan"/>
+    <uml:id>EAID_648AFF78_8D22_4600_A50C_89FA5615F248-B</uml:id>
+    <owl:inverseOf rdf:resource="#SwitchingPlan.SwitchingPlanRequest"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#TroubleTicket">
+    <uml:id>EAID_1976402F_5A73_4079_A2B1_0044903352D2</uml:id>
+    <rdfs:label>TroubleTicket</rdfs:label>
+  </rdf:Description>
+ 
+  <rdf:Description rdf:about="#OutagePlan">
+    <rdfs:isDefinedBy rdf:resource="#Package_Operations"/>
+    <uml:id>EAID_ACA48F97_FA05_4c4d_94AA_226E14FA7E5C</uml:id>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:comment>Document containing the definition of planned outages of equipment and/or usage points. It will reference switching plans that are used to execute the planned outage.</rdfs:comment>
+    <rdfs:label>OutagePlan</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">停电计划</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#Document"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#OutagePlan.Customer">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+    <rdfs:comment>The customers that are affected by this planned outage.</rdfs:comment>
+    <rdfs:label>Customer</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">停电计划.影响的用户</rdfs:label>
+    <uml:id>EAID_2B68C98E_D3F5_4de1_9693_2F2E3F99F1BC-A</uml:id>
+    <rdfs:range rdf:resource="#Customer"/>
+    <rdfs:domain rdf:resource="#OutagePlan"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:isDefinedBy rdf:resource="#Package_Operations"/>
+    <owl:inverseOf rdf:resource="#Customer.OutagePlan"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#OutageArea.Outage">
+    <rdfs:range rdf:resource="#Outage"/>
+    <rdfs:domain rdf:resource="#OutageArea"/>
+    <owl:inverseOf rdf:resource="#Outage.OutageArea"/>
+    <uml:id>EAID_FA533EAF_39C8_41ca_8599_A37602141D77-B</uml:id>
+    <rdfs:label>Outage</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#PSREventKind.unknown">
+    <rdf:type rdf:resource="#PSREventKind"/>
+    <uml:id>EAID_4B4EE721_021C_4d27_88CE_0AE70B0A4CE4</uml:id>
+    <rdfs:label>unknown</rdfs:label>
+    <rdfs:comment>Unknown power system resource state change.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="#OutageStatusKind">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <uml:id>EAID_EEA30D3B_F1FD_4289_BD60_81C91AEB7886</uml:id>
+    <rdfs:label>OutageStatusKind</rdfs:label>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
+    <rdfs:comment>This defines if the outage have been predicted or confirmed</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="#AreaKind.borough">
+    <rdf:type rdf:resource="#AreaKind"/>
+    <rdfs:label>borough</rdfs:label>
+    <uml:id>EAID_3929CD68_4876_431c_820C_1B35351C339D</uml:id>
+  </rdf:Description>
+  <rdf:Description rdf:about="#ClearanceActionKind.release">
+    <rdf:type rdf:resource="#ClearanceActionKind"/>
+    <rdfs:label>release</rdfs:label>
+    <rdfs:comment>Release clearance.</rdfs:comment>
+    <uml:id>EAID_04F4B5A7_5A44_48dd_8637_F603EAD2C510</uml:id>
+  </rdf:Description>
+  <rdf:Description rdf:about="#TagActionKind.remove">
+    <rdf:type rdf:resource="#TagActionKind"/>
+    <uml:id>EAID_5589EE0A_54B5_4c67_A575_76B57246B24E</uml:id>
+    <rdfs:comment>Remove the tag.</rdfs:comment>
+    <rdfs:label>remove</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://langdale.com.au/2005/UML#attribute">
+    <rdfs:label>Attribute</rdfs:label>
+    <rdf:type rdf:resource="http://langdale.com.au/2005/UML#Stereotype"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://langdale.com.au/2005/UML#aggregateOf">
+    <rdfs:label>Aggregate Of</rdfs:label>
+    <rdf:type rdf:resource="http://langdale.com.au/2005/UML#Stereotype"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#OutageCauseKind">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
+    <uml:id>EAID_288135CD_0CCB_48d9_906B_2E3998575562</uml:id>
+    <rdfs:label>OutageCauseKind</rdfs:label>
+    <rdfs:comment>This enumeration describes the primary cause of the outage - planned, unplanned, etc.</rdfs:comment>
+  </rdf:Description>
+ <rdf:Description rdf:about="#EstimatedRestorationTime">
+    <rdfs:label>EstimatedRestorationTime</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">一个停电的预计恢复时间</rdfs:label>
+    <uml:id>EAID_FC049904_001D_4ca5_B4B0_1082AA699C7B</uml:id>
+    <rdfs:isDefinedBy rdf:resource="#Package_Operations"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:comment>The Estimated Restoration Time for a single outage</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="#TempEquipActionKind.remove">
+    <rdf:type rdf:resource="#TempEquipActionKind"/>
+    <rdfs:comment>Remove the jumper (open) or the cut (close).</rdfs:comment>
+    <rdfs:label>remove</rdfs:label>
+    <uml:id>EAID_6D0261B3_86EF_4d7a_B612_E429DD2757B0</uml:id>
+  </rdf:Description>
+  <rdf:Description rdf:about="#OperationalRestriction">
+    <rdfs:comment>A document that can be associated with equipment to describe any sort of restrictions compared with the original manufacturer's specification or with the usual operational practice e.g. temporary maximum loadings, maximum switching current, do not operate if bus couplers are open, etc.
+In the UK, for example, if a breaker or switch ever mal-operates, this is reported centrally and utilities use their asset systems to identify all the installed devices of the same manufacturer's type. They then apply operational restrictions in the operational systems to warn operators of potential problems. After appropriate inspection and maintenance, the operational restrictions may be removed.</rdfs:comment>
+    <rdfs:label>OperationalRestriction</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <uml:id>EAID_0093960F_86E8_4b3c_AD90_C7777658369A</uml:id>
+  </rdf:Description>
+  <rdf:Description rdf:about="#SwitchingPlan.OutagePlan">
+    <rdfs:label>OutagePlan</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">调度计划.服务的停电计划</rdfs:label>
+    <rdfs:comment>The outage plan for which the switching plan is defined.</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:range rdf:resource="#OutagePlan"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="#SwitchingPlan"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+    <uml:id>EAID_205E346A_7AC3_4f63_9926_D90B3687F39B-B</uml:id>
+    <owl:inverseOf rdf:resource="#OutagePlan.SwitchingPlan"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#ServicePointOutageSummary.totalCount">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdfs:domain rdf:resource="#ServicePointOutageSummary"/>
+    <rdfs:label>totalCount</rdfs:label>
+    <uml:id>EAID_931644DD_C199_4b7c_9996_298AD5ED0DA9</uml:id>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    <rdfs:comment>Number of all service (delivery) points affected by an outage.</rdfs:comment>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#OutagePlan.PlannedOutage">
+    <rdfs:comment>The outage resulting from the execution of the outage plan.</rdfs:comment>
+    <rdfs:range rdf:resource="#PlannedOutage"/>
+    <rdfs:label>PlannedOutage</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">停电计划.导致的计划停电</rdfs:label>
+    <rdfs:domain rdf:resource="#OutagePlan"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+    <owl:inverseOf rdf:resource="#PlannedOutage.OutagePlan"/>
+    <uml:id>EAID_D5052A16_C1AA_4cfa_B0E4_1C79BE08873C-B</uml:id>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#FieldSafetySupervisor.ReleasedSafetyDocuments">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="#FieldSafetySupervisor"/>
+    <rdfs:comment>All safety documents released by this supervisor.</rdfs:comment>
+    <rdfs:label>ReleasedSafetyDocuments</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+    <uml:id>EAID_D76F467F_64BC_408a_BE7C_AEA257C59F88-B</uml:id>
+    <rdfs:range rdf:resource="#SafetyDocument"/>
+    <owl:inverseOf rdf:resource="#SafetyDocument.ReleasedBySupervisor"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://langdale.com.au/2005/UML#preserve">
+    <rdfs:label>Preserve</rdfs:label>
+    <rdf:type rdf:resource="http://langdale.com.au/2005/UML#Stereotype"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://langdale.com.au/2005/UML#roleAOf">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#OutageCauseKind.animal">
+    <rdf:type rdf:resource="#OutageCauseKind"/>
+    <rdfs:comment>This outage was caused by an animal is was unplanned.  As such it is treated as a forced outage and is probably classified as "trouble" with a Trouble Ticket as well as a work/service order.  The primary difference between this and an unplanned outage is the reason for the outage.  If an animal caused this and perished as a result, the utility may have other actions that are required to be taken by the EPA or other groups with whom the utility has an agreement.</rdfs:comment>
+    <uml:id>EAID_6A838872_9EF8_4d63_9C8E_1843DE84D1CC</uml:id>
+    <rdfs:label>animal</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Core">
+    <uml:id>EAID_6A503B72_6E15_4cd1_B92D_DDF6D14DBE29</uml:id>
+    <rdfs:label>Core</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Incident.cause">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#Incident"/>
+    <uml:id>EAID_D9CF34B1_42FB_4ecd_82C0_C3E1215408E9</uml:id>
+    <rdfs:comment>Cause of this incident.</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdfs:label>cause</rdfs:label>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Asset">
+    <uml:id>EAID_4F4AE641_1576_4f64_BE09_A19143D580F7</uml:id>
+    <rdfs:label>Asset</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Incident.Outage">
+    <rdfs:label>Outage</rdfs:label>
+    <rdfs:range rdf:resource="#Outage"/>
+    <rdfs:domain rdf:resource="#Incident"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:comment>Outage for this incident.</rdfs:comment>
+    <uml:id>EAID_91D33A1C_B14C_40a2_8C56_19764D00E571-B</uml:id>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <owl:inverseOf rdf:resource="#Outage.Incident"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Operator">
+    <uml:id>EAID_1D6E83CC_11B8_4c82_B832_D1B0BC8A2E04</uml:id>
+    <rdfs:label>Operator</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="#SwitchingEvent">
+    <rdfs:label>SwitchingEvent</rdfs:label>
+    <uml:id>EAID_12009FF8_FCCD_459b_8D67_9366AF32DD46</uml:id>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:comment>Event indicating the completion (success or fail) of any switching action (jumper action, cut action, tag action, etc).  The switching action may or may not be a consequential event in response to a request to complete the action.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="#FieldSafetySupervisor">
+    <rdfs:comment>Crew member on work site responsible for all local safety measures for the work crew doing maintenance, construction and repair in a substation or on a power line/cable.</rdfs:comment>
+    <rdfs:label>FieldSafetySupervisor</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <uml:id>EAID_A4E26C63_7079_4b95_9862_97326FEA4EFA</uml:id>
+  </rdf:Description>
+  <rdf:Description rdf:about="#OutageCauseKind.lightingStrike">
+    <rdf:type rdf:resource="#OutageCauseKind"/>
+    <uml:id>EAID_815AEFC6_65C1_4542_B332_A7624897CE80</uml:id>
+    <rdfs:label>lightingStrike</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="#SwitchingPlan.SafetyDocuments">
+    <rdfs:label>SafetyDocuments</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">调度指令票.安全许可</rdfs:label>
+    <rdfs:domain rdf:resource="#SwitchingPlan"/>
+    <uml:id>EAID_27C9D948_FDCD_4bb2_9FA5_B01A6569D284-B</uml:id>
+    <rdfs:comment>All safety documents applicable to this swtiching plan.</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <owl:inverseOf rdf:resource="#SafetyDocument.SwitchingPlan"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+    <rdfs:range rdf:resource="#SafetyDocument"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#SwitchingPlan.rank">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment>Ranking in comparison to other switching plans.</rdfs:comment>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdfs:label>rank</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">调度指令票.优先等级</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    <rdfs:domain rdf:resource="#SwitchingPlan"/>
+    <uml:id>EAID_6BBFA369_C2F2_49fb_A2F1_085E8B077A87</uml:id>
+  </rdf:Description>
+  <rdf:Description rdf:about="#SwitchingPlan.SwitchingStepGroups">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:comment>All groups of switching steps within this switching plan.</rdfs:comment>
+    <uml:id>EAID_3BD787CE_70EE_4500_B66D_3B01AA018B58-B</uml:id>
+    <rdfs:domain rdf:resource="#SwitchingPlan"/>
+    <owl:inverseOf rdf:resource="#SwitchingStepGroup.SwitchingPlan"/>
+    <rdfs:range rdf:resource="#SwitchingStepGroup"/>
+    <rdfs:label>SwitchingStepGroups</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">调度指令票.综合指令</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#PSREventKind.outOfService">
+    <rdf:type rdf:resource="#PSREventKind"/>
+    <rdfs:comment>Power system resource state change to out of service.</rdfs:comment>
+    <uml:id>EAID_35587599_4E23_472e_9884_059331D3413E</uml:id>
+    <rdfs:label>outOfService</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="#OperationalTag.TagAction">
+    <rdfs:comment>Tag action associated with this tag.</rdfs:comment>
+    <owl:inverseOf rdf:resource="#TagAction.OperationalTag"/>
+    <rdfs:label>TagAction</rdfs:label>
+    <rdfs:range rdf:resource="#TagAction"/>
+    <rdfs:domain rdf:resource="#OperationalTag"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <uml:id>EAID_987DD03E_CEAD_487e_B8AA_EDF24171399B-A</uml:id>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#ClearanceDocument.ClearanceAction">
+    <rdfs:label>ClearanceAction</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <uml:id>EAID_DC4663C9_511F_45f1_93ED_28032F3DAC73-A</uml:id>
+    <rdfs:domain rdf:resource="#ClearanceDocument"/>
+    <rdfs:comment>Clearance action associated with this clearance.</rdfs:comment>
+    <rdfs:range rdf:resource="#ClearanceAction"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <owl:inverseOf rdf:resource="#ClearanceAction.Clearance"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#EstimatedRestorationTime.Outage">
+    <rdfs:range rdf:resource="#Outage"/>
+    <rdfs:domain rdf:resource="#EstimatedRestorationTime"/>
+    <uml:id>EAID_ABABDC87_C805_4e9a_86E2_7C263386DF76-B</uml:id>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <owl:inverseOf rdf:resource="#Outage.EstimatedRestorationTime"/>
+    <rdfs:label>Outage</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://langdale.com.au/2005/UML#union">
+    <rdfs:label>Union</rdfs:label>
+    <rdf:type rdf:resource="http://langdale.com.au/2005/UML#Stereotype"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.w3.org/2001/XMLSchema#float">
+    <rdfs:label>Float</rdfs:label>
+    <uml:id>EAID_921A00A7_D33C_43ea_9DE4_70A026CBA70F</uml:id>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Outage.Incident">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+    <rdfs:label>Incident</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">停电.相关的现场事故</rdfs:label>
+    <rdfs:domain rdf:resource="#Outage"/>
+    <rdfs:comment>Incident reported in trouble call that results in this outage.</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <owl:inverseOf rdf:resource="#Incident.Outage"/>
+    <rdfs:range rdf:resource="#Incident"/>
+    <uml:id>EAID_91D33A1C_B14C_40a2_8C56_19764D00E571-A</uml:id>
+  </rdf:Description>
+  <rdf:Description rdf:about="#MeasurementAction">
+    <rdfs:subClassOf rdf:resource="#SwitchingAction"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>MeasurementAction</rdfs:label>
+    <rdfs:comment>Measurement taken as a switching step.</rdfs:comment>
+    <uml:id>EAID_D2A8F7F3_5902_40b2_9A33_6873CB46EAAD</uml:id>
+  </rdf:Description>
+  <rdf:Description rdf:about="#AreaKind.township">
+    <rdf:type rdf:resource="#AreaKind"/>
+    <uml:id>EAID_CE8703F8_3862_4d29_A177_7CE4D7ABEAD5</uml:id>
+    <rdfs:label>township</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="#ClearanceAction.kind">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdfs:comment>Clearance action to perform.</rdfs:comment>
+    <rdfs:range rdf:resource="#ClearanceActionKind"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdfs:domain rdf:resource="#ClearanceAction"/>
+    <rdfs:label>kind</rdfs:label>
+    <uml:id>EAID_AB65507D_9450_4d89_8138_EE69C858E7B9</uml:id>
+  </rdf:Description>
+  <rdf:Description rdf:about="#EstimatedRestorationTime.ert">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#EstimatedRestorationTime"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    <rdfs:label>ert</rdfs:label>
+    <uml:id>EAID_E8CD10EA_E4A7_4741_A408_3D7D30252659</uml:id>
+    <rdfs:comment>estimated time the outage will be restored</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#SwitchingStep">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>SwitchingStep</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">逐项指令</rdfs:label>
+    <rdfs:comment>Atomic switching step; can be part of a switching step group, or part of a switching plan.</rdfs:comment>
+    <uml:id>EAID_EE8680C2_ED07_4a60_9EF9_7A23C54F7FD0</uml:id>
+  </rdf:Description>
+  <rdf:Description rdf:about="#AreaKind.state">
+    <rdf:type rdf:resource="#AreaKind"/>
+    <uml:id>EAID_7339F7DB_5EA8_4cde_858B_A05EF354C5A4</uml:id>
+    <rdfs:label>state</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="#SwitchingStep.SwitchingAction">
+    <rdfs:label>SwitchingAction</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">逐项指令.对应的操作动作</rdfs:label>
+    <uml:id>EAID_AEB3B57B_446D_4886_89F5_9B26EA823237-B</uml:id>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+    <owl:inverseOf rdf:resource="#SwitchingAction.SwitchingStep"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:range rdf:resource="#SwitchingAction"/>
+    <rdfs:domain rdf:resource="#SwitchingStep"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Incident">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:isDefinedBy rdf:resource="#Package_Operations"/>
+    <rdfs:label>Incident</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">现场事故</rdfs:label>
+    <rdfs:comment>Description of a problem in the field that may be reported in a trouble ticket or come from another source. It may have to do with an outage.</rdfs:comment>
+    <uml:id>EAID_0ED91420_F3BF_47ae_B626_192C9A40CC1A</uml:id>
+    <rdfs:subClassOf rdf:resource="#Document"/>
+  </rdf:Description>
+   <rdf:Description rdf:about="#Incident.Location">
+    <owl:inverseOf rdf:resource="#Location.Incident"/>
+    <rdfs:comment>Location of this incident.</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:range rdf:resource="#Location"/>
+    <rdfs:label>Location</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">现场事故.发生的位置</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+    <rdfs:domain rdf:resource="#Incident"/>
+    <uml:id>EAID_92317947_BF8F_4e74_A2A0_4C97EDA82DD0-B</uml:id>
+    <rdfs:isDefinedBy rdf:resource="#Package_Common"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+   <rdf:Description rdf:about="#Incident.TroubleTickets">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:comment>All trouble tickets reporting this incident.</rdfs:comment>
+    <rdfs:domain rdf:resource="#Incident"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+    <uml:id>EAID_604AF98C_C65C_46ec_828D_96FE5F906C35-A</uml:id>
+    <owl:inverseOf rdf:resource="#TroubleTicket.Incident"/>
+    <rdfs:label>TroubleTickets</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">现场事故.导致的故障报修单</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="#Package_Operations"/>
+    <rdfs:range rdf:resource="#TroubleTicket"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.w3.org/2000/01/rdf-schema#comment">
+    <uml:id>EAID_2146BE17_CD0C_4d3b_B9D5_4AB867D258DA</uml:id>
+    <rdfs:label>documentation</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+    <uml:id>EAID_075928A6_ED51_45e1_AC00_503BD3A4490F</uml:id>
+    <rdfs:label>description</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://langdale.com.au/2005/UML#hasStereotype">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#SwitchingStepGroup.sequenceNumber">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <uml:id>EAID_5988977E_1E7B_4aef_A4E5_AC5455C25A7B</uml:id>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdfs:comment>Order of this activity in the sequence of activities within the switching plan.</rdfs:comment>
+    <rdfs:domain rdf:resource="#SwitchingStepGroup"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    <rdfs:label>sequenceNumber</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">综合指令.在调度指令票中的执行顺序</rdfs:label>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#EnergySource">
+    <uml:id>EAID_7174F78A_A2B7_457a_8EBC_4E9CBA6DA738</uml:id>
+    <rdfs:label>EnergySource</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Outage.statusKind">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label>statusKind</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">停电.现场班组状态</rdfs:label>
+    <rdfs:domain rdf:resource="#Outage"/>
+    <rdfs:comment>defines the status of the crew as in dispatched or arrived, etc.</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:id>EAID_CEB45334_9B67_4ff2_AC41_C15BAC571F12</uml:id>
+    <rdfs:range rdf:resource="#CrewStatusKind"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Outage.PlannedSwitchActions">
+    <rdfs:comment>All switch actions to apply within the scope of this planned outage. Each such action groups switches to which the action is to apply in order to produce the desired network state considered as outage.</rdfs:comment>
+    <uml:id>EAID_7DAECB14_3133_4fec_91BB_CBC4E6C8147D-B</uml:id>
+    <rdfs:label>PlannedSwitchActions</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">停电.计划停电相关的开关操作</rdfs:label>
+    <rdfs:range rdf:resource="#SwitchAction"/>
+    <rdfs:domain rdf:resource="#Outage"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <owl:inverseOf rdf:resource="#SwitchAction.PlannedOutage"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Organisation">
+    <uml:id>EAID_F8CDB36C_C67A_437e_B836_79674718904E</uml:id>
+    <rdfs:label>Organisation</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="#SwitchActionKind.enableReclosing">
+    <rdf:type rdf:resource="#SwitchActionKind"/>
+    <rdfs:label>enableReclosing</rdfs:label>
+    <rdfs:comment>Enable (automatic) switch reclosing.</rdfs:comment>
+    <uml:id>EAID_86E39986_025E_400b_B435_93EB055DCD20</uml:id>
+  </rdf:Description>
+  <rdf:Description rdf:about="#SwitchingAction">
+    <rdfs:label>SwitchingAction</rdfs:label>
+    <rdfs:comment>Atomic switching action.</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <uml:id>EAID_71CB75D5_6E45_4438_90A2_B15C918B1BB3</uml:id>
+  </rdf:Description>
+  <rdf:Description rdf:about="#CutAction">
+    <rdfs:comment>Action on cut as a switching step.</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <uml:id>EAID_40FB11D9_C203_4534_89FA_28F98BB3DC72</uml:id>
+    <rdfs:subClassOf rdf:resource="#SwitchingAction"/>
+    <rdfs:label>CutAction</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="#OutageOrder.comment">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdfs:comment>Free-form comment associated with the outage order</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label>comment</rdfs:label>
+    <rdfs:domain rdf:resource="#OutageOrder"/>
+    <uml:id>EAID_951491DA_3948_4521_B621_2FF848323433</uml:id>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#ClearanceActionKind">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <uml:id>EAID_45A80A5F_B5F8_4b80_9B6A_A17BB65ED1AD</uml:id>
+    <rdfs:comment>Type of clearance action.</rdfs:comment>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
+    <rdfs:label>ClearanceActionKind</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="#SafetyDocument.SwitchingPlan">
+    <rdfs:comment>Switching plan to which this safety document applies.</rdfs:comment>
+    <rdfs:label>SwitchingPlan</rdfs:label>
+    <rdfs:range rdf:resource="#SwitchingPlan"/>
+    <rdfs:domain rdf:resource="#SafetyDocument"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <owl:inverseOf rdf:resource="#SwitchingPlan.SafetyDocuments"/>
+    <uml:id>EAID_27C9D948_FDCD_4bb2_9FA5_B01A6569D284-A</uml:id>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#SwitchingStepGroup.SwitchingStep">
+    <rdfs:label>SwitchingStep</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">综合指令.分解的逐项指令</rdfs:label>
+    <owl:inverseOf rdf:resource="#SwitchingStep.SwitchingStepGroup"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="#SwitchingStepGroup"/>
+    <rdfs:range rdf:resource="#SwitchingStep"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+    <uml:id>EAID_9979325A_954B_4a3c_8836_B2C1A866D545-A</uml:id>
+  </rdf:Description>
+  <rdf:Description rdf:about="#FieldDispatchHistory">
+    <uml:id>EAID_6781E967_A300_4e16_825B_50CE206FDC8A</uml:id>
+    <rdfs:label>FieldDispatchHistory</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="#SwitchingStepGroup.description">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment>Descriptive information concerning the switching step group.</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdfs:domain rdf:resource="#SwitchingStepGroup"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <uml:id>EAID_20AD671A_E578_4c4a_8066_00556F2235FC</uml:id>
+    <rdfs:label>description</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">综合指令.描述</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="#ControlAction">
+    <rdfs:comment>Control executed as a switching step.</rdfs:comment>
+    <uml:id>EAID_F90EA179_BE05_4f82_9287_CCF839EF5869</uml:id>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>ControlAction</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#SwitchingAction"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#OutagePlan.OutageOrder">
+    <rdfs:label>OutageOrder</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">停电计划.现场停电指令</rdfs:label>
+    <rdfs:domain rdf:resource="#OutagePlan"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:range rdf:resource="#OutageOrder"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+    <owl:inverseOf rdf:resource="#OutageOrder.OutagePlan"/>
+    <uml:id>EAID_CC6A368B_E2F3_4765_8252_5F09775C61A8-B</uml:id>
+  </rdf:Description>
+  <rdf:Description rdf:about="#SwitchingPlanRequest">
+    <rdfs:isDefinedBy rdf:resource="#Package_Operations"/>
+    <rdfs:comment>A document used to request that a switching plan be created for a particular purpose.</rdfs:comment>
+    <uml:id>EAID_2B4E7A26_DE70_4df2_BDD1_7C36E013BFAF</uml:id>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>SwitchingPlanRequest</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">调度指令票拟票申请单</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#Document"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Outage.originalCustomersServed">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#Outage"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdfs:comment>the total number of customers that are served in the area (both outaged and not outaged).</rdfs:comment>
+    <uml:id>EAID_81471418_91EA_4a7a_BF26_04C830755313</uml:id>
+    <rdfs:label>originalCustomersServed</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">停电.本区域所有供电用户</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="#SwitchingPlan.Outage">
+    <owl:inverseOf rdf:resource="#Outage.SwitchingPlans"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:comment>Outage that will be activated or eliminated when this switching plan gets executed.</rdfs:comment>
+    <rdfs:range rdf:resource="#Outage"/>
+    <rdfs:label>Outage</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <uml:id>EAID_D2D106C9_7B45_4172_8201_66E3FAC64E75-B</uml:id>
+    <rdfs:domain rdf:resource="#SwitchingPlan"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#SwitchingStepGroup.isFreeSequence">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#SwitchingStepGroup"/>
+    <uml:id>EAID_E4FC0A13_BC40_4de5_B042_726F6BE56827</uml:id>
+    <rdfs:label>isFreeSequence</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">综合指令.顺序是否随意</rdfs:label>
+    <rdfs:comment>If true, the sequence number serves for presentation purposes only, and the activity itself may be executed at any time.</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#SwitchingAction.executedDateTime">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#SwitchingAction"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    <rdfs:label>executedDateTime</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdfs:comment>Actual date and time of this switching step.</rdfs:comment>
+    <uml:id>EAID_58C40B93_BF37_447f_B1D4_432EFB3E149A</uml:id>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#UnplannedOutage.reportedStartTime">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdfs:comment>The earliest start time of the Outage - as reported by some system or individual</rdfs:comment>
+    <uml:id>EAID_8EE3C1F7_19A7_462a_AC66_2051A65D4775</uml:id>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    <rdfs:label>reportedStartTime</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">非计划停电.上报开始时间</rdfs:label>
+    <rdfs:domain rdf:resource="#UnplannedOutage"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Outage.customersRestored">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdfs:comment>number of customers that have been restored in the area.</rdfs:comment>
+    <uml:id>EAID_96EC7A1B_7F86_4742_A6DE_DAB1E3BA1ED2</uml:id>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    <rdfs:label>customersRestored</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">停电.已恢复的客户数量</rdfs:label>
+    <rdfs:domain rdf:resource="#Outage"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#SwitchingPlanRequest.switchingRequestDetails">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:domain rdf:resource="#SwitchingPlanRequest"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:id>EAID_3D05C75D_9C26_4865_B9D0_444F4584276B</uml:id>
+    <rdfs:label>switchingRequestDetails</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">调度指令票拟票申请单.主要内容</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://langdale.com.au/2005/UML#hasInitialValue">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#PSREventKind.inService">
+    <rdf:type rdf:resource="#PSREventKind"/>
+    <uml:id>EAID_0BED646D_9B8E_414d_A839_985B3FCE06B8</uml:id>
+    <rdfs:comment>Power system resource state change to in service.</rdfs:comment>
+    <rdfs:label>inService</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="#OutagePlan.SwitchingPlan">
+    <uml:id>EAID_205E346A_7AC3_4f63_9926_D90B3687F39B-A</uml:id>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:label>SwitchingPlan</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">停电计划.相关的调度指令票</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:range rdf:resource="#SwitchingPlan"/>
+    <owl:inverseOf rdf:resource="#SwitchingPlan.OutagePlan"/>
+    <rdfs:comment>The swiching plan that is associated with the outage plan.</rdfs:comment>
+    <rdfs:domain rdf:resource="#OutagePlan"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#SafetyDocument.IssuedBySupervisor">
+    <rdfs:comment>Supervisor that issued this safety document.</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label>IssuedBySupervisor</rdfs:label>
+    <rdfs:domain rdf:resource="#SafetyDocument"/>
+    <uml:id>EAID_019E9E3C_C2CC_4a76_9DB0_DEC77795FB72-A</uml:id>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:range rdf:resource="#OperationsSafetySupervisor"/>
+    <owl:inverseOf rdf:resource="#OperationsSafetySupervisor.IssuedSafetyDocuments"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#SwitchingPlanRequest.groundingPoints">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdfs:domain rdf:resource="#SwitchingPlanRequest"/>
+    <rdfs:comment>free-form list of equipment to be grounded or other actions to be taken in order to accomplish the required grounding.</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <uml:id>EAID_F60F677C_D37F_40f9_B5B1_0E37DEACBF56</uml:id>
+    <rdfs:label>groundingPoints</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">调度指令票拟票申请单.接地点说明</rdfs:label>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Fault">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:comment>Abnormal condition causing current flow through conducting equipment, such as caused by equipment failure or short circuits from objects not typically modeled (for example, a tree falling on a line).</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="#Package_Faults"/>
+    <uml:id>EAID_73ABECF2_4B28_4c55_8665_0882A2C8BCA4</uml:id>
+    <rdfs:label>Fault</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">故障</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#IdentifiedObject"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Outage.communityDescriptor">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <uml:id>EAID_8C38F9E5_6C87_4c4f_9880_51186D05090F</uml:id>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdfs:comment>a name to denote the community - this could be a name or a code of some kind.</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="#Outage"/>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdfs:label>communityDescriptor</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">停电.社区说明</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="#OutageArea.earliestReportedTime">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment>This is the reported time of the first outage report</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdfs:label>earliestReportedTime</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">停电区域.最早上报的时间</rdfs:label>
+    <uml:id>EAID_12A02525_DF1B_499c_872E_47D57B49845E</uml:id>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdfs:domain rdf:resource="#OutageArea"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Outage.estimatedPeriod">
+    <rdfs:label>estimatedPeriod</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">停电.预计停电的时间段</rdfs:label>
+    <uml:id>EAID_8C9C1A9F_3138_4ade_A916_15CC7860C66E</uml:id>
+    <rdfs:domain rdf:resource="#Outage"/>
+    <rdfs:comment>Estimated outage period for a planned outage. The start of the period is the start of the planned outage and the end of the period corresponds to the end of the planned outage.</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdfs:range rdf:resource="#DateTimeInterval"/>
+    <rdfs:isDefinedBy rdf:resource="#Package_Operations"/>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+  </rdf:Description>  
+  <rdf:Description rdf:about="#OutageArea">
+    <uml:id>EAID_4CCB893D_9C2D_4985_AAA1_756A8708B31D</uml:id>
+    <rdfs:comment>This defines the area covered by the Outage.</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>OutageArea</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">停电区域</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="#ClearanceActionKind.issue">
+    <rdf:type rdf:resource="#ClearanceActionKind"/>
+    <rdfs:comment>Issue clearance.</rdfs:comment>
+    <uml:id>EAID_92B91793_784A_487f_ACED_3F7D8A69BA37</uml:id>
+    <rdfs:label>issue</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="#SwitchingAction.isFreeSequence">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment>If true, the sequence number serves for presentation purposes only, and the activity itself may be executed at any time.</rdfs:comment>
+    <rdfs:domain rdf:resource="#SwitchingAction"/>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <uml:id>EAID_E8391956_F4A5_4858_83CB_B69641A244F2</uml:id>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdfs:label>isFreeSequence</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Outage.SwitchingPlans">
+    <rdfs:comment>All switching plans that lead to supply restoration due to this outage. Only one will be retained for execution.</rdfs:comment>
+    <uml:id>EAID_D2D106C9_7B45_4172_8201_66E3FAC64E75-A</uml:id>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+    <owl:inverseOf rdf:resource="#SwitchingPlan.Outage"/>
+    <rdfs:domain rdf:resource="#Outage"/>
+    <rdfs:label>SwitchingPlans</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">停电.相关的调度指令票</rdfs:label>
+    <rdfs:range rdf:resource="#SwitchingPlan"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#GenericAction">
+    <rdfs:label>GenericAction</rdfs:label>
+    <rdfs:comment>An arbitrary switching step.</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="#SwitchingAction"/>
+    <uml:id>EAID_7B245759_F49C_4c34_AEF1_F93D37992CD7</uml:id>
+  </rdf:Description>
+  <rdf:Description rdf:about="#OutagePlan.purpose">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment>Purpose of  this outage plan, such as whether it is to replace equipment or perform maintenance or repairs or to reconfigure network topology.</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdfs:label>purpose</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">停电计划.目的</rdfs:label>
+    <uml:id>EAID_529D7F19_8F50_4a43_A14F_12D99A20C4E7</uml:id>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="#OutagePlan"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#UnplannedOutage.causeKind">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <uml:id>EAID_E7CB3D63_CEE5_4a8e_BBB0_0CF9B08C9FCD</uml:id>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdfs:label>causeKind</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">非计划停电.发生原因</rdfs:label>
+    <rdfs:range rdf:resource="#OutageCauseKind"/>
+    <rdfs:domain rdf:resource="#UnplannedOutage"/>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#JumperAction.kind">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdfs:comment>Switching action to perform.</rdfs:comment>
+    <rdfs:label>kind</rdfs:label>
+    <rdfs:domain rdf:resource="#JumperAction"/>
+    <uml:id>EAID_5C8EEC22_6AC5_4ca3_8117_FE471700B406</uml:id>
+    <rdfs:range rdf:resource="#TempEquipActionKind"/>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#TagAction">
+    <uml:id>EAID_E2B02A1D_2648_4060_90ED_13641B1782DF</uml:id>
+    <rdfs:label>TagAction</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:comment>Action on operation tag as a switching step.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#SwitchingAction"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#CrewStatusKind">
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
+    <rdfs:label>CrewStatusKind</rdfs:label>
+    <uml:id>EAID_0256250A_25A5_444f_A3E8_EF37291A12FB</uml:id>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://langdale.com.au/2005/UML#hasUnits">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://langdale.com.au/2005/UML#roleBOf">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.w3.org/2001/XMLSchema#integer">
+    <rdfs:label>Integer</rdfs:label>
+    <uml:id>EAID_5F6B613B_C31A_4476_8050_E600FBD5F789</uml:id>
+  </rdf:Description>
+  <rdf:Description rdf:about="#OperationsSafetySupervisor.IssuedSafetyDocuments">
+    <rdfs:comment>All safety documents issued by this supervisor.</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+    <uml:id>EAID_019E9E3C_C2CC_4a76_9DB0_DEC77795FB72-B</uml:id>
+    <owl:inverseOf rdf:resource="#SafetyDocument.IssuedBySupervisor"/>
+    <rdfs:range rdf:resource="#SafetyDocument"/>
+    <rdfs:label>IssuedSafetyDocuments</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="#OperationsSafetySupervisor"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://langdale.com.au/2005/UML#compound">
+    <rdfs:label>Compound</rdfs:label>
+    <uml:id>EAID_199B2714_6CEB_4fcd_B128_E905DCB335F1</uml:id>
+    <rdf:type rdf:resource="http://langdale.com.au/2005/UML#Stereotype"/>
+    <rdfs:label>Compound Datatype</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="#OperationsSafetySupervisor.ReleasedSafetyDocuments">
+    <rdfs:comment>All safety documents released to this supervisor.</rdfs:comment>
+    <owl:inverseOf rdf:resource="#SafetyDocument.ReleasedToSupervisor"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+    <rdfs:domain rdf:resource="#OperationsSafetySupervisor"/>
+    <rdfs:range rdf:resource="#SafetyDocument"/>
+    <rdfs:label>ReleasedSafetyDocuments</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <uml:id>EAID_9101B352_8544_44a4_9F4A_B24425BA24E4-B</uml:id>
+  </rdf:Description>
+  <rdf:Description rdf:about="#PSREvent.kind">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdfs:range rdf:resource="#PSREventKind"/>
+    <rdfs:domain rdf:resource="#PSREvent"/>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdfs:comment>Kind of event.</rdfs:comment>
+    <uml:id>EAID_A5054EAE_D869_4ceb_BCDB_5062E267179B</uml:id>
+    <rdfs:label>kind</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="#FieldSafetySupervisor.IssuedSafetyDocuments">
+    <rdfs:domain rdf:resource="#FieldSafetySupervisor"/>
+    <rdfs:label>IssuedSafetyDocuments</rdfs:label>
+    <uml:id>EAID_9928D926_C37A_4b01_9B70_087C54DA13DA-B</uml:id>
+    <rdfs:comment>All safety documents issued to this supervisor.</rdfs:comment>
+    <rdfs:range rdf:resource="#SafetyDocument"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <owl:inverseOf rdf:resource="#SafetyDocument.IssuedToSupervisor"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Measurement">
+    <uml:id>EAID_AB1758FA_3A4D_478f_BE4F_ADC8E2F886CC</uml:id>
+    <rdfs:label>Measurement</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Outage.utilityDisclaimer">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment>This contains an disclaimers the utility would like to place on the data provided to any stakeholder.  This may be different for different stakeholders.  This should possibly be an attribute under the Organization class but it is placed here for now.</rdfs:comment>
+    <uml:id>EAID_B8DD462E_CD50_45dd_B640_C2E9C0D7A292</uml:id>
+    <rdfs:label>utilityDisclaimer</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">停电.企业免责申明</rdfs:label>
+    <rdfs:domain rdf:resource="#Outage"/>
+  </rdf:Description>
+   <rdf:Description rdf:about="#SwitchingOrder">
+    <rdfs:subClassOf rdf:resource="#Document"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:isDefinedBy rdf:resource="#Package_Operations"/>
+    <uml:id>EAID_C75D1EAD_CEA6_450d_9C1A_A5C3AE78911D</uml:id>
+    <rdfs:comment>Transmits a switching plan to a crew in order for the plan to be executed.</rdfs:comment>
+    <rdfs:label>SwitchingOrder</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">调度指令票下令</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="#CutAction.kind">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label>kind</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">切具动作.种类</rdfs:label>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdfs:domain rdf:resource="#CutAction"/>
+    <rdfs:comment>Switching action to perform.</rdfs:comment>
+    <rdfs:range rdf:resource="#TempEquipActionKind"/>
+    <uml:id>EAID_8366996C_5983_4e04_8B43_87E7D73E49A5</uml:id>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#OutageStatusKind.partiallyRestored">
+    <rdf:type rdf:resource="#OutageStatusKind"/>
+    <uml:id>EAID_DABA1CC0_3186_47a9_A1CB_3567E15739F3</uml:id>
+    <rdfs:comment>Some of the usage points affected by the outage have been restored but other usage points are still out of power.</rdfs:comment>
+    <rdfs:label>partiallyRestored</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="#OutageArea.outageAreaKind">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:comment>defines the type of area that has the outage - county, state, zipcode, etc.</rdfs:comment>
+    <rdfs:range rdf:resource="#AreaKind"/>
+    <rdfs:domain rdf:resource="#OutageArea"/>
+    <uml:id>EAID_84A9A4DF_C2DA_44d1_880E_B2535B286214</uml:id>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdfs:label>outageAreaKind</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">停电区域.停电区域类型</rdfs:label>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#OperationalUpdatedRating.changeType">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdfs:comment>Type of operational updated rating, e.g. a derate, a rerate or a return to normal.</rdfs:comment>
+    <rdfs:domain rdf:resource="#OperationalUpdatedRating"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <uml:id>EAID_6DE4EB71_00FF_41fc_919D_49BA3D755AD1</uml:id>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdfs:label>changeType</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="#OutageArea.metersServed">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#OutageArea"/>
+    <rdfs:comment>defines the number of meters served in the defined area.</rdfs:comment>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdfs:label>metersServed</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">停电区域.涉及的电表数量</rdfs:label>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    <uml:id>EAID_BA8C464B_7AF0_4565_92FF_C4121EC8CC6B</uml:id>
+  </rdf:Description>
+   <rdf:Description rdf:about="#SafetyDocument">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <uml:id>EAID_AC73635B_66D4_4451_B175_9206C19BA6A9</uml:id>
+    <rdfs:subClassOf rdf:resource="#Document"/>
+    <rdfs:comment>Document restricting or authorising works on electrical equipment (for example a permit to work, sanction for test, limitation of access, or certificate of isolation), defined based upon organisational practices.</rdfs:comment>
+    <rdfs:label>SafetyDocument</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">安全许可</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="#Package_Operations"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#AreaKind.ward">
+    <rdf:type rdf:resource="#AreaKind"/>
+    <uml:id>EAID_4492488F_93F7_4cf0_B2B8_C1433A4704BC</uml:id>
+    <rdfs:label>ward</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="#SwitchAction.kind">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label>kind</rdfs:label>
+    <rdfs:range rdf:resource="#SwitchActionKind"/>
+    <uml:id>EAID_CB209D30_15D7_4525_8F66_9B0E2CF7BCCF</uml:id>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdfs:comment>Switching action to perform.</rdfs:comment>
+    <rdfs:domain rdf:resource="#SwitchAction"/>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://langdale.com.au/2005/UML#roleBLabel">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#IncidentHazard">
+    <uml:id>EAID_298E6C6D_2A99_4a63_A5D7_64FE018C3EB9</uml:id>
+    <rdfs:label>IncidentHazard</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://langdale.com.au/2005/UML#enum">
+    <rdfs:label>enum</rdfs:label>
+    <uml:id>EAID_ECF19311_A825_49f5_BEA1_B42E13D78D61</uml:id>
+    <rdf:type rdf:resource="http://langdale.com.au/2005/UML#Stereotype"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#SwitchAction">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>SwitchAction</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#SwitchingAction"/>
+    <uml:id>EAID_4B8F56B0_FE35_4aa4_BB8B_DD756F9898AA</uml:id>
+    <rdfs:comment>Action on switch as a switching step.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="#PlannedOutage.UpdatedRatings">
+    <rdfs:domain rdf:resource="#PlannedOutage"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+    <uml:id>EAID_C5F3A5B0_064B_4cc4_AA34_0296D8D7919A-A</uml:id>
+    <owl:inverseOf rdf:resource="#OperationalUpdatedRating.PlannedOutage"/>
+    <rdfs:label>UpdatedRatings</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">计划停电.对设备的所有运行级别限制</rdfs:label>
+    <rdfs:comment>All updated ratings for this planned equipment outage.</rdfs:comment>
+    <rdfs:range rdf:resource="#OperationalUpdatedRating"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#ERTConfidenceKind.high">
+    <rdf:type rdf:resource="#ERTConfidenceKind"/>
+    <rdfs:comment>there is a high confidence that the ERT will be accomplished</rdfs:comment>
+    <rdfs:label>high</rdfs:label>
+    <uml:id>EAID_EC986F30_302E_4878_9F23_CBC5B06D5726</uml:id>
+  </rdf:Description>
+  <rdf:Description rdf:about="#SwitchingPlan.approvedDateTime">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <uml:id>EAID_F6C5D9C3_6B86_4667_B16A_A96D45F764D3</uml:id>
+    <rdfs:comment>The date and time the switching plan was approved</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdfs:label>approvedDateTime</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">调度指令票.批准日期</rdfs:label>
+    <rdfs:domain rdf:resource="#SwitchingPlan"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#ClearanceAction.Clearance">
+    <uml:id>EAID_DC4663C9_511F_45f1_93ED_28032F3DAC73-B</uml:id>
+    <owl:inverseOf rdf:resource="#ClearanceDocument.ClearanceAction"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+    <rdfs:range rdf:resource="#ClearanceDocument"/>
+    <rdfs:comment>Clearance associated with this clearance action.</rdfs:comment>
+    <rdfs:label>Clearance</rdfs:label>
+    <rdfs:domain rdf:resource="#ClearanceAction"/>
+  </rdf:Description>
+   <rdf:Description rdf:about="#SwitchingPlan">
+    <rdfs:label>SwitchingPlan</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">调度指令票</rdfs:label>
+    <uml:id>EAID_94D8F29A_7F14_475a_A47C_4A7A44FDC831</uml:id>
+    <rdfs:subClassOf rdf:resource="#Document"/>
+    <rdfs:isDefinedBy rdf:resource="#Package_Operations"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:comment>A sequence of grouped or atomic steps intended to:
+- de-energise equipment or part of the network for safe work, and/or
+- bring back in service previously de-energised equipment or part of the network.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://langdale.com.au/2005/UML#id">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#OutageCauseKind.treeDown">
+    <rdf:type rdf:resource="#OutageCauseKind"/>
+    <uml:id>EAID_1F2D83D5_38A8_4925_BE4C_D2D741C089E3</uml:id>
+    <rdfs:label>treeDown</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="#OutageStatusKind.closed">
+    <rdf:type rdf:resource="#OutageStatusKind"/>
+    <rdfs:label>closed</rdfs:label>
+    <uml:id>EAID_7AD31E5D_F74F_4d20_883B_8F37F3F9674A</uml:id>
+    <rdfs:comment>The outage has been fully restored, the crews have been released and the outage is shown as closed</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="#PlannedOutage.reason">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment>The reason for the planned outage.</rdfs:comment>
+    <uml:id>EAID_D3D3D4BC_E73E_4ed6_92E8_F8B34CB83F0D</uml:id>
+    <rdfs:label>reason</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">计划停电.原因</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdfs:domain rdf:resource="#PlannedOutage"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#CustomerNotification">
+    <uml:id>EAID_DD7A6789_1AF7_48d8_BEA1_E65E8AFCA371</uml:id>
+    <rdfs:label>CustomerNotification</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://langdale.com.au/2005/UML#new">
+    <rdfs:label>new</rdfs:label>
+    <uml:id>EAID_1ABF61C8_6F04_4c54_9278_4ECCB4C7965C</uml:id>
+    <rdf:type rdf:resource="http://langdale.com.au/2005/UML#Stereotype"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#AreaKind">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <uml:id>EAID_F717AA93_4655_4e02_B8A8_1E4E0D83BB6D</uml:id>
+    <rdfs:comment>Enumeration for the type of area defined; e.g., county, state, parish, zipcode, etc.</rdfs:comment>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
+    <rdfs:label>AreaKind</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Outage">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="#Document"/>
+    <rdfs:isDefinedBy rdf:resource="#Package_Operations"/>
+    <rdfs:label>Outage</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">停电</rdfs:label>
+    <uml:id>EAID_F40E2EAD_3BCA_4a17_A41E_A74212822DAA</uml:id>
+    <rdfs:comment>Document describing details of an active or planned outage in a part of the electrical network.
+A non-planned outage may be created upon:
+- a breaker trip,
+- a fault indicator status change,
+- a meter event indicating customer outage,
+- a reception of one or more customer trouble calls, or
+- an operator command, reflecting information obtained from the field crew.
+Outage restoration may be performed using a switching plan which complements the outage information with detailed switching activities, including the relationship to the crew and work.
+A planned outage may be created upon:
+- a request for service, maintenance or construction work in the field, or
+- an operator-defined outage for what-if/contingency network analysis.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://langdale.com.au/2005/UML#hasMultiplier">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#TagActionKind.verify">
+    <rdf:type rdf:resource="#TagActionKind"/>
+    <rdfs:label>verify</rdfs:label>
+    <rdfs:comment>Verify the tag.</rdfs:comment>
+    <uml:id>EAID_8A8D68F1_45FB_4e1d_9F2F_400A797ACB9D</uml:id>
+  </rdf:Description>
+  <rdf:Description rdf:about="#PowerSystemResource">
+    <uml:id>EAID_0340C084_3759_40cc_AAF2_386101DE842F</uml:id>
+    <rdfs:label>PowerSystemResource</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Crew">
+    <uml:id>EAID_C9FE3505_80D0_4126_85C4_1218FCC4A61D</uml:id>
+    <rdfs:label>Crew</rdfs:label>
+  </rdf:Description>
+ 
+  <rdf:Description rdf:about="#OperationalRestriction.activePeriod">
+    <rdfs:isDefinedBy rdf:resource="#Package_Operations"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:id>EAID_9403F5A8_AF55_43eb_B08A_29A04BD09050</uml:id>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:comment>Interval during which this restriction is applied.</rdfs:comment>
+    <rdfs:domain rdf:resource="#OperationalRestriction"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label>activePeriod</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">运行限制.适用的时间段</rdfs:label>
+    <rdfs:range rdf:resource="#DateTimeInterval"/>
+  </rdf:Description>  
+  
+  <rdf:Description rdf:about="#Outage.EstimatedRestorationTime">
+    <uml:id>EAID_ABABDC87_C805_4e9a_86E2_7C263386DF76-A</uml:id>
+    <rdfs:range rdf:resource="#EstimatedRestorationTime"/>
+    <rdfs:domain rdf:resource="#Outage"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label>EstimatedRestorationTime</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">停电.预计恢复时间</rdfs:label>
+    <owl:inverseOf rdf:resource="#EstimatedRestorationTime.Outage"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  </rdf:Description>
+   
+  <rdf:Description rdf:about="#TroubleOrder.plannedExecutionInterval">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdfs:comment>The planned start and end time for the trouble order.</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="#Package_Operations"/>
+    <rdfs:range rdf:resource="#DateTimeInterval"/>
+    <rdfs:label>plannedExecutionInterval</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">抢修工单.计划执行的时间段</rdfs:label>
+    <rdfs:domain rdf:resource="#TroubleOrder"/>
+    <uml:id>EAID_4B5AA04E_6220_4276_BCCB_C781325E39DA</uml:id>
+  </rdf:Description>  
+  
+  <rdf:Description rdf:about="http://langdale.com.au/2005/UML#primitive">
+    <rdfs:label>Primitive</rdfs:label>
+    <rdf:type rdf:resource="http://langdale.com.au/2005/UML#Stereotype"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#SwitchingStepGroup.SwitchingPlan">
+    <rdfs:domain rdf:resource="#SwitchingStepGroup"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:label>SwitchingPlan</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">综合指令.归属的调度指令票</rdfs:label>
+    <rdfs:comment>Switching plan to which this group belongs.</rdfs:comment>
+    <rdfs:range rdf:resource="#SwitchingPlan"/>
+    <owl:inverseOf rdf:resource="#SwitchingPlan.SwitchingStepGroups"/>
+    <uml:id>EAID_3BD787CE_70EE_4500_B66D_3B01AA018B58-A</uml:id>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#TempEquipActionKind">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#enumeration"/>
+    <rdfs:label>TempEquipActionKind</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">临时操作种类</rdfs:label>
+    <rdfs:comment>Kind of action on temporary equipment (such as cut, jumper, ground, energy source).</rdfs:comment>
+    <uml:id>EAID_1049668D_02E1_4336_86E4_306D60B6CE13</uml:id>
+  </rdf:Description>
+  <rdf:Description rdf:about="#OutageOrder.OutagePlan">
+    <rdfs:label>OutagePlan</rdfs:label>
+    <owl:inverseOf rdf:resource="#OutagePlan.OutageOrder"/>
+    <rdfs:domain rdf:resource="#OutageOrder"/>
+    <rdfs:range rdf:resource="#OutagePlan"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <uml:id>EAID_CC6A368B_E2F3_4765_8252_5F09775C61A8-A</uml:id>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#SwitchActionKind.disableReclosing">
+    <rdf:type rdf:resource="#SwitchActionKind"/>
+    <rdfs:label>disableReclosing</rdfs:label>
+    <rdfs:comment>Disable (automatic) switch reclosing.</rdfs:comment>
+    <uml:id>EAID_E5F6008A_56A0_4f1f_BB3E_86D94F6A360D</uml:id>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://langdale.com.au/2005/UML#ofAggregate">
+    <rdfs:label>Of Aggregate</rdfs:label>
+    <rdf:type rdf:resource="http://langdale.com.au/2005/UML#Stereotype"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#ERTConfidenceKind.low">
+    <rdf:type rdf:resource="#ERTConfidenceKind"/>
+    <rdfs:label>low</rdfs:label>
+    <rdfs:comment>there is a low confidence that the ERT will be accomplished.</rdfs:comment>
+    <uml:id>EAID_0BB19AB3_97BF_4e32_B6D0_088799866080</uml:id>
+  </rdf:Description>
+  <rdf:Description rdf:about="#ControlAction.analogValue">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <uml:id>EAID_8AF9ACFF_9BCF_448c_A2C1_E2E293F700F7</uml:id>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdfs:domain rdf:resource="#ControlAction"/>
+    <rdfs:label>analogValue</rdfs:label>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <rdfs:comment>The analog value used for the analog control, the raise/lower control and the set point control</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="#AreaKind.zipcode">
+    <rdf:type rdf:resource="#AreaKind"/>
+    <uml:id>EAID_12E86C0E_2585_4289_9414_7EFB1E6EB1E5</uml:id>
+    <rdfs:label>zipcode</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://langdale.com.au/2005/UML#Stereotype">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#PSREventKind.other">
+    <rdf:type rdf:resource="#PSREventKind"/>
+    <rdfs:label>other</rdfs:label>
+    <uml:id>EAID_AF8D6D63_7555_4599_9373_48C99361041B</uml:id>
+    <rdfs:comment>Other power system resource state change.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="#EnergySourceAction.kind">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:comment>Switching action to perform.</rdfs:comment>
+    <rdfs:label>kind</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">接入能量源动作.种类</rdfs:label>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdfs:range rdf:resource="#TempEquipActionKind"/>
+    <rdfs:domain rdf:resource="#EnergySourceAction"/>
+    <uml:id>EAID_53675AFA_3C31_4e93_BE1C_7A40BDA35158</uml:id>
+  </rdf:Description>
+  <rdf:Description rdf:about="#EnergySourceAction">
+    <rdfs:subClassOf rdf:resource="#SwitchingAction"/>
+    <uml:id>EAID_6E3EDC0D_EE7D_4e40_89BC_859964F2834C</uml:id>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>EnergySourceAction</rdfs:label>
+    <rdfs:comment>Action on energy source as a switching step.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="#UnplannedOutage">
+    <rdfs:subClassOf rdf:resource="#Outage"/>
+    <rdfs:label>UnplannedOutage</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">非计划停电</rdfs:label>
+    <rdfs:comment>Document describing the consequence of an unplanned outage in a part of the electrical network. For the purposes of this model, an unplanned outage refers to a state where energy is not delivered; such as, customers out of service, a street light is not served, etc.
+A unplanned outage may be created upon:
+- impacts the SAIDI calculation
+- a breaker trip,
+- a fault indicator status change,
+- a meter event indicating customer outage,
+- a reception of one or more customer trouble calls, or
+- an operator command, reflecting information obtained from the field crew.
+Outage restoration may be performed using a switching plan which complements the outage information with detailed switching activities, including the relationship to the crew and work.</rdfs:comment>
+    <uml:id>EAID_7E6D39E3_90B7_419f_9A40_A63CEA976DE4</uml:id>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://langdale.com.au/2005/UML#datatype">
+    <rdfs:label>Datatype</rdfs:label>
+    <rdf:type rdf:resource="http://langdale.com.au/2005/UML#Stereotype"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#SafetyDocument.ReleasedBySupervisor">
+    <rdfs:range rdf:resource="#FieldSafetySupervisor"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <owl:inverseOf rdf:resource="#FieldSafetySupervisor.ReleasedSafetyDocuments"/>
+    <rdfs:label>ReleasedBySupervisor</rdfs:label>
+    <rdfs:comment>Supervisor that released this safety document.</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <uml:id>EAID_D76F467F_64BC_408a_BE7C_AEA257C59F88-A</uml:id>
+    <rdfs:domain rdf:resource="#SafetyDocument"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.w3.org/2001/XMLSchema#dateTime">
+    <rdfs:label>DateTime</rdfs:label>
+    <uml:id>EAID_EEAE6E83_944C_489c_8E25_CFB85F80C3EB</uml:id>
+  </rdf:Description>
+  <rdf:Description rdf:about="#ClearanceDocument.mustBeGrounded">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment>If true, the equipment must be grounded.</rdfs:comment>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:id>EAID_4C096287_27B6_4481_B59D_9418396B80FB</uml:id>
+    <rdfs:domain rdf:resource="#ClearanceDocument"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdfs:label>mustBeGrounded</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="#OutagePlan.plannedPeriod">
+    <rdfs:comment>planned start and end time of the planned outage.</rdfs:comment>
+    <rdfs:range rdf:resource="#DateTimeInterval"/>
+    <rdfs:label>plannedPeriod</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">停电计划.计划停电时间段</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdfs:domain rdf:resource="#OutagePlan"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <uml:id>EAID_5FA03C41_4627_4d3a_B71B_75B8A5497E8E</uml:id>
+    <rdfs:isDefinedBy rdf:resource="#Package_Operations"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#EstimatedRestorationTime.ertSource">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label>ertSource</rdfs:label>
+    <rdfs:comment>defines the source that provided the ERT value.</rdfs:comment>
+    <rdfs:domain rdf:resource="#EstimatedRestorationTime"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <uml:id>EAID_70933541_7619_40b4_AF9E_7C9EFE8C7362</uml:id>
+  </rdf:Description>
+  <rdf:Description rdf:about="#SwitchingPlanRequest.reverseSwitchingDateTimeInterval">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <uml:id>EAID_A048C3B4_26CB_469e_B1C5_31C960EEA918</uml:id>
+    <rdfs:domain rdf:resource="#SwitchingPlanRequest"/>
+    <rdfs:label>reverseSwitchingDateTimeInterval</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">调度指令票拟票申请单.恢复供电操作的时间段</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdfs:isDefinedBy rdf:resource="#Package_Operations"/>
+    <rdfs:range rdf:resource="#DateTimeInterval"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+  </rdf:Description>  
+  
+  <rdf:Description rdf:about="#OutagePlan.approvedDateTime">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#OutagePlan"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <uml:id>EAID_97729C42_A9A2_495e_9ED3_60F05F77EB55</uml:id>
+    <rdfs:comment>The date and time the outage plan was approved</rdfs:comment>
+    <rdfs:label>approvedDateTime</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">停电计划.批准的日期</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="#ServicePointOutageSummary">
+    <uml:id>EAID_AE9E2743_9D59_4dd9_BFA9_8798985B6200</uml:id>
+    <rdfs:label>ServicePointOutageSummary</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">停电影响的受电点统计结果</rdfs:label>
+    <rdfs:comment>Summary counts of service points affected by an outage. These counts are sometimes referred to as total and critical customer count.</rdfs:comment>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#compound"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#SwitchingPlan.cancelledDateTime">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label>cancelledDateTime</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">调度计划.取消时间</rdfs:label>
+    <rdfs:comment>Date and Time the switching plan was cancelled.</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    <uml:id>EAID_7540C913_2836_43e3_9DAF_7E81A8DD0B5E</uml:id>
+    <rdfs:domain rdf:resource="#SwitchingPlan"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#TempEquipActionKind.place">
+    <rdf:type rdf:resource="#TempEquipActionKind"/>
+    <uml:id>EAID_7963F759_746C_4bc0_AEC7_6CF5CD8D24A7</uml:id>
+    <rdfs:comment>Place the jumper (close) or the cut (open).</rdfs:comment>
+    <rdfs:label>place</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="#SwitchingAction.SwitchingEvent">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+    <rdfs:domain rdf:resource="#SwitchingAction"/>
+    <owl:inverseOf rdf:resource="#SwitchingEvent.SwitchingAction"/>
+    <uml:id>EAID_D6B0C16A_D051_4e89_A8B6_F922CDD37B8A-B</uml:id>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:range rdf:resource="#SwitchingEvent"/>
+    <rdfs:label>SwitchingEvent</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#SwitchingPlanRequest.equipmentToBeIsolated">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdfs:domain rdf:resource="#SwitchingPlanRequest"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <uml:id>EAID_58E8F603_D85A_4983_9037_640F0D8D2FD4</uml:id>
+    <rdfs:comment>free-form list of the equipment to be isolated by the switching</rdfs:comment>
+    <rdfs:label>equipmentToBeIsolated</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">调度指令票拟票申请单.需要隔离的设备</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#SwitchingPlanRequest.forwardSwitchingDateTimeInterval">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label>forwardSwitchingDateTimeInterval</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">调度指令票拟票申请单.设备停电操作的时间段</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="#Package_Operations"/>
+    <rdfs:range rdf:resource="#DateTimeInterval"/>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdfs:domain rdf:resource="#SwitchingPlanRequest"/>
+    <uml:id>EAID_6228BA53_09CE_41fd_9CB1_53406E58683A</uml:id>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="#OutageStatusKind.predicted">
+    <rdf:type rdf:resource="#OutageStatusKind"/>
+    <rdfs:comment>the outage may not be real since it has not been verified - it is only thought to be an outage.</rdfs:comment>
+    <uml:id>EAID_4BB374BE_D703_4f05_8B67_209BC2BD3CA6</uml:id>
+    <rdfs:label>predicted</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">停电状态类型.预测的</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="#ProductAssetModel">
+    <uml:id>EAID_3355C111_67F6_40b0_97D2_660FF76A1F1E</uml:id>
+    <rdfs:label>ProductAssetModel</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Incident.TroubleOrder">
+    <rdfs:domain rdf:resource="#Incident"/>
+    <uml:id>EAID_3D79F2D5_BE8F_4d59_A6FE_14060E81D5FA-A</uml:id>
+    <owl:inverseOf rdf:resource="#TroubleOrder.Incident"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:range rdf:resource="#TroubleOrder"/>
+    <rdfs:label>TroubleOrder</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">停电事件.触发的抢修工单</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#ActivityRecord">
+    <uml:id>EAID_53D429E3_8E92_4098_8545_54DEEFC803C9</uml:id>
+    <rdfs:label>ActivityRecord</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="#SwitchingPlanRequest.comment">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <uml:id>EAID_808357BB_3C46_4159_A535_A615C38F8022</uml:id>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdfs:domain rdf:resource="#SwitchingPlanRequest"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdfs:label>comment</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">调度指令票拟票申请单.注释</rdfs:label>
+    <rdfs:comment>Free-form text to describe the request</rdfs:comment>
+  </rdf:Description>
+   <rdf:Description rdf:about="#SwitchingPlanRequest.RequestingOrganization">
+    <uml:id>EAID_9F41E5C9_778C_4e68_B6F3_EE634A0DD569-B</uml:id>
+    <rdfs:domain rdf:resource="#SwitchingPlanRequest"/>
+    <rdfs:range rdf:resource="#Organisation"/>
+    <rdfs:label xml:lang="zh-cn">调度指令票拟票申请单.申请的组织机构</rdfs:label>
+    <rdfs:isDefinedBy rdf:resource="#Package_Common"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <owl:inverseOf rdf:resource="#Organisation.SwitchingPlanRequest"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label>RequestingOrganization</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="#UnplannedOutage.cause">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment>The cause of this outage.  This is the cause that is used to present to external entities.  That is, the cause is weather, equipment failure, etc.
+
+Note: At present, this is a free text; could be replaced with a separate associated class in case we have multiple causes (e.g. OutageCauseType, inheriting from IdentifiedObject).</rdfs:comment>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label>cause</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">非计划停电.原因</rdfs:label>
+    <rdfs:domain rdf:resource="#UnplannedOutage"/>
+    <uml:id>EAID_9A9D6ECC_E71D_4ffe_B0E0_189ABDD9F9D7</uml:id>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#AreaKind.serviceArea">
+    <rdf:type rdf:resource="#AreaKind"/>
+    <rdfs:label>serviceArea</rdfs:label>
+    <uml:id>EAID_DC5E0522_266A_4f4e_A719_68214501E399</uml:id>
+  </rdf:Description>
+  <rdf:Description rdf:about="#ClearanceAction">
+    <rdfs:comment>Action on clearance document as a switching step.</rdfs:comment>
+    <uml:id>EAID_9CBAB5BD_4103_4aad_A7C8_225F07CBB230</uml:id>
+    <rdfs:label>ClearanceAction</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#SwitchingAction"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Control">
+    <uml:id>EAID_4EEEE27D_42CD_4efc_8F74_3655BF703F4E</uml:id>
+    <rdfs:label>Control</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.w3.org/2001/XMLSchema#boolean">
+    <rdfs:label>Boolean</rdfs:label>
+    <uml:id>EAID_9F8964F1_6C32_465b_A83D_F5A201A291C3</uml:id>
+  </rdf:Description>
+  <rdf:Description rdf:about="#JumperAction">
+    <rdfs:label>JumperAction</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="#SwitchingAction"/>
+    <uml:id>EAID_2A90B861_B4FF_4aa8_9A3E_67859AB1303D</uml:id>
+    <rdfs:comment>Action on jumper as a switching step.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="#ServicePointOutageSummary.criticalCount">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment>Number of critical service (delivery) points affected by an outage.</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    <rdfs:label>criticalCount</rdfs:label>
+    <rdfs:label xml:lang="zh-cn">停电影响的受电点统计结果.关键受电点数量</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <uml:id>EAID_55AD8E4F_0658_4eaa_9A4B_E2B5A530B8C1</uml:id>
+    <rdfs:domain rdf:resource="#ServicePointOutageSummary"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://langdale.com.au/2005/UML#Package">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+</rdf:RDF>

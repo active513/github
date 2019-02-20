@@ -1,0 +1,99 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix cim: <http://iec.ch/TC57/2016/CIM-schema-cim17#>.
+@prefix ns: <http://nari.com/CDPSM/CIM_DEMO#>.
+@prefix tb: <http://nari.com/CDPSM/CIM_DEMO/Source/Table#>.
+@prefix cl: <http://nari.com/CDPSM/CIM_DEMO/Source/Table/Column#>
+
+<#SA_ORG_Map_Orgnization>
+	rr:logicalTable [ rr:tableName "SA_ORG" ];
+	
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/SA_ORG(ORG_NO)#{ORG_NO}";
+		rr:class cim:Organisation;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.mRID;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/SA_ORG(ORG_NO)#{ORG_NO}";
+		 	rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.name;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/SA_ORG(ORG_NAME)#{ORG_NAME}";
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.alias;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/SA_ORG(ORG_TREE)#{ORG_TREE}";
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.description;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/SA_ORG(ORG_TYPE)#{ORG_TYPE}";
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Organisation.ParentOrganisation;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/SA_ORG(ORG_NO)#{P_ORG_NO}";
+			rr:termType rr:IRI;
+		];
+	].
+	
+<#SA_ORG_Map_ParentOrgnization>
+	rr:logicalTable [  rr:sqlQuery """
+    SELECT * FROM SA_ORG
+     WHERE ORG_NO IN (SELECT P_ORG_NO FROM SA_ORG) """ ];
+	
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/SA_ORG(ORG_NO)#{ORG_NO}";
+		rr:class cim:ParentOrganization;
+	];
+	
+		rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.mRID;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/SA_ORG(ORG_NO)#{ORG_NO}";
+		 	rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.name;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/SA_ORG(ORG_NAME)#{ORG_NAME}";
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.alias;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/SA_ORG(ORG_TREE)#{ORG_TREE}";
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.description;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/SA_ORG(ORG_TYPE)#{ORG_TYPE}";
+			rr:termType rr:Literal;
+		];
+	].
+   
+
+ 

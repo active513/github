@@ -1,0 +1,1323 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix cim: <http://iec.ch/TC57/2016/CIM-schema-cim17#>.
+@prefix ns: <http://nari.com/CDPSM/CIM_DEMO#>.
+@prefix tb: <http://nari.com/CDPSM/CIM_DEMO/Source/Table#>.
+@prefix cl: <http://nari.com/CDPSM/CIM_DEMO/Source/Table/Column#>
+
+<#T_YJ_DWYJ_GZJL_Map_Fault_1>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  T_YJ_DWYJ_GZJL  """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(OBJ_ID)#{OBJ_ID}";
+		rr:class cim:Fault;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.mRID;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(OBJ_ID)#{OBJ_ID}";
+		 	rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.name;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(GZJT)#{GZJT}";
+		 	rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.description;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(GZQK)#{GZQK}";
+		 	rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Fault.occurredDateTime;
+		rr:objectMap [ 
+			rr:column "GZFSSJ";
+			rr:datatype xsd:datetime;
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Fault.Location;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(SSDSID)#{SSDSID}";
+		 	rr:termType rr:IRI;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Fault.FaultCauseTypes;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(OBJ_ID)#{OBJ_ID}_faulttype";
+		 	rr:termType rr:IRI;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Fault.kind;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(GZLX)#{GZLX}";
+			rr:termType rr:Literal;
+		];
+	].
+	
+	
+<#T_YJ_DWYJ_GZJL_Map_faulttype_1>
+    rr:logicalTable [ rr:sqlQuery """
+    SELECT  T_YJ_DWYJ_GZJL.OBJ_ID , T_YJ_DWYJ_GZJL.JSYY ,T_DW_BZZX_GZQXYYDM.YYQC FROM  T_YJ_DWYJ_GZJL , T_DW_BZZX_GZQXYYDM
+	where  T_YJ_DWYJ_GZJL.JSYY IS NOT  NULL  AND T_DW_BZZX_GZQXYYDM.YYLB='2' AND T_YJ_DWYJ_GZJL.JSYY=T_DW_BZZX_GZQXYYDM.YYBMQC """  ];
+ 	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(OBJ_ID)#{OBJ_ID}_faulttype";
+		rr:class cim:FaultCauseType;
+		rr:termType rr:IRI;
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.mRID;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(JSYY)#{JSYY}";
+			rr:termType rr:Literal;
+			];
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.name;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(JSYY)#{T_DW_BZZX_GZQXYYDM.YYQC}";
+			rr:termType rr:Literal;
+			];
+	].
+	
+<#T_YJ_DWYJ_GZJL_Map_faulttype_2>
+    rr:logicalTable [ rr:sqlQuery """
+    SELECT  T_YJ_DWYJ_GZJL.OBJ_ID , T_YJ_DWYJ_GZJL.ZRYY ,T_DW_BZZX_GZQXYYDM.YYQC FROM  T_YJ_DWYJ_GZJL , T_DW_BZZX_GZQXYYDM
+	where  T_YJ_DWYJ_GZJL.ZRYY IS NOT  NULL  AND T_DW_BZZX_GZQXYYDM.YYLB='1' AND T_YJ_DWYJ_GZJL.JSYY=T_DW_BZZX_GZQXYYDM.YYBMQC """  ];
+ 	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(OBJ_ID)#{OBJ_ID}_faulttype";
+		rr:class cim:FaultCauseType;
+		rr:termType rr:IRI;
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.mRID;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(ZRYY)#{ZRYY}";
+			rr:termType rr:Literal;
+			];
+	];	
+	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.name;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(ZRYY)#{T_DW_BZZX_GZQXYYDM.YYQC}";
+			rr:termType rr:Literal;
+			];
+	].	
+	
+	
+
+	
+<#T_SB_ZNYC_DLQ_Map_Location_Fault>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  T_YJ_DWYJ_GZJL
+	where T_YJ_DWYJ_GZJL.GZSB IS  NULL  """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(SSDSID)#{SSDSID}";
+		rr:class cim:Location;
+		rr:termType rr:IRI;
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.mRID;
+		rr:objectMap [
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(SSDSID)#{SSDSID}";
+			rr:termType rr:Literal;
+		];
+	];
+	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.name;
+		rr:objectMap [
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(SSDSMC)#{SSDSMC}";
+			rr:termType rr:Literal;
+		];
+	].
+	
+<#T_YJ_DWYJ_GZJL_Map_ZWYC_DAOXIAN_Fault_1>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  T_YJ_DWYJ_GZJL
+	where T_YJ_DWYJ_GZJL.GZSB IS  NOT NULL AND SBLXBM ='0101' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZWYC_DAOXIAN(OBJ_ID)#{GZSB}";
+		rr:class cim:Asset;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.PowerSystemResources;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZWYC_DAOXIAN(OBJ_ID)#{GZSB}_PowerSystemResource";
+		 	rr:termType rr:IRI;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.AssetContainer;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DZ(OBJ_ID)#{BDZID}";
+			rr:termType rr:IRI;
+		];
+	].
+	
+<#T_YJ_DWYJ_GZJL_Map_ZWYC_DAOXIAN_Fault_11>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  T_YJ_DWYJ_GZJL
+	where T_YJ_DWYJ_GZJL.GZSB IS  NOT NULL AND SBLXBM ='0101' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZWYC_DAOXIAN(OBJ_ID)#{GZSB}_PowerSystemResource";
+		rr:class cim:Equipment;
+	];		
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Equipment.Faults;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(OBJ_ID)#{OBJ_ID}";
+			rr:termType rr:IRI;
+		];
+	].
+	
+	
+	
+	
+<#T_YJ_DWYJ_GZJL_Map_ZWYC_GT_Fault_1>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  T_YJ_DWYJ_GZJL
+	where T_YJ_DWYJ_GZJL.GZSB IS  NOT NULL AND SBLXBM ='0103' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZWYC_GT(OBJ_ID)#{GZSB}";
+		rr:class cim:Asset;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.PowerSystemResources;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZWYC_GT(OBJ_ID)#{GZSB}_PowerSystemResource";
+		 	rr:termType rr:IRI;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.AssetContainer;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DZ(OBJ_ID)#{BDZID}";
+			rr:termType rr:IRI;
+		];
+	].
+	
+<#T_YJ_DWYJ_GZJL_Map_ZWYC_GT_Fault_11>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  T_YJ_DWYJ_GZJL
+	where T_YJ_DWYJ_GZJL.GZSB IS  NOT NULL AND SBLXBM ='0103' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZWYC_GT(OBJ_ID)#{GZSB}_PowerSystemResource";
+		rr:class cim:Equipment;
+	];		
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Equipment.Faults;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(OBJ_ID)#{OBJ_ID}";
+			rr:termType rr:IRI;
+		];
+	].	
+	
+	
+
+<#T_YJ_DWYJ_GZJL_Map_ZNYC_JYZ_Fault_1>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  T_YJ_DWYJ_GZJL
+	where T_YJ_DWYJ_GZJL.GZSB IS  NOT NULL AND SBLXBM ='0103001' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_JYZ(OBJ_ID)#{GZSB}";
+		rr:class cim:Asset;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.PowerSystemResources;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_JYZ(OBJ_ID)#{GZSB}_PowerSystemResource";
+		 	rr:termType rr:IRI;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.AssetContainer;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DZ(OBJ_ID)#{BDZID}";
+			rr:termType rr:IRI;
+		];
+	].
+	
+<#T_YJ_DWYJ_GZJL_Map_ZNYC_JYZ_Fault_11>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  T_YJ_DWYJ_GZJL
+	where T_YJ_DWYJ_GZJL.GZSB IS  NOT NULL AND SBLXBM ='0103001' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_JYZ(OBJ_ID)#{GZSB}_PowerSystemResource";
+		rr:class cim:Equipment;
+	];		
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Equipment.Faults;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(OBJ_ID)#{OBJ_ID}";
+			rr:termType rr:IRI;
+		];
+	].	
+		
+	
+
+<#T_YJ_DWYJ_GZJL_Map_ZWYC_ZSBYQ_Fault_1>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  T_YJ_DWYJ_GZJL
+	where T_YJ_DWYJ_GZJL.GZSB IS  NOT NULL AND SBLXBM ='0110' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZWYC_ZSBYQ(OBJ_ID)#{GZSB}";
+		rr:class cim:Asset;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.PowerSystemResources;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZWYC_ZSBYQ(OBJ_ID)#{GZSB}_PowerSystemResource";
+		 	rr:termType rr:IRI;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.AssetContainer;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DZ(OBJ_ID)#{BDZID}";
+			rr:termType rr:IRI;
+		];
+	].
+	
+<#T_YJ_DWYJ_GZJL_Map_ZWYC_ZSBYQ_Fault_11>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  T_YJ_DWYJ_GZJL
+	where T_YJ_DWYJ_GZJL.GZSB IS  NOT NULL AND SBLXBM ='0110' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZWYC_ZSBYQ(OBJ_ID)#{GZSB}_PowerSystemResource";
+		rr:class cim:Equipment;
+	];		
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Equipment.Faults;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(OBJ_ID)#{OBJ_ID}";
+			rr:termType rr:IRI;
+		];
+	].		
+	
+	
+<#T_YJ_DWYJ_GZJL_Map_ZSDLQ_Fault_1>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  T_YJ_DWYJ_GZJL
+	where T_YJ_DWYJ_GZJL.GZSB IS  NOT NULL AND SBLXBM ='0111' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZWYC_ZSDLQ(OBJ_ID)#{GZSB}";
+		rr:class cim:Asset;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.PowerSystemResources;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZWYC_ZSDLQ(OBJ_ID)#{GZSB}_PowerSystemResource";
+		 	rr:termType rr:IRI;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.AssetContainer;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DZ(OBJ_ID)#{BDZID}";
+			rr:termType rr:IRI;
+		];
+	].
+	
+<#T_YJ_DWYJ_GZJL_Map_ZSDLQ_Fault_11>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  T_YJ_DWYJ_GZJL
+	where T_YJ_DWYJ_GZJL.GZSB IS  NOT NULL AND SBLXBM ='0111' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZWYC_ZSDLQ(OBJ_ID)#{GZSB}_PowerSystemResource";
+		rr:class cim:Equipment;
+	];		
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Equipment.Faults;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(OBJ_ID)#{OBJ_ID}";
+			rr:termType rr:IRI;
+		];
+	].		
+	
+	
+<#T_YJ_DWYJ_GZJL_Map_ZWYC_ZSFHKG_Fault_1>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  T_YJ_DWYJ_GZJL
+	where T_YJ_DWYJ_GZJL.GZSB IS  NOT NULL AND SBLXBM ='0112' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZWYC_ZSFHKG(OBJ_ID)#{GZSB}";
+		rr:class cim:Asset;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.PowerSystemResources;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZWYC_ZSFHKG(OBJ_ID)#{GZSB}_PowerSystemResource";
+		 	rr:termType rr:IRI;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.AssetContainer;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DZ(OBJ_ID)#{BDZID}";
+			rr:termType rr:IRI;
+		];
+	].
+	
+<#T_YJ_DWYJ_GZJL_Map_ZWYC_ZSFHKG_Fault_11>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  T_YJ_DWYJ_GZJL
+	where T_YJ_DWYJ_GZJL.GZSB IS  NOT NULL AND SBLXBM ='0112' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZWYC_ZSFHKG(OBJ_ID)#{GZSB}_PowerSystemResource";
+		rr:class cim:Equipment;
+	];		
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Equipment.Faults;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(OBJ_ID)#{OBJ_ID}";
+			rr:termType rr:IRI;
+		];
+	].		
+	
+	
+	
+<#T_YJ_DWYJ_GZJL_Map_ZWYC_ZSDLSRDQ_Fault_1>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  T_YJ_DWYJ_GZJL
+	where T_YJ_DWYJ_GZJL.GZSB IS  NOT NULL AND SBLXBM ='0115' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZWYC_ZSDLSRDQ(OBJ_ID)#{GZSB}";
+		rr:class cim:Asset;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.PowerSystemResources;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZWYC_ZSDLSRDQ(OBJ_ID)#{GZSB}_PowerSystemResource";
+		 	rr:termType rr:IRI;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.AssetContainer;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DZ(OBJ_ID)#{BDZID}";
+			rr:termType rr:IRI;
+		];
+	].
+	
+<#T_YJ_DWYJ_GZJL_Map_ZWYC_ZSDLSRDQ_Fault_1>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  T_YJ_DWYJ_GZJL
+	where T_YJ_DWYJ_GZJL.GZSB IS  NOT NULL AND SBLXBM ='0115' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZWYC_ZSDLSRDQ(OBJ_ID)#{GZSB}_PowerSystemResource";
+		rr:class cim:Equipment;
+	];		
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Equipment.Faults;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(OBJ_ID)#{OBJ_ID}";
+			rr:termType rr:IRI;
+		];
+	].		
+	
+	
+<#T_YJ_DWYJ_GZJL_Map_ZWYC_DLD_Fault_1>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  T_YJ_DWYJ_GZJL
+	where T_YJ_DWYJ_GZJL.GZSB IS  NOT NULL AND SBLXBM ='0201' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZWYC_DLD(OBJ_ID)#{GZSB}";
+		rr:class cim:Asset;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.PowerSystemResources;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZWYC_DLD(OBJ_ID)#{GZSB}_PowerSystemResource";
+		 	rr:termType rr:IRI;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.AssetContainer;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DZ(OBJ_ID)#{BDZID}";
+			rr:termType rr:IRI;
+		];
+	].
+	
+<#T_YJ_DWYJ_GZJL_Map_ZWYC_DLD_Fault_11>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  T_YJ_DWYJ_GZJL
+	where T_YJ_DWYJ_GZJL.GZSB IS  NOT NULL AND SBLXBM ='0201' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZWYC_DLD(OBJ_ID)#{GZSB}_PowerSystemResource";
+		rr:class cim:Equipment;
+	];		
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Equipment.Faults;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(OBJ_ID)#{OBJ_ID}";
+			rr:termType rr:IRI;
+		];
+	].		
+	
+<#T_YJ_DWYJ_GZJL_Map_ZWYC_DLZD_Fault_1>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  T_YJ_DWYJ_GZJL
+	where T_YJ_DWYJ_GZJL.GZSB IS  NOT NULL AND SBLXBM ='0202' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZWYC_DLZD(OBJ_ID)#{GZSB}";
+		rr:class cim:Asset;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.PowerSystemResources;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZWYC_DLZD(OBJ_ID)#{GZSB}_PowerSystemResource";
+		 	rr:termType rr:IRI;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.AssetContainer;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DZ(OBJ_ID)#{BDZID}";
+			rr:termType rr:IRI;
+		];
+	].
+	
+<#T_YJ_DWYJ_GZJL_Map_ZWYC_DLZD_Fault_11>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  T_YJ_DWYJ_GZJL
+	where T_YJ_DWYJ_GZJL.GZSB IS  NOT NULL AND SBLXBM ='0202' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZWYC_DLZD(OBJ_ID)#{GZSB}_PowerSystemResource";
+		rr:class cim:Equipment;
+	];		
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Equipment.Faults;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(OBJ_ID)#{OBJ_ID}";
+			rr:termType rr:IRI;
+		];
+	].		
+	
+	
+
+		
+<#T_YJ_DWYJ_GZJL_Map_ZNYC_ZBYQ_Fault_1>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  T_YJ_DWYJ_GZJL
+	where T_YJ_DWYJ_GZJL.GZSB IS  NOT NULL AND SBLXBM ='0301' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_ZBYQ(OBJ_ID)#{GZSB}";
+		rr:class cim:Asset;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.PowerSystemResources;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_ZBYQ(OBJ_ID)#{GZSB}_PowerSystemResource";
+		 	rr:termType rr:IRI;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.AssetContainer;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DZ(OBJ_ID)#{BDZID}";
+			rr:termType rr:IRI;
+		];
+	].
+
+<#T_YJ_DWYJ_GZJL_Map_ZNYC_ZBYQ_Fault_11>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  T_YJ_DWYJ_GZJL
+	where T_YJ_DWYJ_GZJL.GZSB IS  NOT NULL AND SBLXBM ='0301' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_ZBYQ(OBJ_ID)#{GZSB}_PowerSystemResource";
+		rr:class cim:Equipment;
+	];		
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Equipment.Faults;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(OBJ_ID)#{OBJ_ID}";
+			rr:termType rr:IRI;
+		];
+	].		
+	
+
+<#T_YJ_DWYJ_GZJL_Map_ZNYC_SYB_Fault_1>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  T_YJ_DWYJ_GZJL
+	where T_YJ_DWYJ_GZJL.GZSB IS  NOT NULL AND SBLXBM ='0303' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_SYB(OBJ_ID)#{GZSB}";
+		rr:class cim:Asset;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.PowerSystemResources;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_SYB(OBJ_ID)#{GZSB}_PowerSystemResource";
+		 	rr:termType rr:IRI;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.AssetContainer;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DZ(OBJ_ID)#{BDZID}";
+			rr:termType rr:IRI;
+		];
+	].
+	
+<#T_YJ_DWYJ_GZJL_Map_ZNYC_SYB_Fault_11>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  T_YJ_DWYJ_GZJL
+	where T_YJ_DWYJ_GZJL.GZSB IS  NOT NULL AND SBLXBM ='0303' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_SYB(OBJ_ID)#{GZSB}_PowerSystemResource";
+		rr:class cim:Equipment;
+	];		
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Equipment.Faults;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(OBJ_ID)#{OBJ_ID}";
+			rr:termType rr:IRI;
+		];
+	].		
+	
+	
+<#T_YJ_DWYJ_GZJL_Map_ZNYC_JDB_Fault_1>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  T_YJ_DWYJ_GZJL
+	where T_YJ_DWYJ_GZJL.GZSB IS  NOT NULL AND SBLXBM ='0304' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_JDB(OBJ_ID)#{GZSB}";
+		rr:class cim:Asset;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.PowerSystemResources;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_JDB(OBJ_ID)#{GZSB}_PowerSystemResource";
+		 	rr:termType rr:IRI;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.AssetContainer;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DZ(OBJ_ID)#{BDZID}";
+			rr:termType rr:IRI;
+		];
+	].
+	
+<#T_YJ_DWYJ_GZJL_Map_ZNYC_JDB_Fault_11>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  T_YJ_DWYJ_GZJL
+	where T_YJ_DWYJ_GZJL.GZSB IS  NOT NULL AND SBLXBM ='0304' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_JDB(OBJ_ID)#{GZSB}_PowerSystemResource";
+		rr:class cim:Equipment;
+	];		
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Equipment.Faults;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(OBJ_ID)#{OBJ_ID}";
+			rr:termType rr:IRI;
+		];
+	].		
+
+	
+<#T_YJ_DWYJ_GZJL_Map_ZNYC_DLQ_Fault_1>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  T_YJ_DWYJ_GZJL
+	where T_YJ_DWYJ_GZJL.GZSB IS  NOT NULL AND SBLXBM ='0305' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DLQ(OBJ_ID)#{GZSB}";
+		rr:class cim:Asset;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.PowerSystemResources;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DLQ(OBJ_ID)#{GZSB}_PowerSystemResource";
+		 	rr:termType rr:IRI;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.AssetContainer;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DZ(OBJ_ID)#{BDZID}";
+			rr:termType rr:IRI;
+		];
+	].
+	
+<#T_YJ_DWYJ_GZJL_Map_ZNYC_DLQ_Fault_11>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  T_YJ_DWYJ_GZJL
+	where T_YJ_DWYJ_GZJL.GZSB IS  NOT NULL AND SBLXBM ='0305' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DLQ(OBJ_ID)#{GZSB}_PowerSystemResource";
+		rr:class cim:Equipment;
+	];		
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Equipment.Faults;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(OBJ_ID)#{OBJ_ID}";
+			rr:termType rr:IRI;
+		];
+	].	
+
+	
+<#T_YJ_DWYJ_GZJL_Map_ZNYC_GLKG_Fault_1>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  T_YJ_DWYJ_GZJL
+	where T_YJ_DWYJ_GZJL.GZSB IS  NOT NULL AND SBLXBM ='0306' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_GLKG(OBJ_ID)#{GZSB}";
+		rr:class cim:Asset;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.PowerSystemResources;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_GLKG(OBJ_ID)#{GZSB}_PowerSystemResource";
+		 	rr:termType rr:IRI;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.AssetContainer;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DZ(OBJ_ID)#{BDZID}";
+			rr:termType rr:IRI;
+		];
+	].
+	
+<#T_YJ_DWYJ_GZJL_Map_ZNYC_GLKG_Fault_11>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  T_YJ_DWYJ_GZJL
+	where T_YJ_DWYJ_GZJL.GZSB IS  NOT NULL AND SBLXBM ='0306' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_GLKG(OBJ_ID)#{GZSB}_PowerSystemResource";
+		rr:class cim:Equipment;
+	];		
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Equipment.Faults;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(OBJ_ID)#{OBJ_ID}";
+			rr:termType rr:IRI;
+		];
+	].	
+	
+	
+<#T_YJ_DWYJ_GZJL_Map_ZNYC_RDQ_Fault_1>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  T_YJ_DWYJ_GZJL
+	where T_YJ_DWYJ_GZJL.GZSB IS  NOT NULL AND SBLXBM ='0309' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_RDQ(OBJ_ID)#{GZSB}";
+		rr:class cim:Asset;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.PowerSystemResources;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_RDQ(OBJ_ID)#{GZSB}_PowerSystemResource";
+		 	rr:termType rr:IRI;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.AssetContainer;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DZ(OBJ_ID)#{BDZID}";
+			rr:termType rr:IRI;
+		];
+	].
+	
+<#T_YJ_DWYJ_GZJL_Map_ZNYC_RDQ_Fault_11>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  T_YJ_DWYJ_GZJL
+	where T_YJ_DWYJ_GZJL.GZSB IS  NOT NULL AND SBLXBM ='0309' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_RDQ(OBJ_ID)#{GZSB}_PowerSystemResource";
+		rr:class cim:Equipment;
+	];		
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Equipment.Faults;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(OBJ_ID)#{OBJ_ID}";
+			rr:termType rr:IRI;
+		];
+	].		
+
+	
+<#T_YJ_DWYJ_GZJL_Map_ZNYC_MX_Fault_1>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  T_YJ_DWYJ_GZJL
+	where T_YJ_DWYJ_GZJL.GZSB IS  NOT NULL AND SBLXBM ='0311' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_MX(OBJ_ID)#{GZSB}";
+		rr:class cim:Asset;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.PowerSystemResources;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_MX(OBJ_ID)#{GZSB}_PowerSystemResource";
+		 	rr:termType rr:IRI;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.AssetContainer;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DZ(OBJ_ID)#{BDZID}";
+			rr:termType rr:IRI;
+		];
+	].
+	
+<#T_YJ_DWYJ_GZJL_Map_ZNYC_MX_Fault_11>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  T_YJ_DWYJ_GZJL
+	where T_YJ_DWYJ_GZJL.GZSB IS  NOT NULL AND SBLXBM ='0311' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_MX(OBJ_ID)#{GZSB}_PowerSystemResource";
+		rr:class cim:Equipment;
+	];		
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Equipment.Faults;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(OBJ_ID)#{OBJ_ID}";
+			rr:termType rr:IRI;
+		];
+	].	
+	
+<#T_YJ_DWYJ_GZJL_Map_ZNYC_DKQ_Fault_1>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  T_YJ_DWYJ_GZJL
+	where T_YJ_DWYJ_GZJL.GZSB IS  NOT NULL AND SBLXBM ='0312' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DKQ(OBJ_ID)#{GZSB}";
+		rr:class cim:Asset;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.PowerSystemResources;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DKQ(OBJ_ID)#{GZSB}_PowerSystemResource";
+		 	rr:termType rr:IRI;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.AssetContainer;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DZ(OBJ_ID)#{BDZID}";
+			rr:termType rr:IRI;
+		];
+	].
+	
+<#T_YJ_DWYJ_GZJL_Map_ZNYC_DKQ_Fault_11>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  T_YJ_DWYJ_GZJL
+	where T_YJ_DWYJ_GZJL.GZSB IS  NOT NULL AND SBLXBM ='0312' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DKQ(OBJ_ID)#{GZSB}_PowerSystemResource";
+		rr:class cim:Equipment;
+	];		
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Equipment.Faults;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(OBJ_ID)#{OBJ_ID}";
+			rr:termType rr:IRI;
+		];
+	].	
+
+<#T_YJ_DWYJ_GZJL_Map_ZNYC_DLHGQ_Fault_1>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  T_YJ_DWYJ_GZJL
+	where T_YJ_DWYJ_GZJL.GZSB IS  NOT NULL AND SBLXBM ='0313' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DLHGQ(OBJ_ID)#{GZSB}";
+		rr:class cim:Asset;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.PowerSystemResources;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DLHGQ(OBJ_ID)#{GZSB}_PowerSystemResource";
+		 	rr:termType rr:IRI;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.AssetContainer;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DZ(OBJ_ID)#{BDZID}";
+			rr:termType rr:IRI;
+		];
+	].
+	
+<#T_YJ_DWYJ_GZJL_Map_ZNYC_DLHGQ_Fault_11>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  T_YJ_DWYJ_GZJL
+	where T_YJ_DWYJ_GZJL.GZSB IS  NOT NULL AND SBLXBM ='0313' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DLHGQ(OBJ_ID)#{GZSB}_PowerSystemResource";
+		rr:class cim:Equipment;
+	];		
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Equipment.Faults;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(OBJ_ID)#{OBJ_ID}";
+			rr:termType rr:IRI;
+		];
+	].		
+
+	
+<#T_YJ_DWYJ_GZJL_Map_ZNYC_DYHGQ_Fault_1>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  T_YJ_DWYJ_GZJL
+	where T_YJ_DWYJ_GZJL.GZSB IS  NOT NULL AND SBLXBM ='0314' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DYHGQ(OBJ_ID)#{GZSB}";
+		rr:class cim:Asset;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.PowerSystemResources;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DYHGQ(OBJ_ID)#{GZSB}_PowerSystemResource";
+		 	rr:termType rr:IRI;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.AssetContainer;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DZ(OBJ_ID)#{BDZID}";
+			rr:termType rr:IRI;
+		];
+	].
+
+<#T_YJ_DWYJ_GZJL_Map_ZNYC_DYHGQ_Fault_11>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  T_YJ_DWYJ_GZJL
+	where T_YJ_DWYJ_GZJL.GZSB IS  NOT NULL AND SBLXBM ='0314' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DYHGQ(OBJ_ID)#{GZSB}_PowerSystemResource";
+		rr:class cim:Equipment;
+	];		
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Equipment.Faults;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(OBJ_ID)#{OBJ_ID}";
+			rr:termType rr:IRI;
+		];
+	].
+	
+	
+<#T_YJ_DWYJ_GZJL_Map_ZNYC_DLDR_Fault_1>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  T_YJ_DWYJ_GZJL
+	where T_YJ_DWYJ_GZJL.GZSB IS  NOT NULL AND SBLXBM ='0316' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DLDRQ(OBJ_ID)#{GZSB}";
+		rr:class cim:Asset;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.PowerSystemResources;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DLDRQ(OBJ_ID)#{GZSB}_PowerSystemResource";
+		 	rr:termType rr:IRI;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.AssetContainer;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DZ(OBJ_ID)#{BDZID}";
+			rr:termType rr:IRI;
+		];
+	].
+	
+<#T_YJ_DWYJ_GZJL_Map_ZNYC_DLDR_Fault_11>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  T_YJ_DWYJ_GZJL
+	where T_YJ_DWYJ_GZJL.GZSB IS  NOT NULL AND SBLXBM ='0316' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DLDRQ(OBJ_ID)#{GZSB}_PowerSystemResource";
+		rr:class cim:Equipment;
+	];		
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Equipment.Faults;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(OBJ_ID)#{OBJ_ID}";
+			rr:termType rr:IRI;
+		];
+	].	
+	
+		
+<#T_YJ_DWYJ_GZJL_Map_ZNYC_OHDRQ_Fault_1>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  T_YJ_DWYJ_GZJL
+	where T_YJ_DWYJ_GZJL.GZSB IS  NOT NULL AND SBLXBM ='0317' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_OHDRQ(OBJ_ID)#{GZSB}";
+		rr:class cim:Asset;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.PowerSystemResources;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_OHDRQ(OBJ_ID)#{GZSB}_PowerSystemResource";
+		 	rr:termType rr:IRI;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.AssetContainer;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DZ(OBJ_ID)#{BDZID}";
+			rr:termType rr:IRI;
+		];
+	].
+	
+	
+<#T_YJ_DWYJ_GZJL_Map_ZNYC_OHDRQ_Fault_11>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  T_YJ_DWYJ_GZJL
+	where T_YJ_DWYJ_GZJL.GZSB IS  NOT NULL AND SBLXBM ='0317' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_OHDRQ(OBJ_ID)#{GZSB}_PowerSystemResource";
+		rr:class cim:Equipment;
+	];		
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Equipment.Faults;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(OBJ_ID)#{OBJ_ID}";
+			rr:termType rr:IRI;
+		];
+	].
+	
+	
+<#T_YJ_DWYJ_GZJL_Map_ZNYC_BLQ_Fault_1>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  T_YJ_DWYJ_GZJL
+	where T_YJ_DWYJ_GZJL.GZSB IS  NOT NULL AND SBLXBM ='0318' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_BLQ(OBJ_ID)#{GZSB}";
+		rr:class cim:Asset;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.PowerSystemResources;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_BLQ(OBJ_ID)#{GZSB}_PowerSystemResource";
+		 	rr:termType rr:IRI;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.AssetContainer;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DZ(OBJ_ID)#{BDZID}";
+			rr:termType rr:IRI;
+		];
+	].
+	
+	
+<#T_YJ_DWYJ_GZJL_Map_ZNYC_BLQ_Fault_11>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  T_YJ_DWYJ_GZJL
+	where T_YJ_DWYJ_GZJL.GZSB IS  NOT NULL AND SBLXBM ='0317' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_BLQ(OBJ_ID)#{GZSB}_PowerSystemResource";
+		rr:class cim:Equipment;
+	];		
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Equipment.Faults;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(OBJ_ID)#{OBJ_ID}";
+			rr:termType rr:IRI;
+		];
+	].
+	
+	
+<#T_YJ_DWYJ_GZJL_Map_ZNYC_XHZZ_Fault_1>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  T_YJ_DWYJ_GZJL
+	where T_YJ_DWYJ_GZJL.GZSB IS  NOT NULL AND SBLXBM ='0319' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_XHZZ(OBJ_ID)#{GZSB}";
+		rr:class cim:Asset;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.PowerSystemResources;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_XHZZ(OBJ_ID)#{GZSB}_PowerSystemResource";
+		 	rr:termType rr:IRI;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.AssetContainer;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DZ(OBJ_ID)#{BDZID}";
+			rr:termType rr:IRI;
+		];
+	].
+	
+<#T_YJ_DWYJ_GZJL_Map_ZNYC_XHZZ_Fault_11>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  T_YJ_DWYJ_GZJL
+	where T_YJ_DWYJ_GZJL.GZSB IS  NOT NULL AND SBLXBM ='0319' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_XHZZ(OBJ_ID)#{GZSB}_PowerSystemResource";
+		rr:class cim:Equipment;
+	];		
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Equipment.Faults;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(OBJ_ID)#{OBJ_ID}";
+			rr:termType rr:IRI;
+		];
+	].	
+
+	
+<#T_YJ_DWYJ_GZJL_Map_ZNYC_KGG_Fault_1>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  T_YJ_DWYJ_GZJL
+	where T_YJ_DWYJ_GZJL.GZSB IS  NOT NULL AND SBLXBM ='0322' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_KGG(OBJ_ID)#{GZSB}";
+		rr:class cim:Asset;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.PowerSystemResources;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_KGG(OBJ_ID)#{GZSB}_PowerSystemResource";
+		 	rr:termType rr:IRI;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.AssetContainer;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DZ(OBJ_ID)#{BDZID}";
+			rr:termType rr:IRI;
+		];
+	].
+	
+<#T_YJ_DWYJ_GZJL_Map_ZNYC_KGG_Fault_11>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  T_YJ_DWYJ_GZJL
+	where T_YJ_DWYJ_GZJL.GZSB IS  NOT NULL AND SBLXBM ='0322' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_KGG(OBJ_ID)#{GZSB}_PowerSystemResource";
+		rr:class cim:Equipment;
+	];		
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Equipment.Faults;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(OBJ_ID)#{OBJ_ID}";
+			rr:termType rr:IRI;
+		];
+	].		
+	
+
+<#T_YJ_DWYJ_GZJL_Map_ZNYC_FDXQ_Fault_1>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  T_YJ_DWYJ_GZJL
+	where T_YJ_DWYJ_GZJL.GZSB IS  NOT NULL AND SBLXBM ='0325' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_FDXQ(OBJ_ID)#{GZSB}";
+		rr:class cim:Asset;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.PowerSystemResources;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_FDXQ(OBJ_ID)#{GZSB}_PowerSystemResource";
+		 	rr:termType rr:IRI;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.AssetContainer;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DZ(OBJ_ID)#{BDZID}";
+			rr:termType rr:IRI;
+		];
+	].
+	
+<#T_YJ_DWYJ_GZJL_Map_ZNYC_FDXQ_Fault_11>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  T_YJ_DWYJ_GZJL
+	where T_YJ_DWYJ_GZJL.GZSB IS  NOT NULL AND SBLXBM ='0325' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_FDXQ(OBJ_ID)#{GZSB}_PowerSystemResource";
+		rr:class cim:Equipment;
+	];		
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Equipment.Faults;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(OBJ_ID)#{OBJ_ID}";
+			rr:termType rr:IRI;
+		];
+	].	
+	
+
+<#T_YJ_DWYJ_GZJL_Map_ZNYC_BLZ_Fault_1>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  T_YJ_DWYJ_GZJL
+	where T_YJ_DWYJ_GZJL.GZSB IS  NOT NULL AND SBLXBM ='0326' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_BLZ(OBJ_ID)#{GZSB}";
+		rr:class cim:Asset;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.PowerSystemResources;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_BLZ(OBJ_ID)#{GZSB}_PowerSystemResource";
+		 	rr:termType rr:IRI;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.AssetContainer;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DZ(OBJ_ID)#{BDZID}";
+			rr:termType rr:IRI;
+		];
+	].
+	
+<#T_YJ_DWYJ_GZJL_Map_ZNYC_BLZ_Fault_11>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  T_YJ_DWYJ_GZJL
+	where T_YJ_DWYJ_GZJL.GZSB IS  NOT NULL AND SBLXBM ='0326' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_BLZ(OBJ_ID)#{GZSB}_PowerSystemResource";
+		rr:class cim:Equipment;
+	];		
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Equipment.Faults;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(OBJ_ID)#{OBJ_ID}";
+			rr:termType rr:IRI;
+		];
+	].	
+	
+
+<#T_YJ_DWYJ_GZJL_Map_ZNYC_ZNDL_Fault_1>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  T_YJ_DWYJ_GZJL
+	where T_YJ_DWYJ_GZJL.GZSB IS  NOT NULL AND SBLXBM ='0336' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_ZNDL(OBJ_ID)#{GZSB}";
+		rr:class cim:Asset;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.PowerSystemResources;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_ZNDL(OBJ_ID)#{GZSB}_PowerSystemResource";
+		 	rr:termType rr:IRI;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.AssetContainer;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DZ(OBJ_ID)#{BDZID}";
+			rr:termType rr:IRI;
+		];
+	].
+	
+<#T_YJ_DWYJ_GZJL_Map_ZNYC_ZNDL_Fault_11>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  T_YJ_DWYJ_GZJL
+	where T_YJ_DWYJ_GZJL.GZSB IS  NOT NULL AND SBLXBM ='0336' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_ZNDL(OBJ_ID)#{GZSB}_PowerSystemResource";
+		rr:class cim:Equipment;
+	];		
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Equipment.Faults;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(OBJ_ID)#{OBJ_ID}";
+			rr:termType rr:IRI;
+		];
+	].	
+
+	

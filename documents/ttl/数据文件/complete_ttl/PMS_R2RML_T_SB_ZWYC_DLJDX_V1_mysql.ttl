@@ -1,0 +1,219 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix cim: <http://iec.ch/TC57/2016/CIM-schema-cim17#>.
+@prefix ns: <http://nari.com/CDPSM/CIM_DEMO#>.
+
+#电缆接地箱 cabinet
+
+
+
+<#T_SB_ZWYC_DLJDX_Map_Asset_2>
+    rr:logictable  [ rr:sqlQuery """ 
+              select obj_id,ssds,ywdw,sbzr FROM T_SB_ZWYC_DLJDX  """ ];
+    rr:subjectMap  [ rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZWYC_DLJDX(OBJ_ID)#{OBJ_ID}" ;
+                     rr:class cim:Cabinet;
+		     rr:termType rr:IRI; 
+                   ];
+    rr:predicateObjectMap [        
+         rr:predicateMap cim:IdentifiedObject.mRID;
+	 rr:ObjectMap [
+	               rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZWYC_DLJDX(OBJ_ID)#{OBJ_ID}";
+		       rr:termType rr:Literal;
+		       ] ;
+     ];
+
+    rr:predicateObjectMap[
+    rr:predicate cim:IdentifiedObject.aliasName; 
+    rr:objectMap [
+           rr:template "http://nari.com/CDPSM/CIM_DEMO/#PD_{OBJ_ID}";
+	   rr:termType rr:IRI;
+	   ];
+    ];
+      
+    rr:predicateObjectMap [
+		rr:predicate cim:Asset.Location;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZWYC_DLJDX(SSDS)#{SSDS}";
+			rr:termType rr:IRI;
+		];	
+    ];
+    rr:predicateObjectMap [
+		rr:predicate cim:Asset.OrganisationRoles;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZWYC_DLJDX(YWDW)#{YWDW}";
+			rr:termType rr:IRI;
+		];	
+    ];
+	
+     rr:predicateObjectMap [
+		rr:predicate cim:Assets.OrganisationRoles;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZWYC_DLJDX(SBZR)#{SBZR}";
+			rr:termType rr:IRI;
+		];	
+	];
+    rr:predicateObjectMap [
+		rr:predicate cim:Asset.lifecycleDate;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO#{OBJ_ID}_Asset_LifecycleDate";
+			rr:termType rr:IRI;
+		];	
+	].
+
+<#T_SB_ZWYC_DLJDX_Map_Type>
+	    rr:logicalTable [ rr:sqlQuery """
+        SELECT
+	    T_SB_ZWYC_DLJDX.OBJ_ID
+		FROM T_SB_ZWYC_DLJDX
+		""" ];
+ 	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZWYC_DLJDX(OBJ_ID)#{OBJ_ID}";
+		rr:termType rr:IRI;
+	].
+
+<#T_SB_ZWYC_DLJDX_Map_OBJ_ID_Asset_2>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT
+	XH , SCCJ , OBJ_ID
+	FROM T_SB_ZWYC_DLJDX  
+	WHERE T_SB_ZWYC_DLJDX.XH IS NOT NULL AND T_SB_ZWYC_DLJDX.SCCJ IS NOT NULL	""" ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZWYC_DLJDX(OBJ_ID)#{OBJ_ID}";
+		rr:termType rr:IRI;
+	];
+	rr:predicateObjectMap [
+		rr:predicate cim:Asset.ProductAssetModel;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZWYC_DLJDX(XH_SCCJ)#{XH}_{SCCJ}";
+			rr:termType rr:IRI;
+		];
+	].
+	
+
+<#T_SB_ZWYC_DLJDX_Map_XH_AssetModel>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT
+	XH , SCCJ
+	FROM T_SB_ZWYC_DLJDX  
+	WHERE T_SB_ZWYC_DLJDX.XH IS NOT NULL AND T_SB_ZWYC_DLJDX.SCCJ IS NOT NULL	""" ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZWYC_DLJDX(XH_SCCJ)#{XH}_{SCCJ}";
+		rr:class cim:AssetModel;
+		rr:termType rr:IRI;
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:ProductAssetModels.Manufaturer;
+		rr:objectMap [
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_DW_BZZX_SCCJ(OBJ_ID)#{SCCJ}";
+			rr:termType rr:IRI;
+		];
+	].
+	
+<#T_SB_ZWYC_DLJDX_Map_SBZR_AssetUser>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT
+	SBZR , SBZRMC
+	FROM T_SB_ZWYC_DLJDX  
+	WHERE T_SB_ZWYC_DLJDX.SBZR IS NOT NULL AND T_SB_ZWYC_DLJDX.SBZRMC IS NOT NULL """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZWYC_DLJDX(SBZR)#{SBZR}";
+		rr:class cim:AssetUser;
+		rr:termType rr:IRI;
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.name;
+		rr:objectMap [
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZWYC_DLJDX(SBZRMC)#{SBZRMC}";
+			rr:termType rr:Literal;
+		];
+	].
+	
+<#T_SB_ZWYC_DLJDX_Map_DJSJ_Status>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  T_SB_ZWYC_DLJDX.DJSJ ,
+	date ( T_SB_ZWYC_DLJDX.DJSJ) AS DJSJID , OBJ_ID
+    FROM  	T_SB_ZWYC_DLJDX 
+    WHERE 	T_SB_ZWYC_DLJDX.DJSJ IS NOT NULL  """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZWYC_DLJDX(DJSJ)#{DJSJID}_{OBJ_ID}";
+		rr:class cim:Status;
+		rr:termType rr:IRI;
+	];
+	
+
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Status.dateTime;
+		rr:objectMap [
+			rr:column "DJSJ";
+			rr:datatype xsd:date;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Status.remark;
+		rr:objectMap [
+			rr:constant  "记录登记时间";
+			rr:termType rr:Literal;
+		];
+	].	
+
+
+<#T_SB_ZWYC_DLJDX_Map_YWDW_Maintainer>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT
+	YWDW , YWDWMC
+	FROM T_SB_ZWYC_DLJDX 
+    WHERE T_SB_ZWYC_DLJDX.YWDW IS NOT NULL AND T_SB_ZWYC_DLJDX.YWDWMC IS NOT NULL  """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZWYC_DLJDX(YWDW)#{YWDW}";
+		rr:class cim:Maintainer;
+		rr:termType rr:IRI;
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.name;
+		rr:objectMap [
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZWYC_DLJDX(YWDWMC)#{YWDWMC}";
+			rr:termType rr:Literal;
+		];
+	].
+	
+<#T_SB_ZNYC_DLQ_Map_ZCDW_AssetOwner>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT
+	ZCDWMC
+	FROM T_SB_ZNYC_DLQ 
+	WHERE T_SB_ZNYC_DLQ.ZCDWMC IS NOT NULL  """ ];
+
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.name;
+		rr:objectMap [
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZWYC_DLJDX(ZCDWMC)#{ZCDWMC}";
+			rr:termType rr:Literal;
+		];
+	].
+	
+<#T_SB_ZWYC_DLJDX_Map_LifecycleDate>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT
+	OBJ_ID,CCRQ
+	FROM T_SB_ZWYC_DLJDX 
+    WHERE T_SB_ZWYC_DLJDX.CCRQ IS NOT NULL	""" ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO#{OBJ_ID}_Asset_LifecycleDate";
+		rr:class cim:LifecycleDate;
+		rr:termType rr:IRI;
+	];
+	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:LifecycleDate.manufacturedDate;
+		rr:objectMap [
+			rr:column "CCRQ";
+			rr:datatype xsd:date;
+		];
+	].

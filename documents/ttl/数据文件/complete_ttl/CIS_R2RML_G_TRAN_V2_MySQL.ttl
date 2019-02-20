@@ -1,0 +1,190 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix cim: <http://iec.ch/TC57/2016/CIM-schema-cim17#>.
+@prefix ns: <http://dataplatform.com/NARI#>.
+@prefix tb: <http://dataplatform.com/NARI/Source/Table#>.
+@prefix cl: <http://dataplatform.com/NARI/Source/Table/Column#>
+
+<#C_MP_Map__PowerTransformer_STATE>
+rr:logicalTable [ rr:sqlQuery """
+    SELECT cast(convert(G_TRAN.EQUIP_ID ,decimal(30,0)) as char) as qq ,  
+	(
+		CASE G_TRAN.RUN_STATUS_CODE
+		WHEN '01'  THEN
+			'TRUE'
+		END
+	) AAA
+		FROM G_TRAN WHERE RUN_STATUS_CODE='01' OR RUN_STATUS_CODE='02' OR RUN_STATUS_CODE='03' """ ];
+	rr:subjectMap [
+	    rr:template "http://nari.com/CDPSM/CIM_DEMO/G_TRAN(EQUIP_ID)#{qq}";
+		rr:class cim:PowerTransformer;
+	];
+
+	rr:predicateObjectMap [
+		rr:predicate cim:Equipment.inService;
+		rr:objectMap [ 
+		    rr:template "http://nari.com/CDPSM/CIM_DEMO/G_TRAN(RUN_STATUS_CODE)#{AAA}";
+     		rr:termType rr:Literal;
+		];
+	].
+
+<#C_MP_Map_PowerTransformer>
+	rr:logicalTable [ rr:sqlQuery """ SELECT *, cast(convert(G_TRAN.EQUIP_ID ,decimal(30,0)) as char) as qq FROM G_TRAN """  ];
+	rr:subjectMap [
+        rr:template "http://nari.com/CDPSM/CIM_DEMO/G_TRAN(EQUIP_ID)#{qq}";
+		rr:class cim:PowerTransformer;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.mRID;
+		rr:objectMap [ 
+			 rr:template "http://nari.com/CDPSM/CIM_DEMO/G_TRAN(EQUIP_ID)#{qq}";
+		 	rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.name;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/G_TRAN(TRAN_NAME)#{TRAN_NAME}";
+			rr:termType rr:Literal;
+		];
+	];
+	
+
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:PowerSystemResources.Assets;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/G_TRAN(EQUIP_ID)#{qq}_G_TRAN_ASSET";
+			rr:termType rr:IRI;
+		];
+	].
+	
+	
+
+<#C_MP_Map_POWERTRANSFORMER_ASSET>	
+	rr:logicalTable [ rr:sqlQuery """ SELECT *, cast(convert(G_TRAN.EQUIP_ID ,decimal(30,0)) as char) as qq, 
+    cast(convert(G_TRAN.CONS_ID ,decimal(30,0)) as char) as conid
+	FROM G_TRAN """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/G_TRAN(EQUIP_ID)#{qq}_G_TRAN_ASSET";
+		rr:class cim:Asset;
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.mRID;
+		rr:objectMap [ 
+			 rr:template "http://nari.com/CDPSM/CIM_DEMO/G_TRAN(EQUIP_ID)#{qq}";
+		 	rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.name;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/G_TRAN(TRAN_NAME)#{TRAN_NAME}";
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.alias;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO#T_SB_ZNYC_PDBYQ(OBJ_ID)#{PMS_EQUIP_ID}";
+			rr:termType rr:IRI;
+		];
+	];
+	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Asset.kind;
+		rr:objectMap [ 
+			rr:constant ns:营销变压器;
+			rr:termType rr:Literal;
+		];
+	];
+	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.OrganisationRoles;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO#{ORG_NO}_G_TRAN_ASSETOWNER";
+			rr:termType rr:IRI;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.OrganisationRoles;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO#{conid}_G_TRAN_ASSETUSER";
+			rr:termType rr:IRI;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Asset.AssetDeployment;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO#{qq}_G_TRAN_ASSET_ASSETDEPLOYMENT";
+			rr:termType rr:IRI;
+		];
+	].
+	
+<#C_MP_Map_POWERTRANSFORMER_ASSET_DEPLOYMENT>	
+    rr:logicalTable [ rr:sqlQuery """
+    SELECT 	cast(convert(G_TRAN.EQUIP_ID ,decimal(30,0)) as char) as qq, 
+	(
+		CASE G_TRAN.RUN_STATUS_CODE
+		WHEN '01'  THEN
+			'部署状态(在运)'
+		WHEN '02'  THEN
+			'部署状态(未投运)'
+	    WHEN'03'  THEN
+			'部署状态(拆除)'
+		END
+	) STATE
+		FROM G_TRAN WHERE RUN_STATUS_CODE='01' OR RUN_STATUS_CODE='02' OR RUN_STATUS_CODE='03' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO#{qq}_G_TRAN_ASSET_ASSETDEPLOYMENT";
+		rr:class cim:AssetDeployment;
+	];
+	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:AssetDeployment.deploymentState;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/G_TRAN(RUN_STATUS_CODE)#{STATE}";
+			rr:termType rr:Literal;
+		];
+	].
+	
+		
+<#C_MP_Map_POWERTRANSFORMER_ASSETOWNER>	
+    rr:logicalTable [ rr:sqlQuery """   SELECT 	G_TRAN.ORG_NO 	FROM  G_TRAN  """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO#{ORG_NO}_G_TRAN_ASSETOWNER";
+		rr:class cim:AssetOwner;
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:OrganisationRole.Organisation;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/O_ORG(ORG_NO)#{ORG_NO}";
+			rr:termType rr:IRI;
+		];
+	].
+	
+<#C_MP_Map_POWERTRANSFORMER_ASSEUSER>	
+    rr:logicalTable [ rr:sqlQuery """   SELECT distinct cast(convert(G_TRAN.CONS_ID ,decimal(30,0)) as char) as conid FROM G_TRAN  """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO#{conid}_G_TRAN_ASSETUSER";
+		rr:class cim:AssetUser;
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:OrganisationRole.Organisation;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/O_ORG(ORG_NO)#{CONS_ID}";
+			rr:termType rr:IRI;
+		];
+	].

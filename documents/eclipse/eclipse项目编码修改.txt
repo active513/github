@@ -1,0 +1,5 @@
+1.window-preferences-general-workspace  修改工作台的文件编码
+
+2.properties-resources   -修改项目的文件编码
+
+3.window-preferences-general-content types-txt-html  将default encoding=utf-8  修改特定格式文件的编码

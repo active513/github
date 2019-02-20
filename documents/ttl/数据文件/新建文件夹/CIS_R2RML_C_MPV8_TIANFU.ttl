@@ -1,0 +1,348 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix cim: <http://iec.ch/TC57/2016/CIM-schema-cim17#>.
+@prefix ns: <http://nari.com/CDPSM/CIM_DEMO#>.
+@prefix tb: <http://nari.com/CDPSM/CIM_DEMO/Source/Table#>.
+@prefix cl: <http://nari.com/CDPSM/CIM_DEMO/Source/Table/Column#>
+
+<#C_MP_Map_UsagePoint_Metering_Connection_STATE>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT
+	yxjcpt_cacher01.C_MP.MP_ID, yxjcpt_cacher01.C_MP.STATUS_CODE，
+	(
+		CASE C_MP.STATUS_CODE
+		WHEN CAST ('01' AS NVARCHAR2(8)) THEN
+			'连接状态_设立'
+		WHEN CAST ('02' AS NVARCHAR2(8)) THEN
+			'连接状态_在用'
+	    WHEN CAST ('03' AS NVARCHAR2(8)) THEN
+			'连接状态_停用'	
+		WHEN CAST ('04' AS NVARCHAR2(8)) THEN
+			'连接状态_撤销'	
+		END
+	) STATE 
+		FROM yxjcpt_cacher01.C_MP WHERE (STATUS_CODE='01' OR STATUS_CODE='02' OR STATUS_CODE='03' OR STATUS_CODE='04') 
+		AND ORG_NO LIKE '51428%' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/C_MP(MP_ID)#{MP_ID}";
+		rr:class cim:UsagePoint;
+	];
+
+	rr:predicateObjectMap [
+		rr:predicate cim:UsagePoint.connectionState;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/C_MP(STATUS_CODE)#{STATE}";
+			rr:termType rr:Literal;
+		];
+	].
+	
+<#C_MP_Map_UsagePoint_Metering_Connection_Equipment>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT CMP.MP_ID, GTRAN.EQUIP_ID
+		FROM yxjcpt_cacher01.C_MP CMP, yxjcpt_cacher01.G_TRAN GTRAN WHERE (CMP.TG_ID=GTRAN.TG_ID) 
+		AND CMP.ORG_NO LIKE '51428%' AND GTRAN.ORG_NO LIKE '51428%' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/C_MP(MP_ID)#{MP_ID}";
+		rr:class cim:UsagePoint;
+	];
+
+	rr:predicateObjectMap [
+		rr:predicate cim:UsagePoints.Equipments;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/G_TRAN(EQUIP_ID)#{EQUIP_ID}";
+			rr:termType rr:IRI;
+		];
+	].	
+	
+
+<#C_MP_Map_UsagePoint_Metering_MetrologyRequirement>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT
+	yxjcpt_cacher01.C_MP.MP_ID, yxjcpt_cacher01.C_MP.USAGE_TYPE_CODE，
+	(
+		CASE USAGE_TYPE_CODE
+		WHEN CAST ('01' AS NVARCHAR2(8)) THEN
+			'计量用途_售电侧结算'
+		WHEN CAST ('02' AS NVARCHAR2(8)) THEN
+			'计量用途_台区供电考核'
+	    WHEN CAST ('03' AS NVARCHAR2(8)) THEN
+			'计量用途_线路供电考核'	
+		WHEN CAST ('04' AS NVARCHAR2(8)) THEN
+			'计量用途_指标分析'
+        WHEN CAST ('05' AS NVARCHAR2(8)) THEN
+			'计量用途_趸售供电关口'
+	    WHEN CAST ('06' AS NVARCHAR2(8)) THEN
+			'计量用途_地市供电关口'	
+		WHEN CAST ('07' AS NVARCHAR2(8)) THEN
+			'计量用途_省级供电关口'
+        WHEN CAST ('08' AS NVARCHAR2(8)) THEN
+			'计量用途_跨省输电关口'
+	    WHEN CAST ('09' AS NVARCHAR2(8)) THEN
+			'计量用途_跨区输电关口'	
+		WHEN CAST ('10' AS NVARCHAR2(8)) THEN
+			'计量用途_跨国输电关口'			
+		WHEN CAST ('11' AS NVARCHAR2(8)) THEN
+			'计量用途_发电上网关口'
+        WHEN CAST ('12' AS NVARCHAR2(8)) THEN
+			'计量用途_自发自用考核关口'
+	    WHEN CAST ('13' AS NVARCHAR2(8)) THEN
+			'计量用途_统购统销关口'	
+		WHEN CAST ('1101' AS NVARCHAR2(8)) THEN
+			'计量用途_发电关口'		
+		WHEN CAST ('1102' AS NVARCHAR2(8)) THEN
+			'计量用途_上网关口'	
+		END
+	) STATE 
+		FROM yxjcpt_cacher01.C_MP WHERE ( USAGE_TYPE_CODE='01' OR USAGE_TYPE_CODE='02' OR USAGE_TYPE_CODE='03' OR USAGE_TYPE_CODE='04'
+        OR USAGE_TYPE_CODE='05' OR USAGE_TYPE_CODE='06' OR USAGE_TYPE_CODE='07' OR USAGE_TYPE_CODE='08'
+		 OR USAGE_TYPE_CODE='09' OR USAGE_TYPE_CODE='10' OR USAGE_TYPE_CODE='11' OR USAGE_TYPE_CODE='12'
+		 OR USAGE_TYPE_CODE='13' OR USAGE_TYPE_CODE='1101' OR USAGE_TYPE_CODE='1102' ) AND  ORG_NO LIKE '51428%' """
+		];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/C_MP(MP_ID)#{MP_ID}";
+		rr:class cim:UsagePoint;
+	];
+
+	rr:predicateObjectMap [
+		rr:predicate cim:UsagePoints.MetrologyRequirements;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO#{MP_ID}_C_MP_MetrologyRequirement";
+		 	rr:termType rr:IRI;
+		];
+	].
+	
+
+
+	
+<#T_SB_ZNYC_GLKG_Map_UsagePoints_MetrologyRequirements_INSTANCE_1>	
+   rr:logicalTable [ rr:sqlQuery """
+    SELECT
+	yxjcpt_cacher01.C_MP.MP_ID, yxjcpt_cacher01.C_MP.USAGE_TYPE_CODE，
+	(
+		CASE USAGE_TYPE_CODE
+		WHEN CAST ('01' AS NVARCHAR2(8)) THEN
+			'计量用途_售电侧结算'
+		WHEN CAST ('02' AS NVARCHAR2(8)) THEN
+			'计量用途_台区供电考核'
+	    WHEN CAST ('03' AS NVARCHAR2(8)) THEN
+			'计量用途_线路供电考核'	
+		WHEN CAST ('04' AS NVARCHAR2(8)) THEN
+			'计量用途_指标分析'
+        WHEN CAST ('05' AS NVARCHAR2(8)) THEN
+			'计量用途_趸售供电关口'
+	    WHEN CAST ('06' AS NVARCHAR2(8)) THEN
+			'计量用途_地市供电关口'	
+		WHEN CAST ('07' AS NVARCHAR2(8)) THEN
+			'计量用途_省级供电关口'
+        WHEN CAST ('08' AS NVARCHAR2(8)) THEN
+			'计量用途_跨省输电关口'
+	    WHEN CAST ('09' AS NVARCHAR2(8)) THEN
+			'计量用途_跨区输电关口'	
+		WHEN CAST ('10' AS NVARCHAR2(8)) THEN
+			'计量用途_跨国输电关口'			
+		WHEN CAST ('11' AS NVARCHAR2(8)) THEN
+			'计量用途_发电上网关口'
+        WHEN CAST ('12' AS NVARCHAR2(8)) THEN
+			'计量用途_自发自用考核关口'
+	    WHEN CAST ('13' AS NVARCHAR2(8)) THEN
+			'计量用途_统购统销关口'	
+		WHEN CAST ('1101' AS NVARCHAR2(8)) THEN
+			'计量用途_发电关口'		
+		WHEN CAST ('1102' AS NVARCHAR2(8)) THEN
+			'计量用途_上网关口'	
+		END
+	) STATE 
+		FROM yxjcpt_cacher01.C_MP WHERE ( USAGE_TYPE_CODE='01' OR USAGE_TYPE_CODE='02' OR USAGE_TYPE_CODE='03' OR USAGE_TYPE_CODE='04'
+        OR USAGE_TYPE_CODE='05' OR USAGE_TYPE_CODE='06' OR USAGE_TYPE_CODE='07' OR USAGE_TYPE_CODE='08'
+		OR USAGE_TYPE_CODE='09' OR USAGE_TYPE_CODE='10' OR USAGE_TYPE_CODE='11' OR USAGE_TYPE_CODE='12'
+		OR USAGE_TYPE_CODE='13' OR USAGE_TYPE_CODE='1101' OR USAGE_TYPE_CODE='1102' ) AND ORG_NO LIKE '51428%'
+		""" ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO#{MP_ID}_C_MP_MetrologyRequirement";
+		rr:class cim:MetrologyRequirement;
+	
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:MetrologyRequirement.reason;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/C_MP(USAGE_TYPE_CODE)#{STATE}";
+			rr:termType rr:Literal;
+		];
+	].	
+	
+	
+	
+<#C_MP_Map_UsagePoint_Metering>
+	rr:logicalTable [rr:sqlQuery """ SELECT * FROM yxjcpt_cacher01.C_MP WHERE ORG_NO LIKE '51428%' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/C_MP(MP_ID)#{MP_ID}";
+		rr:class cim:UsagePoint;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.mRID;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/C_MP(MP_ID)#{MP_ID}";
+		 	rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.name;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/C_MP(MP_NAME)#{MP_NAME}";
+			rr:termType rr:Literal;
+		];
+	];
+	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:UsagePoint.ServiceLocation;
+		rr:objectMap [ 
+		       rr:template "http://nari.com/CDPSM/CIM_DEMO/C_SP(SP_ID)#{SP_ID}";
+			rr:termType rr:IRI;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:UsagePoints.UsagePointGroups;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/G_TG(TG_ID)#{TG_ID}";
+			rr:termType rr:IRI;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:UsagePoints.ServiceSupplier;
+		rr:objectMap [ 
+		    rr:template "http://nari.com/CDPSM/CIM_DEMO#{ORG_NO}_SERVICESUPPLIER";
+			rr:termType rr:IRI;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:UsagePoints.UsagePointLocation;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/C_MP(MP_ADDR)#{MP_ADDR}";
+			rr:termType rr:Literal;
+		];
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:UsagePoints.PricingStructures;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/C_CONS_PRC(TARIFF_ID)#{TARIFF_ID}";
+		 	rr:termType rr:IRI;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:UsagePoint.ratedPower;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO#{MP_ID}_C_MP_UsagePoint.ratedPower";
+			rr:termType rr:BlankNode;
+		];	
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:UsagePoint.nominalServiceVoltage;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/C_MP(VOLT_CODE)#{VOLT_CODE}";
+			rr:termType rr:IRI;
+		];	
+	].
+	
+<#C_MP_Map_UsagePoint_ConfigurationEvent>
+	rr:logicalTable [ rr:sqlQuery """ SELECT * FROM yxjcpt_cacher01.C_MP WHERE ORG_NO LIKE '51428%' """  ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/C_MP(MP_ID)#{MP_ID}";
+		rr:class cim:UsagePoint;
+	];	
+	
+	
+		rr:predicateObjectMap [
+		rr:predicate cim:ChangedUsagePoint.ConfigurationEvents;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO#{MP_ID}_C_MP_ConfigurationEvents";
+		 	rr:termType rr:IRI;
+		];
+	].
+	
+<#C_MP_Map_USAGEPOINT_SERVICESUPPLIER>	
+    rr:logicalTable [ rr:sqlQuery """
+    SELECT 	distinct yxjcpt_cacher01.C_MP.ORG_NO
+	FROM yxjcpt_cacher01.C_MP WHERE ORG_NO LIKE '51428%' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO#{ORG_NO}_SERVICESUPPLIER";
+		rr:class cim:AssetOwner;
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Roles.Organisation;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/O_ORG(ORG_NO)#{ORG_NO}";
+			rr:termType rr:IRI;
+		];
+	].	
+
+<#C_MP_Map_UsagePoint_ConfigurationEvent_Contents>
+	rr:logicalTable [ rr:sqlQuery """ SELECT * FROM yxjcpt_cacher01.C_MP WHERE ORG_NO LIKE '51428%' """  ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO#{MP_ID}_C_MP_ConfigurationEvents";
+		rr:class cim:ConfigurationEvent;
+	];	
+	
+	
+		rr:predicateObjectMap [
+		rr:predicate cim:ActivityRecord.createdDateTime;
+		rr:objectMap [ 
+			rr:column "APP_DATE";;
+		 	rr:datatype xsd:date;
+		];
+	];
+	
+		rr:predicateObjectMap [
+		rr:predicate cim:ConfigurationEvent.effectiveDateTime;
+		rr:objectMap [ 
+			rr:column "RUN_DATE";;
+		 	rr:datatype xsd:date;
+		];
+	].
+
+
+	
+	
+<#C_MP_Map_UsagePoint.ratedPower>
+	rr:logicalTable [ rr:sqlQuery """ SELECT * FROM yxjcpt_cacher01.C_MP WHERE ORG_NO LIKE '51428%' """  ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO#{MP_ID}_C_MP_UsagePoint.ratedPower";
+		rr:termType rr:BlankNode;
+		rr:class cim:ApparentPower;
+     ];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:ApparentPower.value;
+		rr:objectMap [
+		    rr:template "http://nari.com/CDPSM/CIM_DEMO/C_MP(MP_CAP)#{MP_CAP}";
+			rr:termType rr:Literal;
+		];
+	];	
+		
+	rr:predicateObjectMap [
+		rr:predicate cim:ApparentPower.unit;
+		rr:objectMap [
+			rr:constant  "W";
+			rr:termType rr:Literal;
+		];
+	];	
+	rr:predicateObjectMap [
+		rr:predicate cim:ApparentPower.multiplier;
+		rr:objectMap [
+			rr:constant  "k";
+			rr:termType rr:Literal;
+		];
+
+	
+	].
+	

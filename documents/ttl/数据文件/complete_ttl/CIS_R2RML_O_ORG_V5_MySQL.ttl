@@ -1,0 +1,49 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix cim: <http://iec.ch/TC57/2016/CIM-schema-cim17#>.
+@prefix ns: <http://nari.com/CDPSM/CIM_DEMO#>.
+@prefix tb: <http://nari.com/CDPSM/CIM_DEMO/Source/Table#>.
+@prefix cl: <http://nari.com/CDPSM/CIM_DEMO/Source/Table/Column#>
+
+<#O_ORG_Map_Orgnization>
+	rr:logicalTable [ rr:tableName "yxjcpt_cacher01.O_ORG" ];
+	
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/O_ORG(ORG_NO)#{ORG_NO}";
+		rr:class cim:Organisation;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.mRID;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/O_ORG(ORG_NO)#{ORG_NO}";
+		 	rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.name;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/O_ORG(ORG_NAME)#{ORG_NAME}";
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.description;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/O_ORG(ORG_TYPE)#{ORG_TYPE}";
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Organisation.ParentOrganisation;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/O_ORG(ORG_NO)#{P_ORG_NO}";
+			rr:termType rr:IRI;
+		];
+	].
+   
+
+ 

@@ -1,0 +1,298 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix cim: <http://iec.ch/TC57/2016/CIM-schema-cim17#>.
+@prefix ns: <http://nari.com/CDPSM/CIM_DEMO#>.
+@prefix tb: <http://nari.com/CDPSM/CIM_DEMO/Source/Table#>.
+@prefix cl: <http://nari.com/CDPSM/CIM_DEMO/Source/Table/Column#>
+
+<#S_REGION_OUTAGE_Map_PlannedOutage_1>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT 	cast(convert(S_REGION_OUTAGE.POWEROFF_ID ,decimal(30,0)) as char) as qq ,S_REGION_OUTAGE.POWEROFF_REASON,S_REGION_OUTAGE.SCOPE,S_REGION_OUTAGE.POWEROFF_AREA,OPERATE_TIME,
+	(
+		CASE S_REGION_OUTAGE.TYPE_CODE
+		WHEN '01' THEN
+			'计划停电'
+		END
+	) STATE
+		FROM S_REGION_OUTAGE WHERE TYPE_CODE='01' """ ];
+	rr:subjectMap [
+	   rr:template "http://nari.com/CDPSM/CIM_DEMO/S_REGION_OUTAGE(POWEROFF_ID)#{qq}";
+	   rr:class cim:PlannedOutage;
+	
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.mRID;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/S_REGION_OUTAGE(POWEROFF_ID)#{qq}";
+		 	rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.description;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/S_REGION_OUTAGE(SCOPE)#{SCOPE}";
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:PlannedOutage.reason;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/S_REGION_OUTAGE(POWEROFF_REASON)#{POWEROFF_REASON}";
+		 	rr:termType rr:Literal;
+		];
+	];
+	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Outage.communityDescriptor;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/S_REGION_OUTAGE(POWEROFF_AREA)#{POWEROFF_AREA}";
+		 	rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Outage.actualPeriod;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/S_REGION_OUTAGE#{qq}_actualPeriod";
+			rr:termType rr:IRI;
+		];
+	];
+	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Document.createdDateTime;
+			rr:objectMap [ 
+			rr:column "OPERATE_TIME";
+			rr:datatype xsd:datetime;
+			rr:termType rr:Literal;
+		];
+	];
+	
+		
+	rr:predicateObjectMap [
+		rr:predicate cim:Outage.Incident;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/S_REGION_OUTAGE#{qq}_Incident";
+			rr:termType rr:IRI;
+		];
+	].
+	
+<#S_REGION_OUTAGE_Map_PlannedOutage_Author_1>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT cast(convert(S_REGION_OUTAGE.POWEROFF_ID ,decimal(30,0)) as char) as qq , SA_USER.REAL_NAME as bb FROM S_REGION_OUTAGE ,SA_USER WHERE S_REGION_OUTAGE.OPERATER_ID=SA_USER.USER_ID 
+		 AND  S_REGION_OUTAGE.TYPE_CODE='01'  """ ];
+	rr:subjectMap [
+	   rr:template "http://nari.com/CDPSM/CIM_DEMO/S_REGION_OUTAGE(POWEROFF_ID)#{qq}";
+	   rr:class cim:PlannedOutage;
+	
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Document.authorName;
+			rr:objectMap [ 
+		    rr:template "http://nari.com/CDPSM/CIM_DEMO/S_REGION_OUTAGE(OPERATER_ID)#{bb}";
+		 	rr:termType rr:Literal;
+		];
+	].	
+	
+	
+<#S_REGION_OUTAGE_Map_UnplannedOutage_1>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT 	cast(convert(S_REGION_OUTAGE.POWEROFF_ID ,decimal(30,0)) as char) as qq , S_REGION_OUTAGE.POWEROFF_REASON,S_REGION_OUTAGE.SCOPE,S_REGION_OUTAGE.POWEROFF_AREA,OPERATE_TIME,
+	(
+		CASE S_REGION_OUTAGE.TYPE_CODE
+		WHEN '02' THEN
+			'故障停电'
+		WHEN '07' THEN
+			'临时停电'
+		WHEN '06' THEN
+			'有序用电停电'	
+		WHEN '08' THEN
+			'压负荷限电'	
+		WHEN '99' THEN
+			'其他'
+		END
+	) KIND
+		FROM S_REGION_OUTAGE WHERE TYPE_CODE != '01' """ ];
+	rr:subjectMap [
+	   rr:template "http://nari.com/CDPSM/CIM_DEMO/S_REGION_OUTAGE(POWEROFF_ID)#{qq}";
+	   rr:class cim:UnplannedOutage;
+	
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.mRID;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/S_REGION_OUTAGE(POWEROFF_ID)#{qq}";
+		 	rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.description;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/S_REGION_OUTAGE(SCOPE)#{SCOPE}";
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:UnplannedOutage.cause;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/S_REGION_OUTAGE(POWEROFF_REASON)#{POWEROFF_REASON}";
+		 	rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Outage.communityDescriptor;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/S_REGION_OUTAGE(POWEROFF_AREA)#{POWEROFF_AREA}";
+		 	rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Outage.actualPeriod;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/S_REGION_OUTAGE#{qq}_actualPeriod";
+			rr:termType rr:IRI;
+		];
+	];
+	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Outage.Incident;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/S_REGION_OUTAGE#{qq}_Incident";
+			rr:termType rr:IRI;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Document.createdDateTime;
+			rr:objectMap [ 
+			rr:column "OPERATE_TIME";
+			rr:datatype xsd:datetime;
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Document.type;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/S_REGION_OUTAGE(TYPE_CODE)#{KIND}";
+			rr:termType rr:Literal;
+		];
+	].	
+	
+<#S_REGION_OUTAGE_Map_UnplannedOutage_Author_1>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT cast(convert(S_REGION_OUTAGE.POWEROFF_ID ,decimal(30,0)) as char) as qq ,  SA_USER.REAL_NAME FROM S_REGION_OUTAGE ,SA_USER WHERE S_REGION_OUTAGE.OPERATER_ID=SA_USER.USER_ID 
+		 and  S_REGION_OUTAGE.TYPE_CODE !='01' """ ];
+	rr:subjectMap [
+	   rr:template "http://nari.com/CDPSM/CIM_DEMO/S_REGION_OUTAGE(POWEROFF_ID)#{qq}";
+	   rr:class cim:UnplannedOutage;
+	
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Document.authorName;
+			rr:objectMap [ 
+		    rr:template "http://nari.com/CDPSM/CIM_DEMO/S_REGION_OUTAGE(OPERATER_ID)#{SA_USER.REAL_NAME}";
+		 	rr:termType rr:Literal;
+		];
+	].	
+		
+	
+	
+
+<#S_REGION_OUTAGE_Map_Outage_2>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT 	cast(convert(S_REGION_OUTAGE.POWEROFF_ID ,decimal(30,0)) as char) as qq , S_REGION_OUTAGE.START_TIME, S_REGION_OUTAGE.STOP_DATE FROM  S_REGION_OUTAGE  """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/S_REGION_OUTAGE#{qq}_actualPeriod";
+		rr:class cim:DateTimeInterval;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:DateTimeInterval.start;
+		rr:objectMap [ 
+			rr:column "START_TIME";
+			rr:datatype xsd:datetime;
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:DateTimeInterval.end;
+		rr:objectMap [ 
+			rr:column "STOP_DATE";
+			rr:datatype xsd:datetime;
+			rr:termType rr:Literal;
+		];
+	].
+	
+
+<#S_REGION_OUTAGE_Map_Outage_3>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT 	cast(convert(S_REGION_OUTAGE.POWEROFF_ID ,decimal(30,0)) as char) as qq ,   S_REGION_OUTAGE.APP_NO FROM  S_REGION_OUTAGE  """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/S_REGION_OUTAGE#{qq}_Incident";
+		rr:class cim:Incident;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Incident.Location;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/S_REGION_OUTAGE#{qq}_Incident_Location";
+			rr:termType rr:IRI;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Incident.TroubleTickets;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/S_95598_WKST(APP_NO)#{APP_NO}";
+			rr:termType rr:IRI;
+		];
+	].
+	
+<#S_REGION_OUTAGE_Map_Outage_4>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT 	cast(convert(S_REGION_OUTAGE.POWEROFF_ID ,decimal(30,0)) as char) as qq  FROM  S_REGION_OUTAGE  """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/S_REGION_OUTAGE#{qq}_Incident_Location";
+		rr:class cim:SGServiceArea;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:SGServiceArea.ServiceSupplier;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/S_REGION_OUTAGE#{qq}_Incident_Location_ServiceSupplier";
+			rr:termType rr:IRI;
+		];
+	].
+	
+<#S_REGION_OUTAGE_Map_Outage_5>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT 	cast(convert(S_REGION_OUTAGE.POWEROFF_ID ,decimal(30,0)) as char) as qq ,  S_REGION_OUTAGE.ORG_NO FROM  S_REGION_OUTAGE  """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/S_REGION_OUTAGE#{qq}_Incident_Location_ServiceSupplier";
+		rr:class cim:ServiceSupplier;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:OrganisationRole.Organisation;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/SA_ORG(ORG_NO)#{ORG_NO}";
+			rr:termType rr:IRI;
+		];
+	].
+	
+
+	

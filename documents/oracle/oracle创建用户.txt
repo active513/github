@@ -1,0 +1,71 @@
+﻿/*第1步：登录  */ 
+以sys/sys超级用户登录pl/sql  
+   
+/*第2步：创建临时表空间  */ 
+create temporary tablespace user_temp    
+tempfile 'E:\orcl\oradata\test\user_temp.dbf'  
+size 50m    
+autoextend on   
+next 50m maxsize 20480m    
+extent management local;    
+    
+/*第3步：创建数据表空间  */ 
+create tablespace C##SHAREFLATFORM    
+logging    
+datafile 'E:\orcl\oradata\orcl\mycreate\C##SHAREFLATFORM.DBF'  
+size 50m    
+autoextend on   
+next 50m maxsize 20480m    
+extent management local;    
+    
+/*第4步：创建用户并指定表空间  */ 
+create user C##SHAREFLATFORM identified by C##SHAREFLATFORM  
+default tablespace C##SHAREFLATFORM    
+temporary tablespace user_temp;  
+    
+/*第5步：给用户授予权限  */ 
+grant connect,resource,dba to C##SHAREFLATFORM;
+
+
+
+										linux上oracle上创建表空间及、用户
+	1.CREATE TABLESPACE MONITOR2482 LOGGING DATAFILE '/home/oracle/yxjcpt_dbf/MONITOR2482.dbf' SIZE 2048M AUTOEXTEND ON NEXT 10240M MAXSIZE UNLIMITED EXTENT MANAGEMENT LOCAL SEGMENT SPACE MANAGEMENT AUTO ;
+
+	2.CREATE USER MONITOR2482 identified by MONITOR2482 PROFILE DEFAULT DEFAULT TABLESPACE MONITOR2482 ACCOUNT UNLOCK;
+	
+	3.GRANT CREATE USER,DROP USER,ALTER USER,CREATE ANY VIEW,DROP ANY VIEW,EXP_FULL_DATABASE,IMP_FULL_DATABASE,DBA,CONNECT,RESOURCE,CREATE SESSION TO MONITOR2482;
+
+
+	CREATE TABLESPACE MONITOR248 datafile '/home/oracle/MONITOR248_DBF/MONITOR248.DBF' size 20480M autoextend on next 10240m maxsize unlimited;
+
+	CREATE USER MONITOR248 IDENTIFIED BY MONITOR248 DEFAULT TABLESPACE MONITOR248;
+	
+	grant connect,resource,dba to MONITOR248;
+
+	授予用户使用表空间的权限：  
+		alter user MONITOR248 quota unlimited on MONITOR248;  
+		或 alter user 用户名 quota *M on 表空间;  
+
+	drop tablespace MONITOR248 including contents and datafiles;
+	drop user MONITOR248 cascade;
+	
+	
+	
+	
+										windows上oracle上创建表空间及用户
+	1.创建数据表空间
+		create tablespace MONITOR2482 logging datafile 'E:\app\orcl\oradata\orcl\MONITOR2482.DBF' size 200M autoextend on next 50m maxsize 20480m extent management local;
+		
+	2.创建用户并分配表空间
+		create user MONITOR2482 identified by MONITOR2482 default tablespace MONITOR2482;
+		
+	3.授权给用户
+		grant connect,resource,dba to MONITOR2482;
+
+
+
+		CREATE TABLESPACE MONITOR2482 LOGGING DATAFILE '/database_hybrid/oracledbf/YXJCPT_CACHER.dbf' SIZE 20480M AUTOEXTEND ON NEXT 10240M MAXSIZE UNLIMITED EXTENT MANAGEMENT LOCAL SEGMENT SPACE MANAGEMENT AUTO ;
+
+		CREATE USER MONITOR2482 identified by MONITOR2482 PROFILE DEFAULT DEFAULT TABLESPACE MONITOR2482 ACCOUNT UNLOCK;
+
+		.GRANT CREATE USER,DROP USER,ALTER USER,CREATE ANY VIEW,DROP ANY VIEW,EXP_FULL_DATABASE,IMP_FULL_DATABASE,DBA,CONNECT,RESOURCE,CREATE SESSION TO MONITOR2482;

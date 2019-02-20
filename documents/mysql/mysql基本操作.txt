@@ -1,0 +1,5 @@
+一.查找数据文件的位置
+	mysql> show variables like '%dir%';(查看datadir的位置)
+
+二、查找数据库中数据量一定范围的表名
+	select table_name from tables where table_schema='yxjcpt_cacher01' and table_rows between 100000 and 1000000;

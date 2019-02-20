@@ -1,0 +1,2070 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix cim: <http://iec.ch/TC57/2016/CIM-schema-cim17#>.
+@prefix ns: <http://nari.com/CDPSM/CIM_DEMO#>.
+@prefix tb: <http://nari.com/CDPSM/CIM_DEMO/Source/Table#>.
+@prefix cl: <http://nari.com/CDPSM/CIM_DEMO/Source/Table/Column#>
+
+<#T_YJ_DWYJ_GZJL_Map_Fault_1>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  PMS_SCYW.T_YJ_DWYJ_GZJL
+	where PMS_SCYW.T_YJ_DWYJ_GZJL.GZSB IS  NULL  """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(OBJ_ID)#{OBJ_ID}";
+		rr:class cim:Fault;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.mRID;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(OBJ_ID)#{OBJ_ID}";
+		 	rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.name;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(GZJT)#{GZJT}";
+		 	rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.aliasname;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(GZQK)#{GZQK}";
+		 	rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Fault.occurredDateTime;
+		rr:objectMap [ 
+			rr:column "GZFSSJ";
+			rr:datatype xsd:date;
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Fault.Location;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(SSDSID)#{SSDSID}";
+		 	rr:termType rr:IRI;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Fault.FaultyEquipment;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(OBJ_ID)#{OBJ_ID}_Equipment";
+		 	rr:termType rr:IRI;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Fault.FaultCauseTypes;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(OBJ_ID)#{OBJ_ID}_faulttype";
+		 	rr:termType rr:IRI;
+		];
+	].
+	
+	
+<#T_YJ_DWYJ_GZJL_Map_faulttype_1>
+    rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  PMS_SCYW.GZLU_ALL
+	where PMS_SCYW.GZLU_ALL.GZSB IS  NULL """  ];
+ 	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(OBJ_ID)#{OBJ_ID}_faulttype";
+		rr:class cim:FaultCauseType;
+		rr:termType rr:IRI;
+	];
+	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.name;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(JSYY)_(ZRYY)#{JS}_{ZR}";
+			rr:termType rr:Literal;
+			];
+	].
+	
+<#T_YJ_DWYJ_GZJL_Map_faultyequipment_1>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  PMS_SCYW.T_YJ_DWYJ_GZJL
+	where PMS_SCYW.T_YJ_DWYJ_GZJL.GZSB IS  NULL  """ ];
+ 	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(OBJ_ID)#{OBJ_ID}_Equipment";
+		rr:class cim:Equipment;
+		rr:termType rr:IRI;
+	];
+	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:PowerSystemResource.Assets;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(OBJ_ID)#{OBJ_ID}_equipment_asset";
+			rr:termType rr:IRI;
+		];
+	].
+	
+	
+<#T_YJ_DWYJ_GZJL_Map_faultyequipment_2>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  PMS_SCYW.T_YJ_DWYJ_GZJL
+	where PMS_SCYW.T_YJ_DWYJ_GZJL.GZSB IS  NULL  """ ];
+ 	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(OBJ_ID)#{OBJ_ID}_equipment_asset";
+		rr:class cim:Asset;
+		rr:termType rr:IRI;
+	];
+	
+	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.AssetContainer;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DZ(OBJ_ID)#{BDZID}";
+			rr:termType rr:IRI;
+		];
+	].
+	
+<#T_YJ_DWYJ_GZJL_Map_faultyequipment_3>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  PMS_SCYW.T_YJ_DWYJ_GZJL
+	where PMS_SCYW.T_YJ_DWYJ_GZJL.GZSB IS  NULL  """ ];
+ 	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DZ(OBJ_ID)#{BDZID}";
+		rr:class cim:Facility;
+		rr:termType rr:IRI;
+	];
+	
+	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.mRID;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DZ(OBJ_ID)#{BDZID}";
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.name;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DZ(BDZMC)#{BDZMC}";
+			rr:termType rr:Literal;
+		];
+	].
+	
+
+	
+	
+<#T_SB_ZNYC_DLQ_Map_Location_Fault>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  PMS_SCYW.T_YJ_DWYJ_GZJL
+	where PMS_SCYW.T_YJ_DWYJ_GZJL.GZSB IS  NULL  """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(SSDSID)#{SSDSID}";
+		rr:class cim:Location;
+		rr:termType rr:IRI;
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.mRID;
+		rr:objectMap [
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(SSDSID)#{SSDSID}";
+			rr:termType rr:Literal;
+		];
+	];
+	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.name;
+		rr:objectMap [
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(SSDSMC)#{SSDSMC}";
+			rr:termType rr:Literal;
+		];
+	].
+	
+<#T_YJ_DWYJ_GZJL_Map_ZWYC_DAOXIAN_FailureEvent_1>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  PMS_SCYW.T_YJ_DWYJ_GZJL
+	where PMS_SCYW.T_YJ_DWYJ_GZJL.GZSB IS  NOT NULL AND SBLXBM ='0101' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZWYC_DAOXIAN(OBJ_ID)#{GZSB}";
+		rr:class cim:Asset;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Asset.ActivityRecords;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZWYC_DAOXIAN(OBJ_ID)#{GZSB}_{OBJ_ID}_activityrecord";
+		 	rr:termType rr:IRI;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.AssetContainer;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DZ(OBJ_ID)#{BDZID}";
+			rr:termType rr:IRI;
+		];
+	].
+	
+	
+	
+<#T_YJ_DWYJ_GZJL_Map_ZWYC_DAOXIAN_FailureEvent_11>
+	rr:logicalTable [ rr:sqlQuery """
+   SELECT  * FROM  PMS_SCYW.GZLU_ALL
+	where PMS_SCYW.GZLU_ALL.GZSB IS  NOT NULL AND SBLXBM ='0101' """  ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZWYC_DAOXIAN(OBJ_ID)#{GZSB}_{OBJ_ID}_activityrecord";
+		rr:class cim:FailureEvent;
+	];
+
+    rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.mRID;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(OBJ_ID)#{OBJ_ID}";
+			rr:termType rr:Literal;
+		];
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:FailureEvent.failureDateTime;
+		rr:objectMap [ 
+			rr:column "GZFSSJ";
+			rr:datatype xsd:dateTime;
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:FailureEvent.corporateCode;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(GZLX)#{GZLX}";
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:FailureEvent.rootCause;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(JSYY)_(ZRYY)#{JS}_{ZR}";
+			rr:termType rr:Literal;
+		];
+	].	
+	
+<#T_YJ_DWYJ_GZJL_Map_ZWYC_GT_FailureEvent_1>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  PMS_SCYW.T_YJ_DWYJ_GZJL
+	where PMS_SCYW.T_YJ_DWYJ_GZJL.GZSB IS  NOT NULL AND SBLXBM ='0103' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZWYC_GT(OBJ_ID)#{GZSB}";
+		rr:class cim:Asset;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Asset.ActivityRecords;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZWYC_GT(OBJ_ID)#{GZSB}_{OBJ_ID}_activityrecord";
+		 	rr:termType rr:IRI;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.AssetContainer;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DZ(OBJ_ID)#{BDZID}";
+			rr:termType rr:IRI;
+		];
+	].
+	
+	
+	
+<#T_YJ_DWYJ_GZJL_Map_ZWYC_GT_FailureEvent_11>
+	rr:logicalTable [ rr:sqlQuery """
+   SELECT  * FROM  PMS_SCYW.GZLU_ALL
+	where PMS_SCYW.GZLU_ALL.GZSB IS  NOT NULL AND SBLXBM ='0103' """  ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZWYC_GT(OBJ_ID)#{GZSB}_{OBJ_ID}_activityrecord";
+		rr:class cim:FailureEvent;
+	];
+
+    rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.mRID;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(OBJ_ID)#{OBJ_ID}";
+			rr:termType rr:Literal;
+		];
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:FailureEvent.failureDateTime;
+		rr:objectMap [ 
+			rr:column "GZFSSJ";
+			rr:datatype xsd:dateTime;
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:FailureEvent.corporateCode;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(GZLX)#{GZLX}";
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:FailureEvent.rootCause;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(JSYY)_(ZRYY)#{JS}_{ZR}";
+			rr:termType rr:Literal;
+		];
+	].
+	
+<#T_YJ_DWYJ_GZJL_Map_ZNYC_JYZ_FailureEvent_1>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  PMS_SCYW.T_YJ_DWYJ_GZJL
+	where PMS_SCYW.T_YJ_DWYJ_GZJL.GZSB IS  NOT NULL AND SBLXBM ='0103001' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_JYZ(OBJ_ID)#{GZSB}";
+		rr:class cim:Asset;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Asset.ActivityRecords;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_JYZ(OBJ_ID)#{GZSB}_{OBJ_ID}_activityrecord";
+		 	rr:termType rr:IRI;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.AssetContainer;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DZ(OBJ_ID)#{BDZID}";
+			rr:termType rr:IRI;
+		];
+	].
+	
+	
+	
+<#T_YJ_DWYJ_GZJL_Map_ZNYC_JYZ_FailureEvent_11>
+	rr:logicalTable [ rr:sqlQuery """
+   SELECT  * FROM  PMS_SCYW.GZLU_ALL
+	where PMS_SCYW.GZLU_ALL.GZSB IS  NOT NULL AND SBLXBM ='0103001' """  ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_JYZ(OBJ_ID)#{GZSB}_{OBJ_ID}_activityrecord";
+		rr:class cim:FailureEvent;
+	];
+
+    rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.mRID;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(OBJ_ID)#{OBJ_ID}";
+			rr:termType rr:Literal;
+		];
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:FailureEvent.failureDateTime;
+		rr:objectMap [ 
+			rr:column "GZFSSJ";
+			rr:datatype xsd:dateTime;
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:FailureEvent.corporateCode;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(GZLX)#{GZLX}";
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:FailureEvent.rootCause;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(JSYY)_(ZRYY)#{JS}_{ZR}";
+			rr:termType rr:Literal;
+		];
+	].		
+	
+<#T_YJ_DWYJ_GZJL_Map_ZWYC_ZSBYQ_FailureEvent_1>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  PMS_SCYW.T_YJ_DWYJ_GZJL
+	where PMS_SCYW.T_YJ_DWYJ_GZJL.GZSB IS  NOT NULL AND SBLXBM ='0110' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZWYC_ZSBYQ(OBJ_ID)#{GZSB}";
+		rr:class cim:Asset;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Asset.ActivityRecords;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZWYC_ZSBYQ(OBJ_ID)#{GZSB}_{OBJ_ID}_activityrecord";
+		 	rr:termType rr:IRI;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.AssetContainer;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DZ(OBJ_ID)#{BDZID}";
+			rr:termType rr:IRI;
+		];
+	].
+	
+	
+	
+<#T_YJ_DWYJ_GZJL_Map_ZWYC_ZSBYQ_FailureEvent_11>
+	rr:logicalTable [ rr:sqlQuery """
+   SELECT  * FROM  PMS_SCYW.GZLU_ALL
+	where PMS_SCYW.GZLU_ALL.GZSB IS  NOT NULL AND SBLXBM ='0110' """  ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZWYC_ZSBYQ(OBJ_ID)#{GZSB}_{OBJ_ID}_activityrecord";
+		rr:class cim:FailureEvent;
+	];
+
+    rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.mRID;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(OBJ_ID)#{OBJ_ID}";
+			rr:termType rr:Literal;
+		];
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:FailureEvent.failureDateTime;
+		rr:objectMap [ 
+			rr:column "GZFSSJ";
+			rr:datatype xsd:dateTime;
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:FailureEvent.corporateCode;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(GZLX)#{GZLX}";
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:FailureEvent.rootCause;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(JSYY)_(ZRYY)#{JS}_{ZR}";
+			rr:termType rr:Literal;
+		];
+	].			
+	
+	
+<#T_YJ_DWYJ_GZJL_Map_ZSDLQ_FailureEvent_1>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  PMS_SCYW.T_YJ_DWYJ_GZJL
+	where PMS_SCYW.T_YJ_DWYJ_GZJL.GZSB IS  NOT NULL AND SBLXBM ='0111' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZWYC_ZSDLQ(OBJ_ID)#{GZSB}";
+		rr:class cim:Asset;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Asset.ActivityRecords;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZWYC_ZSDLQ(OBJ_ID)#{GZSB}_{OBJ_ID}_activityrecord";
+		 	rr:termType rr:IRI;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.AssetContainer;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DZ(OBJ_ID)#{BDZID}";
+			rr:termType rr:IRI;
+		];
+	].
+	
+	
+	
+<#T_YJ_DWYJ_GZJL_Map_ZSDLQ_FailureEvent_11>
+	rr:logicalTable [ rr:sqlQuery """
+   SELECT  * FROM  PMS_SCYW.GZLU_ALL
+	where PMS_SCYW.GZLU_ALL.GZSB IS  NOT NULL AND SBLXBM ='0111' """  ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZWYC_ZSDLQ(OBJ_ID)#{GZSB}_{OBJ_ID}_activityrecord";
+		rr:class cim:FailureEvent;
+	];
+
+    rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.mRID;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(OBJ_ID)#{OBJ_ID}";
+			rr:termType rr:Literal;
+		];
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:FailureEvent.failureDateTime;
+		rr:objectMap [ 
+			rr:column "GZFSSJ";
+			rr:datatype xsd:dateTime;
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:FailureEvent.corporateCode;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(GZLX)#{GZLX}";
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:FailureEvent.rootCause;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(JSYY)_(ZRYY)#{JS}_{ZR}";
+			rr:termType rr:Literal;
+		];
+	].
+	
+<#T_YJ_DWYJ_GZJL_Map_ZWYC_ZSFHKG_FailureEvent_1>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  PMS_SCYW.T_YJ_DWYJ_GZJL
+	where PMS_SCYW.T_YJ_DWYJ_GZJL.GZSB IS  NOT NULL AND SBLXBM ='0112' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZWYC_ZSFHKG(OBJ_ID)#{GZSB}";
+		rr:class cim:Asset;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Asset.ActivityRecords;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZWYC_ZSFHKG(OBJ_ID)#{GZSB}_{OBJ_ID}_activityrecord";
+		 	rr:termType rr:IRI;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.AssetContainer;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DZ(OBJ_ID)#{BDZID}";
+			rr:termType rr:IRI;
+		];
+	].
+	
+	
+	
+<#T_YJ_DWYJ_GZJL_Map_ZWYC_ZSFHKG_FailureEvent_11>
+	rr:logicalTable [ rr:sqlQuery """
+   SELECT  *  FROM  PMS_SCYW.GZLU_ALL
+	where PMS_SCYW.GZLU_ALL.GZSB IS  NOT NULL AND SBLXBM ='0112' """  ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZWYC_ZSFHKG(OBJ_ID)#{GZSB}_{OBJ_ID}_activityrecord";
+		rr:class cim:FailureEvent;
+	];
+
+    rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.mRID;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(OBJ_ID)#{OBJ_ID}";
+			rr:termType rr:Literal;
+		];
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:FailureEvent.failureDateTime;
+		rr:objectMap [ 
+			rr:column "GZFSSJ";
+			rr:datatype xsd:dateTime;
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:FailureEvent.corporateCode;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(GZLX)#{GZLX}";
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:FailureEvent.rootCause;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(JSYY)_(ZRYY)#{JS}_{ZR}";
+			rr:termType rr:Literal;
+		];
+	].
+	
+<#T_YJ_DWYJ_GZJL_Map_ZWYC_ZSDLSRDQ_FailureEvent_1>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  PMS_SCYW.T_YJ_DWYJ_GZJL
+	where PMS_SCYW.T_YJ_DWYJ_GZJL.GZSB IS  NOT NULL AND SBLXBM ='0115' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZWYC_ZSDLSRDQ(OBJ_ID)#{GZSB}";
+		rr:class cim:Asset;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Asset.ActivityRecords;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZWYC_ZSDLSRDQ(OBJ_ID)#{GZSB}_{OBJ_ID}_activityrecord";
+		 	rr:termType rr:IRI;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.AssetContainer;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DZ(OBJ_ID)#{BDZID}";
+			rr:termType rr:IRI;
+		];
+	].
+	
+	
+	
+<#T_YJ_DWYJ_GZJL_Map_ZWYC_ZSDLSRDQ_FailureEvent_11>
+	rr:logicalTable [ rr:sqlQuery """
+   SELECT  * FROM  PMS_SCYW.GZLU_ALL
+	where PMS_SCYW.GZLU_ALL.GZSB IS  NOT NULL AND SBLXBM ='0115' """  ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZWYC_ZSDLSRDQ(OBJ_ID)#{GZSB}_{OBJ_ID}_activityrecord";
+		rr:class cim:FailureEvent;
+	];	
+	
+    rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.mRID;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(OBJ_ID)#{OBJ_ID}";
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:FailureEvent.failureDateTime;
+		rr:objectMap [ 
+			rr:column "GZFSSJ";
+			rr:datatype xsd:dateTime;
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:FailureEvent.corporateCode;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(GZLX)#{GZLX}";
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:FailureEvent.rootCause;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(JSYY)_(ZRYY)#{JS}_{ZR}";
+			rr:termType rr:Literal;
+		];
+	].
+	
+<#T_YJ_DWYJ_GZJL_Map_ZWYC_DLD_FailureEvent_1>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  PMS_SCYW.T_YJ_DWYJ_GZJL
+	where PMS_SCYW.T_YJ_DWYJ_GZJL.GZSB IS  NOT NULL AND SBLXBM ='0201' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZWYC_DLD(OBJ_ID)#{GZSB}";
+		rr:class cim:Asset;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Asset.ActivityRecords;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZWYC_DLD(OBJ_ID)#{GZSB}_{OBJ_ID}_activityrecord";
+		 	rr:termType rr:IRI;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.AssetContainer;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DZ(OBJ_ID)#{BDZID}";
+			rr:termType rr:IRI;
+		];
+	].
+	
+	
+	
+<#T_YJ_DWYJ_GZJL_Map_ZWYC_DLD_FailureEvent_11>
+	rr:logicalTable [ rr:sqlQuery """
+   SELECT  * FROM  PMS_SCYW.GZLU_ALL
+	where PMS_SCYW.GZLU_ALL.GZSB IS  NOT NULL AND SBLXBM ='0201' """  ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZWYC_DLD(OBJ_ID)#{GZSB}_{OBJ_ID}_activityrecord";
+		rr:class cim:FailureEvent;
+	];
+
+    rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.mRID;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(OBJ_ID)#{OBJ_ID}";
+			rr:termType rr:Literal;
+		];
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:FailureEvent.failureDateTime;
+		rr:objectMap [ 
+			rr:column "GZFSSJ";
+			rr:datatype xsd:dateTime;
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:FailureEvent.corporateCode;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(GZLX)#{GZLX}";
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:FailureEvent.rootCause;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(JSYY)_(ZRYY)#{JS}_{ZR}";
+			rr:termType rr:Literal;
+		];
+	].	
+	
+<#T_YJ_DWYJ_GZJL_Map_ZWYC_DLZD_FailureEvent_1>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  PMS_SCYW.T_YJ_DWYJ_GZJL
+	where PMS_SCYW.T_YJ_DWYJ_GZJL.GZSB IS  NOT NULL AND SBLXBM ='0202' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZWYC_DLZD(OBJ_ID)#{GZSB}";
+		rr:class cim:Asset;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Asset.ActivityRecords;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZWYC_DLZD(OBJ_ID)#{GZSB}_{OBJ_ID}_activityrecord";
+		 	rr:termType rr:IRI;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.AssetContainer;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DZ(OBJ_ID)#{BDZID}";
+			rr:termType rr:IRI;
+		];
+	].
+	
+	
+	
+<#T_YJ_DWYJ_GZJL_Map_ZWYC_DLZD_FailureEvent_11>
+	rr:logicalTable [ rr:sqlQuery """
+   SELECT  * FROM  PMS_SCYW.GZLU_ALL
+	where PMS_SCYW.GZLU_ALL.GZSB IS  NOT NULL AND SBLXBM ='0202' """  ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZWYC_DLZD(OBJ_ID)#{GZSB}_{OBJ_ID}_activityrecord";
+		rr:class cim:FailureEvent;
+	];	
+	
+	
+    rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.mRID;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(OBJ_ID)#{OBJ_ID}";
+			rr:termType rr:Literal;
+		];
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:FailureEvent.failureDateTime;
+		rr:objectMap [ 
+			rr:column "GZFSSJ";
+			rr:datatype xsd:dateTime;
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:FailureEvent.corporateCode;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(GZLX)#{GZLX}";
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:FailureEvent.rootCause;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(JSYY)_(ZRYY)#{JS}_{ZR}";
+			rr:termType rr:Literal;
+		];
+	].	
+		
+<#T_YJ_DWYJ_GZJL_Map_ZNYC_ZBYQ_FailureEvent_1>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  PMS_SCYW.T_YJ_DWYJ_GZJL
+	where PMS_SCYW.T_YJ_DWYJ_GZJL.GZSB IS  NOT NULL AND SBLXBM ='0301' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_ZBYQ(OBJ_ID)#{GZSB}";
+		rr:class cim:Asset;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Asset.ActivityRecords;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_ZBYQ(OBJ_ID)#{GZSB}_{OBJ_ID}_activityrecord";
+		 	rr:termType rr:IRI;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.AssetContainer;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DZ(OBJ_ID)#{BDZID}";
+			rr:termType rr:IRI;
+		];
+	].
+	
+	
+	
+<#T_YJ_DWYJ_GZJL_Map_ZNYC_ZBYQ_FailureEvent_11>
+	rr:logicalTable [ rr:sqlQuery """
+   SELECT  * FROM  PMS_SCYW.GZLU_ALL
+	where PMS_SCYW.GZLU_ALL.GZSB IS  NOT NULL AND SBLXBM ='0301' """  ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_ZBYQ(OBJ_ID)#{GZSB}_{OBJ_ID}_activityrecord";
+		rr:class cim:FailureEvent;
+	];
+
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.mRID;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(OBJ_ID)#{OBJ_ID}";
+			rr:termType rr:Literal;
+		];
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:FailureEvent.failureDateTime;
+		rr:objectMap [ 
+			rr:column "GZFSSJ";
+			rr:datatype xsd:dateTime;
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:FailureEvent.corporateCode;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(GZLX)#{GZLX}";
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:FailureEvent.rootCause;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(JSYY)_(ZRYY)#{JS}_{ZR}";
+			rr:termType rr:Literal;
+		];
+	].		
+<#T_YJ_DWYJ_GZJL_Map_ZNYC_SYB_FailureEvent_1>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  PMS_SCYW.T_YJ_DWYJ_GZJL
+	where PMS_SCYW.T_YJ_DWYJ_GZJL.GZSB IS  NOT NULL AND SBLXBM ='0303' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_SYB(OBJ_ID)#{GZSB}";
+		rr:class cim:Asset;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Asset.ActivityRecords;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_SYB(OBJ_ID)#{GZSB}_{OBJ_ID}_activityrecord";
+		 	rr:termType rr:IRI;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.AssetContainer;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DZ(OBJ_ID)#{BDZID}";
+			rr:termType rr:IRI;
+		];
+	].
+	
+	
+	
+<#T_YJ_DWYJ_GZJL_Map_ZNYC_SYB_FailureEvent_11>
+	rr:logicalTable [ rr:sqlQuery """
+   SELECT  * FROM  PMS_SCYW.GZLU_ALL
+	where PMS_SCYW.GZLU_ALL.GZSB IS  NOT NULL AND SBLXBM ='0303' """  ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_SYB(OBJ_ID)#{GZSB}_{OBJ_ID}_activityrecord";
+		rr:class cim:FailureEvent;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.mRID;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(OBJ_ID)#{OBJ_ID}";
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:FailureEvent.failureDateTime;
+		rr:objectMap [ 
+			rr:column "GZFSSJ";
+			rr:datatype xsd:dateTime;
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:FailureEvent.corporateCode;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(GZLX)#{GZLX}";
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:FailureEvent.rootCause;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(JSYY)_(ZRYY)#{JS}_{ZR}";
+			rr:termType rr:Literal;
+		];
+	].	
+	
+	
+<#T_YJ_DWYJ_GZJL_Map_ZNYC_JDB_FailureEvent_1>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  PMS_SCYW.T_YJ_DWYJ_GZJL
+	where PMS_SCYW.T_YJ_DWYJ_GZJL.GZSB IS  NOT NULL AND SBLXBM ='0304' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_JDB(OBJ_ID)#{GZSB}";
+		rr:class cim:Asset;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Asset.ActivityRecords;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_JDB(OBJ_ID)#{GZSB}_{OBJ_ID}_activityrecord";
+		 	rr:termType rr:IRI;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.AssetContainer;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DZ(OBJ_ID)#{BDZID}";
+			rr:termType rr:IRI;
+		];
+	].
+	
+	
+	
+<#T_YJ_DWYJ_GZJL_Map_ZNYC_JDB_FailureEvent_11>
+	rr:logicalTable [ rr:sqlQuery """
+   SELECT  * FROM  PMS_SCYW.GZLU_ALL
+	where PMS_SCYW.GZLU_ALL.GZSB IS  NOT NULL AND SBLXBM ='0304' """  ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_JDB(OBJ_ID)#{GZSB}_{OBJ_ID}_activityrecord";
+		rr:class cim:FailureEvent;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.mRID;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(OBJ_ID)#{OBJ_ID}";
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:FailureEvent.failureDateTime;
+		rr:objectMap [ 
+			rr:column "GZFSSJ";
+			rr:datatype xsd:dateTime;
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:FailureEvent.corporateCode;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(GZLX)#{GZLX}";
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:FailureEvent.rootCause;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(JSYY)_(ZRYY)#{JS}_{ZR}";
+			rr:termType rr:Literal;
+		];
+	].		
+	
+<#T_YJ_DWYJ_GZJL_Map_ZNYC_DLQ_FailureEvent_1>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  PMS_SCYW.T_YJ_DWYJ_GZJL
+	where PMS_SCYW.T_YJ_DWYJ_GZJL.GZSB IS  NOT NULL AND SBLXBM ='0305' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DLQ(OBJ_ID)#{GZSB}";
+		rr:class cim:Asset;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Asset.ActivityRecords;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DLQ(OBJ_ID)#{GZSB}_{OBJ_ID}_activityrecord";
+		 	rr:termType rr:IRI;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.AssetContainer;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DZ(OBJ_ID)#{BDZID}";
+			rr:termType rr:IRI;
+		];
+	].
+	
+	
+	
+<#T_YJ_DWYJ_GZJL_Map_ZNYC_DLQ_FailureEvent_11>
+	rr:logicalTable [ rr:sqlQuery """
+   SELECT  * FROM  PMS_SCYW.GZLU_ALL
+	where PMS_SCYW.GZLU_ALL.GZSB IS  NOT NULL AND SBLXBM ='0305' """  ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DLQ(OBJ_ID)#{GZSB}_{OBJ_ID}_activityrecord";
+		rr:class cim:FailureEvent;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.mRID;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(OBJ_ID)#{OBJ_ID}";
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:FailureEvent.failureDateTime;
+		rr:objectMap [ 
+			rr:column "GZFSSJ";
+			rr:datatype xsd:dateTime;
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:FailureEvent.corporateCode;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(GZLX)#{GZLX}";
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:FailureEvent.rootCause;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(JSYY)_(ZRYY)#{JS}_{ZR}";
+			rr:termType rr:Literal;
+		];
+	].
+	
+<#T_YJ_DWYJ_GZJL_Map_ZNYC_GLKG_FailureEvent_1>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  PMS_SCYW.T_YJ_DWYJ_GZJL
+	where PMS_SCYW.T_YJ_DWYJ_GZJL.GZSB IS  NOT NULL AND SBLXBM ='0306' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_GLKG(OBJ_ID)#{GZSB}";
+		rr:class cim:Asset;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Asset.ActivityRecords;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_GLKG(OBJ_ID)#{GZSB}_{OBJ_ID}_activityrecord";
+		 	rr:termType rr:IRI;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.AssetContainer;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DZ(OBJ_ID)#{BDZID}";
+			rr:termType rr:IRI;
+		];
+	].
+	
+	
+	
+<#T_YJ_DWYJ_GZJL_Map_ZNYC_GLKG_FailureEvent_11>
+	rr:logicalTable [ rr:sqlQuery """
+   SELECT  * FROM  PMS_SCYW.GZLU_ALL
+	where PMS_SCYW.GZLU_ALL.GZSB IS  NOT NULL AND SBLXBM ='0306' """  ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_GLKG(OBJ_ID)#{GZSB}_{OBJ_ID}_activityrecord";
+		rr:class cim:FailureEvent;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.mRID;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(OBJ_ID)#{OBJ_ID}";
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:FailureEvent.failureDateTime;
+		rr:objectMap [ 
+			rr:column "GZFSSJ";
+			rr:datatype xsd:dateTime;
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:FailureEvent.corporateCode;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(GZLX)#{GZLX}";
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:FailureEvent.rootCause;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(JSYY)_(ZRYY)#{JS}_{ZR}";
+			rr:termType rr:Literal;
+		];
+	].	
+	
+	
+	
+<#T_YJ_DWYJ_GZJL_Map_ZNYC_RDQ_FailureEvent_1>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  PMS_SCYW.T_YJ_DWYJ_GZJL
+	where PMS_SCYW.T_YJ_DWYJ_GZJL.GZSB IS  NOT NULL AND SBLXBM ='0309' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_RDQ(OBJ_ID)#{GZSB}";
+		rr:class cim:Asset;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Asset.ActivityRecords;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_RDQ(OBJ_ID)#{GZSB}_{OBJ_ID}_activityrecord";
+		 	rr:termType rr:IRI;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.AssetContainer;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DZ(OBJ_ID)#{BDZID}";
+			rr:termType rr:IRI;
+		];
+	].
+	
+	
+	
+<#T_YJ_DWYJ_GZJL_Map_ZNYC_RDQ_FailureEvent_11>
+	rr:logicalTable [ rr:sqlQuery """
+   SELECT  * FROM  PMS_SCYW.GZLU_ALL
+	where PMS_SCYW.GZLU_ALL.GZSB IS  NOT NULL AND SBLXBM ='0309' """  ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_RDQ(OBJ_ID)#{GZSB}_{OBJ_ID}_activityrecord";
+		rr:class cim:FailureEvent;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.mRID;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(OBJ_ID)#{OBJ_ID}";
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:FailureEvent.failureDateTime;
+		rr:objectMap [ 
+			rr:column "GZFSSJ";
+			rr:datatype xsd:dateTime;
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:FailureEvent.corporateCode;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(GZLX)#{GZLX}";
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:FailureEvent.rootCause;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(JSYY)_(ZRYY)#{JS}_{ZR}";
+			rr:termType rr:Literal;
+		];
+	].	
+	
+	
+<#T_YJ_DWYJ_GZJL_Map_ZNYC_MX_FailureEvent_1>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  PMS_SCYW.T_YJ_DWYJ_GZJL
+	where PMS_SCYW.T_YJ_DWYJ_GZJL.GZSB IS  NOT NULL AND SBLXBM ='0311' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_MX(OBJ_ID)#{GZSB}";
+		rr:class cim:Asset;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Asset.ActivityRecords;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_MX(OBJ_ID)#{GZSB}_{OBJ_ID}_activityrecord";
+		 	rr:termType rr:IRI;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.AssetContainer;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DZ(OBJ_ID)#{BDZID}";
+			rr:termType rr:IRI;
+		];
+	].
+	
+	
+	
+<#T_YJ_DWYJ_GZJL_Map_ZNYC_MX_FailureEvent_11>
+	rr:logicalTable [ rr:sqlQuery """
+   SELECT  * FROM  PMS_SCYW.GZLU_ALL
+	where PMS_SCYW.GZLU_ALL.GZSB IS  NOT NULL AND SBLXBM ='0311' """  ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_MX(OBJ_ID)#{GZSB}_{OBJ_ID}_activityrecord";
+		rr:class cim:FailureEvent;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.mRID;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(OBJ_ID)#{OBJ_ID}";
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:FailureEvent.failureDateTime;
+		rr:objectMap [ 
+			rr:column "GZFSSJ";
+			rr:datatype xsd:dateTime;
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:FailureEvent.corporateCode;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(GZLX)#{GZLX}";
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:FailureEvent.rootCause;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(JSYY)_(ZRYY)#{JS}_{ZR}";
+			rr:termType rr:Literal;
+		];
+	].
+	
+<#T_YJ_DWYJ_GZJL_Map_ZNYC_DKQ_FailureEvent_1>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  PMS_SCYW.T_YJ_DWYJ_GZJL
+	where PMS_SCYW.T_YJ_DWYJ_GZJL.GZSB IS  NOT NULL AND SBLXBM ='0312' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DKQ(OBJ_ID)#{GZSB}";
+		rr:class cim:Asset;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Asset.ActivityRecords;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DKQ(OBJ_ID)#{GZSB}_{OBJ_ID}_activityrecord";
+		 	rr:termType rr:IRI;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.AssetContainer;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DZ(OBJ_ID)#{BDZID}";
+			rr:termType rr:IRI;
+		];
+	].
+	
+	
+	
+<#T_YJ_DWYJ_GZJL_Map_ZNYC_DKQ_FailureEvent_11>
+	rr:logicalTable [ rr:sqlQuery """
+   SELECT  * FROM  PMS_SCYW.GZLU_ALL
+	where PMS_SCYW.GZLU_ALL.GZSB IS  NOT NULL AND SBLXBM ='0312' """  ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DKQ(OBJ_ID)#{GZSB}_{OBJ_ID}_activityrecord";
+		rr:class cim:FailureEvent;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.mRID;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(OBJ_ID)#{OBJ_ID}";
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:FailureEvent.failureDateTime;
+		rr:objectMap [ 
+			rr:column "GZFSSJ";
+			rr:datatype xsd:dateTime;
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:FailureEvent.corporateCode;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(GZLX)#{GZLX}";
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:FailureEvent.rootCause;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(JSYY)_(ZRYY)#{JS}_{ZR}";
+			rr:termType rr:Literal;
+		];
+	].	
+
+	
+<#T_YJ_DWYJ_GZJL_Map_ZNYC_DLHGQ_FailureEvent_1>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  PMS_SCYW.T_YJ_DWYJ_GZJL
+	where PMS_SCYW.T_YJ_DWYJ_GZJL.GZSB IS  NOT NULL AND SBLXBM ='0313' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DLHGQ(OBJ_ID)#{GZSB}";
+		rr:class cim:Asset;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Asset.ActivityRecords;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DLHGQ(OBJ_ID)#{GZSB}_{OBJ_ID}_activityrecord";
+		 	rr:termType rr:IRI;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.AssetContainer;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DZ(OBJ_ID)#{BDZID}";
+			rr:termType rr:IRI;
+		];
+	].
+	
+	
+	
+<#T_YJ_DWYJ_GZJL_Map_ZNYC_DLHGQ_FailureEvent_11>
+	rr:logicalTable [ rr:sqlQuery """
+   SELECT  * FROM  PMS_SCYW.GZLU_ALL
+	where PMS_SCYW.GZLU_ALL.GZSB IS  NOT NULL AND SBLXBM ='0313' """  ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DLHGQ(OBJ_ID)#{GZSB}_{OBJ_ID}_activityrecord";
+		rr:class cim:FailureEvent;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.mRID;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(OBJ_ID)#{OBJ_ID}";
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:FailureEvent.failureDateTime;
+		rr:objectMap [ 
+			rr:column "GZFSSJ";
+			rr:datatype xsd:dateTime;
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:FailureEvent.corporateCode;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(GZLX)#{GZLX}";
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:FailureEvent.rootCause;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(JSYY)_(ZRYY)#{JS}_{ZR}";
+			rr:termType rr:Literal;
+		];
+	].
+	
+	
+<#T_YJ_DWYJ_GZJL_Map_ZNYC_DYHGQ_FailureEvent_1>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  PMS_SCYW.T_YJ_DWYJ_GZJL
+	where PMS_SCYW.T_YJ_DWYJ_GZJL.GZSB IS  NOT NULL AND SBLXBM ='0314' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DYHGQ(OBJ_ID)#{GZSB}";
+		rr:class cim:Asset;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Asset.ActivityRecords;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DYHGQ(OBJ_ID)#{GZSB}_{OBJ_ID}_activityrecord";
+		 	rr:termType rr:IRI;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.AssetContainer;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DZ(OBJ_ID)#{BDZID}";
+			rr:termType rr:IRI;
+		];
+	].
+	
+	
+	
+<#T_YJ_DWYJ_GZJL_Map_ZNYC_DYHGQ_FailureEvent_11>
+	rr:logicalTable [ rr:sqlQuery """
+   SELECT  * FROM  PMS_SCYW.GZLU_ALL
+	where PMS_SCYW.GZLU_ALL.GZSB IS  NOT NULL AND SBLXBM ='0314' """  ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DYHGQ(OBJ_ID)#{GZSB}_{OBJ_ID}_activityrecord";
+		rr:class cim:FailureEvent;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.mRID;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(OBJ_ID)#{OBJ_ID}";
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:FailureEvent.failureDateTime;
+		rr:objectMap [ 
+			rr:column "GZFSSJ";
+			rr:datatype xsd:dateTime;
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:FailureEvent.corporateCode;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(GZLX)#{GZLX}";
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:FailureEvent.rootCause;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(JSYY)_(ZRYY)#{JS}_{ZR}";
+			rr:termType rr:Literal;
+		];
+	].	
+	
+	
+<#T_YJ_DWYJ_GZJL_Map_ZNYC_DLDR_FailureEvent_1>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  PMS_SCYW.T_YJ_DWYJ_GZJL
+	where PMS_SCYW.T_YJ_DWYJ_GZJL.GZSB IS  NOT NULL AND SBLXBM ='0316' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DLDRQ(OBJ_ID)#{GZSB}";
+		rr:class cim:Asset;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Asset.ActivityRecords;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DLDRQ(OBJ_ID)#{GZSB}_{OBJ_ID}_activityrecord";
+		 	rr:termType rr:IRI;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.AssetContainer;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DZ(OBJ_ID)#{BDZID}";
+			rr:termType rr:IRI;
+		];
+	].
+	
+	
+	
+<#T_YJ_DWYJ_GZJL_Map_ZNYC_DLDR_FailureEvent_11>
+	rr:logicalTable [ rr:sqlQuery """
+   SELECT  * FROM  PMS_SCYW.GZLU_ALL
+	where PMS_SCYW.GZLU_ALL.GZSB IS  NOT NULL AND SBLXBM ='0316' """  ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DLDRQ(OBJ_ID)#{GZSB}_{OBJ_ID}_activityrecord";
+		rr:class cim:FailureEvent;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.mRID;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(OBJ_ID)#{OBJ_ID}";
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:FailureEvent.failureDateTime;
+		rr:objectMap [ 
+			rr:column "GZFSSJ";
+			rr:datatype xsd:dateTime;
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:FailureEvent.corporateCode;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(GZLX)#{GZLX}";
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:FailureEvent.rootCause;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(JSYY)_(ZRYY)#{JS}_{ZR}";
+			rr:termType rr:Literal;
+		];
+	].		
+
+	
+<#T_YJ_DWYJ_GZJL_Map_ZNYC_OHDRQ_FailureEvent_1>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  PMS_SCYW.T_YJ_DWYJ_GZJL
+	where PMS_SCYW.T_YJ_DWYJ_GZJL.GZSB IS  NOT NULL AND SBLXBM ='0317' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_OHDRQ(OBJ_ID)#{GZSB}";
+		rr:class cim:Asset;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Asset.ActivityRecords;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_OHDRQ(OBJ_ID)#{GZSB}_{OBJ_ID}_activityrecord";
+		 	rr:termType rr:IRI;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.AssetContainer;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DZ(OBJ_ID)#{BDZID}";
+			rr:termType rr:IRI;
+		];
+	].
+	
+	
+	
+<#T_YJ_DWYJ_GZJL_Map_ZNYC_OHDRQ_FailureEvent_11>
+	rr:logicalTable [ rr:sqlQuery """
+   SELECT  * FROM  PMS_SCYW.GZLU_ALL
+	where PMS_SCYW.GZLU_ALL.GZSB IS  NOT NULL AND SBLXBM ='0317' """  ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_OHDRQ(OBJ_ID)#{GZSB}_{OBJ_ID}_activityrecord";
+		rr:class cim:FailureEvent;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.mRID;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(OBJ_ID)#{OBJ_ID}";
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:FailureEvent.failureDateTime;
+		rr:objectMap [ 
+			rr:column "GZFSSJ";
+			rr:datatype xsd:dateTime;
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:FailureEvent.corporateCode;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(GZLX)#{GZLX}";
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:FailureEvent.rootCause;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(JSYY)_(ZRYY)#{JS}_{ZR}";
+			rr:termType rr:Literal;
+		];
+	].	
+	
+	
+<#T_YJ_DWYJ_GZJL_Map_ZNYC_BLQ_FailureEvent_1>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  PMS_SCYW.T_YJ_DWYJ_GZJL
+	where PMS_SCYW.T_YJ_DWYJ_GZJL.GZSB IS  NOT NULL AND SBLXBM ='0318' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_BLQ(OBJ_ID)#{GZSB}";
+		rr:class cim:Asset;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Asset.ActivityRecords;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_BLQ(OBJ_ID)#{GZSB}_{OBJ_ID}_activityrecord";
+		 	rr:termType rr:IRI;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.AssetContainer;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DZ(OBJ_ID)#{BDZID}";
+			rr:termType rr:IRI;
+		];
+	].
+	
+	
+	
+<#T_YJ_DWYJ_GZJL_Map_ZNYC_BLQ_FailureEvent_11>
+	rr:logicalTable [ rr:sqlQuery """
+   SELECT  * FROM  PMS_SCYW.GZLU_ALL
+	where PMS_SCYW.GZLU_ALL.GZSB IS  NOT NULL AND SBLXBM ='0318' """  ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_BLQ(OBJ_ID)#{GZSB}_{OBJ_ID}_activityrecord";
+		rr:class cim:FailureEvent;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.mRID;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(OBJ_ID)#{OBJ_ID}";
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:FailureEvent.failureDateTime;
+		rr:objectMap [ 
+			rr:column "GZFSSJ";
+			rr:datatype xsd:dateTime;
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:FailureEvent.corporateCode;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(GZLX)#{GZLX}";
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:FailureEvent.rootCause;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(JSYY)_(ZRYY)#{JS}_{ZR}";
+			rr:termType rr:Literal;
+		];
+	].	
+	
+	
+	
+<#T_YJ_DWYJ_GZJL_Map_ZNYC_XHZZ_FailureEvent_1>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  PMS_SCYW.T_YJ_DWYJ_GZJL
+	where PMS_SCYW.T_YJ_DWYJ_GZJL.GZSB IS  NOT NULL AND SBLXBM ='0319' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_XHZZ(OBJ_ID)#{GZSB}";
+		rr:class cim:Asset;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Asset.ActivityRecords;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_XHZZ(OBJ_ID)#{GZSB}_{OBJ_ID}_activityrecord";
+		 	rr:termType rr:IRI;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.AssetContainer;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DZ(OBJ_ID)#{BDZID}";
+			rr:termType rr:IRI;
+		];
+	].
+	
+	
+	
+<#T_YJ_DWYJ_GZJL_Map_ZNYC_XHZZ_FailureEvent_11>
+	rr:logicalTable [ rr:sqlQuery """
+   SELECT  * FROM  PMS_SCYW.GZLU_ALL
+	where PMS_SCYW.GZLU_ALL.GZSB IS  NOT NULL AND SBLXBM ='0319' """  ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_XHZZ(OBJ_ID)#{GZSB}_{OBJ_ID}_activityrecord";
+		rr:class cim:FailureEvent;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.mRID;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(OBJ_ID)#{OBJ_ID}";
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:FailureEvent.failureDateTime;
+		rr:objectMap [ 
+			rr:column "GZFSSJ";
+			rr:datatype xsd:dateTime;
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:FailureEvent.corporateCode;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(GZLX)#{GZLX}";
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:FailureEvent.rootCause;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(JSYY)_(ZRYY)#{JS}_{ZR}";
+			rr:termType rr:Literal;
+		];
+	].
+	
+	
+<#T_YJ_DWYJ_GZJL_Map_ZNYC_KGG_FailureEvent_1>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  PMS_SCYW.T_YJ_DWYJ_GZJL
+	where PMS_SCYW.T_YJ_DWYJ_GZJL.GZSB IS  NOT NULL AND SBLXBM ='0322' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_KGG(OBJ_ID)#{GZSB}";
+		rr:class cim:Asset;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Asset.ActivityRecords;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_KGG(OBJ_ID)#{GZSB}_{OBJ_ID}_activityrecord";
+		 	rr:termType rr:IRI;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.AssetContainer;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DZ(OBJ_ID)#{BDZID}";
+			rr:termType rr:IRI;
+		];
+	].
+	
+	
+	
+<#T_YJ_DWYJ_GZJL_Map_ZNYC_KGG_FailureEvent_11>
+	rr:logicalTable [ rr:sqlQuery """
+   SELECT  * FROM  PMS_SCYW.GZLU_ALL
+	where PMS_SCYW.GZLU_ALL.GZSB IS  NOT NULL AND SBLXBM ='0322' """  ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_KGG(OBJ_ID)#{GZSB}_{OBJ_ID}_activityrecord";
+		rr:class cim:FailureEvent;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.mRID;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(OBJ_ID)#{OBJ_ID}";
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:FailureEvent.failureDateTime;
+		rr:objectMap [ 
+			rr:column "GZFSSJ";
+			rr:datatype xsd:dateTime;
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:FailureEvent.corporateCode;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(GZLX)#{GZLX}";
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:FailureEvent.rootCause;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(JSYY)_(ZRYY)#{JS}_{ZR}";
+			rr:termType rr:Literal;
+		];
+	].
+
+<#T_YJ_DWYJ_GZJL_Map_ZNYC_FDXQ_FailureEvent_1>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  PMS_SCYW.T_YJ_DWYJ_GZJL
+	where PMS_SCYW.T_YJ_DWYJ_GZJL.GZSB IS  NOT NULL AND SBLXBM ='0325' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_FDXQ(OBJ_ID)#{GZSB}";
+		rr:class cim:Asset;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Asset.ActivityRecords;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_FDXQ(OBJ_ID)#{GZSB}_{OBJ_ID}_activityrecord";
+		 	rr:termType rr:IRI;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.AssetContainer;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DZ(OBJ_ID)#{BDZID}";
+			rr:termType rr:IRI;
+		];
+	].
+	
+	
+	
+<#T_YJ_DWYJ_GZJL_Map_ZNYC_FDXQ_FailureEvent_11>
+	rr:logicalTable [ rr:sqlQuery """
+   SELECT  * FROM  PMS_SCYW.GZLU_ALL
+	where PMS_SCYW.GZLU_ALL.GZSB IS  NOT NULL AND SBLXBM ='0325' """  ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_FDXQ(OBJ_ID)#{GZSB}_{OBJ_ID}_activityrecord";
+		rr:class cim:FailureEvent;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.mRID;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(OBJ_ID)#{OBJ_ID}";
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:FailureEvent.failureDateTime;
+		rr:objectMap [ 
+			rr:column "GZFSSJ";
+			rr:datatype xsd:dateTime;
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:FailureEvent.corporateCode;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(GZLX)#{GZLX}";
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:FailureEvent.rootCause;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(JSYY)_(ZRYY)#{JS}_{ZR}";
+			rr:termType rr:Literal;
+		];
+	].
+	
+	
+<#T_YJ_DWYJ_GZJL_Map_ZNYC_FDXQ_FailureEvent_1>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  PMS_SCYW.T_YJ_DWYJ_GZJL
+	where PMS_SCYW.T_YJ_DWYJ_GZJL.GZSB IS  NOT NULL AND SBLXBM ='0326' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_FDXQ(OBJ_ID)#{GZSB}";
+		rr:class cim:Asset;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Asset.ActivityRecords;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_FDXQ(OBJ_ID)#{GZSB}_{OBJ_ID}_activityrecord";
+		 	rr:termType rr:IRI;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.AssetContainer;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DZ(OBJ_ID)#{BDZID}";
+			rr:termType rr:IRI;
+		];
+	].
+	
+	
+	
+<#T_YJ_DWYJ_GZJL_Map_ZNYC_FDXQ_FailureEvent_11>
+	rr:logicalTable [ rr:sqlQuery """
+   SELECT  * FROM  PMS_SCYW.GZLU_ALL
+	where PMS_SCYW.GZLU_ALL.GZSB IS  NOT NULL AND SBLXBM ='0326' """  ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_FDXQ(OBJ_ID)#{GZSB}_{OBJ_ID}_activityrecord";
+		rr:class cim:FailureEvent;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.mRID;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(OBJ_ID)#{OBJ_ID}";
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:FailureEvent.failureDateTime;
+		rr:objectMap [ 
+			rr:column "GZFSSJ";
+			rr:datatype xsd:dateTime;
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:FailureEvent.corporateCode;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(GZLX)#{GZLX}";
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:FailureEvent.rootCause;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(JSYY)_(ZRYY)#{JS}_{ZR}";
+			rr:termType rr:Literal;
+		];
+	].	
+	
+
+<#T_YJ_DWYJ_GZJL_Map_ZNYC_ZNDL_FailureEvent_1>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT  * FROM  PMS_SCYW.T_YJ_DWYJ_GZJL
+	where PMS_SCYW.T_YJ_DWYJ_GZJL.GZSB IS  NOT NULL AND SBLXBM ='0336' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_ZNDL(OBJ_ID)#{GZSB}";
+		rr:class cim:Asset;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Asset.ActivityRecords;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_ZNDL(OBJ_ID)#{GZSB}_{OBJ_ID}_activityrecord";
+		 	rr:termType rr:IRI;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.AssetContainer;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_DZ(OBJ_ID)#{BDZID}";
+			rr:termType rr:IRI;
+		];
+	].
+	
+	
+	
+<#T_YJ_DWYJ_GZJL_Map_ZNYC_ZNDL_FailureEvent_11>
+	rr:logicalTable [ rr:sqlQuery """
+   SELECT  * FROM  PMS_SCYW.GZLU_ALL
+	where PMS_SCYW.GZLU_ALL.GZSB IS  NOT NULL AND SBLXBM ='0336' """  ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_SB_ZNYC_ZNDL(OBJ_ID)#{GZSB}_{OBJ_ID}_activityrecord";
+		rr:class cim:FailureEvent;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.mRID;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(OBJ_ID)#{OBJ_ID}";
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:FailureEvent.failureDateTime;
+		rr:objectMap [ 
+			rr:column "GZFSSJ";
+			rr:datatype xsd:dateTime;
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:FailureEvent.corporateCode;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(GZLX)#{GZLX}";
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:FailureEvent.rootCause;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_YJ_DWYJ_GZJL(JSYY)_(ZRYY)#{JS}_{ZR}";
+			rr:termType rr:Literal;
+		];
+	].
+
+	

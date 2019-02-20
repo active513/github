@@ -1,0 +1,98 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix cim: <http://iec.ch/TC57/2016/CIM-schema-cim17#>.
+@prefix ns: <http://dataplatform.com/NARI#>.
+@prefix tb: <http://dataplatform.com/NARI/Source/Table#>.
+@prefix cl: <http://dataplatform.com/NARI/Source/Table/Column#>
+
+
+<#D_METER_Map_METER>
+	rr:logicalTable [ rr:sqlQuery """ SELECT * FROM D_METER """  ];
+    rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/D_METER(METER_ID)#{METER_ID}";
+		rr:class cim:Meter;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.mRID;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/D_METER(METER_ID)#{METER_ID}";
+		 	rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Asset.lotNumber;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/D_METER(LOT_NO)#{LOT_NO}";
+		 	rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Asset.serialNumber;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/D_METER(MADE_NO)#{MADE_NO}";
+		 	rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Asset.retiredReason;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/D_METER(DISCARD_REASON)#{DISCARD_REASON}";
+		 	rr:termType rr:Literal;
+		];
+	];
+	
+	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.OrganisationRoles;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO#{ORG_NO}_D_METER_ASSETOWNER";
+			rr:termType rr:IRI;
+		];
+	];
+	
+		
+	rr:predicateObjectMap [
+		rr:predicate cim:Meter.MeterMultipliers;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO#{METER_ID}_D_METER_METERMULTIPLIER";
+			rr:termType rr:IRI;
+		];
+	].
+	
+<#D_METER_Map_POWERTRANSFORMER_ASSETOWNER>	
+    rr:logicalTable [ rr:sqlQuery """
+    SELECT 	D_METER.PR_ORG,D_METER.BELONG_DEPT FROM D_METER  """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO#{PR_ORG}_D_METER_ASSETOWNER";
+		rr:class cim:AssetOwner;
+		rr:termType rr:IRI;
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:OrganisationRole.Organisation;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/O_ORG(ORG_NO)#{BELONG_DEPT}";
+			rr:termType rr:IRI;
+		];
+	].
+	
+<#D_METER_Map_METER_METERMULTIPLIER>	
+    rr:logicalTable [ rr:sqlQuery """ SELECT * FROM D_METER """  ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO#{METER_ID}_D_METER_METERMULTIPLIER";
+		rr:class cim:MeterMultiplier;
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:MeterMultiplier.value;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/D_METER(SELF_FACTOR)#{SELF_FACTOR}";
+			rr:termType rr:Literal;
+		];
+	].
+	

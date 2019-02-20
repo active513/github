@@ -1,0 +1,116 @@
+一.导出ttl文件
+
+	查看当前导入条数日志
+		tail -f status.log | grep At
+
+	查看mysql数据库查询进程
+		show full processlist;
+
+	查看内存
+		free -g
+
+
+	1.批量导入
+		1.在root用户下进入相应目录
+			cd /ssd/r2rml-parser-0.8-alpha-new
+
+		2.修改相应的modify.properties
+			
+		3.将ttl文件放入至dspace目录下
+
+		4.执行modify.jar
+			java -jar modify.jar
+
+	2.单独导入
+		1.在root用户下进入相应目录
+			cd /ssd/r2rml-parser-0.8-alpha-new
+
+		2.修改相应的r2rml.properties
+
+		3.将ttl文件放入至dspace目录下
+
+		4.在当前目录下建相应的graph(最新版的分卷ttl不需要建graph)
+			http://nari.org/data/T_SB_ZLSB_HLF(最后面的是相应的表名)
+			
+		3.运行r2rml-parser.sh
+			./r2rml-parser.sh
+
+二.将ttl导入数据库
+	1.将要导入的ttl放入指定目录
+
+	2.进入248的vir用户
+		su - vir
+	
+	3.cd lqvpz2zz_2/bin
+
+	4.进入isql数据库
+		./isql 1111 dba dba
+
+	5.查看数据库有没有东西
+		select * from db.dba.load_list;
+
+		如果有则删掉
+			delete from db.dba.load_list;
+
+	6.根据位置ttl所在位置，选择相应的ttl导入路径
+		更新原模型
+		SQL> ld_dir('/home/vir/owl_metamodel','*.owl','http://nari.org');
+
+		SQL> ld_dir('/data/r2rml-parser-0.8-alpha-new','*.ttl','http://nari.org');
+		
+		将ttl导入数据库
+		SQL> ld_dir('/ssd/r2rml-parser-0.8-alpha-new','*.ttl','http://nari.org');
+
+		SQL> ld_dir('/home/vir/tf_xml','*.xml','http://nari.org/tf_kx');
+
+			
+		251将ttl导入数据库
+		
+		1.将导出的ttl文件放入/home/vir/rdf_data
+
+		2.SQL> ld_dir('/home/vir/rdf_data','*.ttl','http://nari.org/data/T_YJ_DWYJ_QXJL');
+
+	7.SQL> rdf_loader_run();
+
+	8.SQL> checkpoint;
+
+	 SPARQL CLEAR GRAPH <http://nari.org/data/T_YJ_DWYJ_QXJL>; 
+
+
+	http://192.168.204.248:8890 
+
+
+
+
+	导入原模型
+	1.进入vir用户
+		su - vir
+
+	2.进入相应目录
+		cd owl_metamodel
+
+	3.将owl文件放入进去
+
+	4.新建相应的graph
+	
+	5.cd lqvpz2zz_2/bin
+
+	6.进入isql数据库
+		./isql 1111 dba dba
+
+	7.查看数据库有没有东西
+		select * from db.dba.load_list;
+
+		如果有则删掉
+			delete from db.dba.load_list;
+
+	8.更新原模型
+		ld_dir('/home/vir/owl_metamodel','*.owl','http://nari.org');
+
+	9.SQL> rdf_loader_run();
+
+	10.SQL> checkpoint;
+	
+	若原模型已存在，则先删除
+	SPARQL CLEAR GRAPH <http://nari.org/Topology>; 
+

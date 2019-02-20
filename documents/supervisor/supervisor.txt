@@ -1,0 +1,23 @@
+一.启动supervisor服务
+	supervisord -c /etc/supervisord.conf
+
+二.停止supervisor服务
+	supervisorctl shutdown
+
+三.修改配置文件之后需要
+	supervisorctl reload
+
+
+四.supervisor安装及配置
+	 1.supervisor-3.3.1.tar.gz
+	   meld3-1.0.2.tar.gz
+
+	 2.cd meld3-1.0.2/
+
+	 3.python setup.py install
+		
+	//将配置文件映射到/etc/supervisord.conf
+	 4.echo_supervisord_conf > /etc/supervisord.conf
+
+五.supervisor的web页面网址
+	http://192.168.204.242:9001

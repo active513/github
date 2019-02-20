@@ -1,0 +1,2 @@
+file_id,input_file_directory,input_file_name_regex,file_type,delimiter,enclosure,has_header,no_header_lines,file_format
+1,C:\Users\Administrator\Desktop,temp_cmp.csv,CSV,",",,Y,1,Unix

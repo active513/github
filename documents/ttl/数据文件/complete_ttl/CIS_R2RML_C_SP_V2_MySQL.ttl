@@ -1,0 +1,33 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix cim: <http://iec.ch/TC57/2016/CIM-schema-cim17#>.
+@prefix ns: <http://dataplatform.com/NARI#>.
+@prefix tb: <http://dataplatform.com/NARI/Source/Table#>.
+@prefix cl: <http://dataplatform.com/NARI/Source/Table/Column#>
+
+
+<#C_SP_Map_ServiceLocation>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT 	    C_SP.SP_ID, C_SP.SP_NAME	FROM C_SP """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/C_SP(SP_ID)#{SP_ID}";
+		rr:class cim:ServiceLocation;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.mRID;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/C_SP(SP_ID)#{SP_ID}";
+		 	rr:termType rr:Literal;
+		];
+	];
+	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.name;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/C_SP(SP_NAME)#{SP_NAME}";
+			rr:termType rr:Literal;
+		];
+	].
+	

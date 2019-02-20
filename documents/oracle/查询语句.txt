@@ -1,0 +1,6 @@
+一.oracle查询数据量语句
+	select table_name from user_tables where num_rows<100 and num_rows!=0;
+
+二.mysql查询数据量语句
+	use information_schema;
+	select table_name from tables where table_schema='pms_scyw' and table_rows<10;

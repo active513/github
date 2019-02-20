@@ -1,0 +1,194 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix cim: <http://iec.ch/TC57/2016/CIM-schema-cim17#>.
+@prefix ns: <http://nari.com/CDPSM/CIM_DEMO#>.
+@prefix tb: <http://nari.com/CDPSM/CIM_DEMO/Source/Table#>.
+@prefix cl: <http://nari.com/CDPSM/CIM_DEMO/Source/Table/Column#>
+
+<#S_95598_WKST_Map_TroubleTicket>
+	rr:logicalTable [ rr:sqlQuery """ SELECT * FROM S_95598_WKST WHERE BUSI_TYPE_CODE='001' """ ];
+ 	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/S_95598_WKST(APP_NO)#{APP_NO}";
+		rr:class cim:SGTroubleTicket;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.mRID;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/S_95598_WKST(APP_NO)#{APP_NO}";
+		 	rr:termType rr:Literal;
+		];
+	];
+	
+
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.description;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/S_95598_WKST(ACCEPT_CONTENT)#{ACCEPT_CONTENT}";
+			rr:termType rr:Literal;
+		];
+	];
+
+	rr:predicateObjectMap [
+		rr:predicate cim:SGTroubleTicket.SGCustomerServiceRep;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/S_95598_WKST(EMP_NO)#{EMP_NO}";
+			rr:termType rr:Literal;
+		];
+		
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:TroubleTicket.dateTimeOfReport;
+		rr:objectMap [ 
+			rr:column "Handle_Time";
+			rr:datatype xsd:datetime;
+			rr:termType rr:Literal;
+		];
+	];
+
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Document.status;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/S_95598_WKST(APP_NO)#{APP_NO}_status";
+			rr:termType rr:IRI;
+		];
+	];
+
+	rr:predicateObjectMap [
+		rr:predicate cim:TroubleTicket.troubleCode;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/S_95598_WKST(BUSI_SUB_TYPE)#{BUSI_SUB_TYPE}";
+			rr:termType rr:Literal;
+		];
+	];
+		
+	rr:predicateObjectMap [
+		rr:predicate cim:SGTroubleTicket.SGServiceArea;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/SA_C_DISTRICT(DISTRICT_NO)#{COUNTY_CODE}";
+		 	rr:termType rr:IRI;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:SGTroubleTicket.DisptoServiceSupplier;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/S_95598_WKST(ORG_NO)#{ORG_NO}_DisptoServiceSupplier";
+		 	rr:termType rr:IRI;
+		];
+	].
+
+<#S_95598_WKST_Map_DisptoServiceSupplier>
+	rr:logicalTable [ rr:sqlQuery """ SELECT * FROM S_95598_WKST WHERE BUSI_TYPE_CODE='001' """ ];
+ 	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/S_95598_WKST(ORG_NO)#{ORG_NO}_DisptoServiceSupplier";
+		rr:class cim:ServiceSupplier;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:OrganisationRole.Organisation;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/SA_ORG(ORG_NO)#{ORG_NO}";
+		 	rr:termType rr:IRI;
+		];
+	].
+	
+	
+<#S_95598_WKST_Map_TroubleTicket_status>
+	rr:logicalTable [ rr:sqlQuery """ 
+	SELECT APP_NO,  
+	(
+		CASE S_95598_WKST.HANDLE_STATUS_CODE
+		WHEN '00' THEN
+			'接单分理'
+		WHEN '01' THEN
+			'服务处理'
+		WHEN '02' THEN
+			'工单受理'
+		WHEN '03' THEN
+			'接单派工'
+		WHEN '04' THEN
+			'故障处理'
+		WHEN '05' THEN
+			'答复用电客户'
+		WHEN '06' THEN
+			'故障调度'
+        WHEN '07' THEN
+			'工单审核'
+		WHEN '08' THEN
+			'归档'	
+		ELSE '其它'
+		END
+	) STATE
+	
+	
+	FROM S_95598_WKST WHERE BUSI_TYPE_CODE='001'  """ ];
+ 	
+	
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/S_95598_WKST(APP_NO)#{APP_NO}_status";
+		rr:class cim:Status;
+	];
+
+  	rr:predicateObjectMap [
+		rr:predicate cim:Status.value;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/S_95598_WKST(APP_NO)_(HANDLE_STATUS_CODE)#{STATE}";
+			rr:termType rr:Literal;
+		];
+	].
+	
+ 
+   
+ 
+
+ <#S_95598_WKST_Map_TroubleTicket_reportingKind>
+	rr:logicalTable [ rr:sqlQuery """ 
+	  SELECT APP_NO ,
+	  (	CASE  ACCEPT_MODE
+		WHEN  '01' THEN
+			'人工电话'
+		WHEN '02'  THEN
+			'自动语音'
+		WHEN '03'  THEN
+			'短信'
+		WHEN '04'  THEN
+			'Email'
+		WHEN '05'  THEN
+			'传真'
+		WHEN '06'  THEN
+			'柜台服务'
+        WHEN '07'  THEN
+			'自助服务'
+		WHEN '08'  THEN
+			'现场服务'
+		WHEN '09'  THEN
+			'互联网服务'
+		WHEN '10'  THEN
+			'意见箱'
+		WHEN '11'  THEN
+			'信函'
+		WHEN '12'  THEN
+			'回访'
+		END
+	)ACCEPT_MODE
+	FROM S_95598_WKST WHERE BUSI_TYPE_CODE='001' """ ];
+ 	
+	
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/S_95598_WKST(APP_NO)#{APP_NO}";
+		rr:class cim:SGTroubleTicket;
+	];	
+
+       rr:predicateObjectMap [
+		rr:predicate cim:TroubleTicket.reportingKind;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/S_95598_WKST(ACCEPT_MODE)#{ACCEPT_MODE}";
+			rr:termType rr:Literal;
+		];
+	].
+
+
+ 

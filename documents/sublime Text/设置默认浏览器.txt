@@ -1,0 +1,14 @@
+一、安装插件SideBarEnhancements
+	ctrl+shift+P 转 Package Control: Install Package 搜 SideBarEnhancements 安装
+
+二、设置快捷键
+	打开preference-Key Binding | user复制下面代码，然后修改为你的浏览器路径，重启软件
+	{
+        "keys": ["f2"],
+        "command": "side_bar_files_open_with",
+        "args": {
+            "application": "C:\\Users\\delll\\AppData\\Local\\Google\\Chrome\\Application\\chrome.exe",
+            "extensions": ".*",
+            "paths": []
+        }
+	}

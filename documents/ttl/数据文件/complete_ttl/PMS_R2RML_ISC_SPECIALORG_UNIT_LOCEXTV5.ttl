@@ -1,0 +1,64 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix cim: <http://iec.ch/TC57/2016/CIM-schema-cim17#>.
+@prefix ns: <http://nari.com/CDPSM/CIM_DEMO#>.
+@prefix tb: <http://nari.com/CDPSM/CIM_DEMO/Source/Table#>.
+@prefix cl: <http://nari.com/CDPSM/CIM_DEMO/Source/Table/Column#>
+
+<#ISC_SPECIALORG_UNIT_LOCEXT_Map_Orgnization>
+	rr:logicalTable [ rr:tableName "PMS_SCYW.ISC_SPECIALORG_UNIT_LOCEXT" ];
+	
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/ISC_SPECIALORG_UNIT_LOCEXT(ISC_ID)#{ISC_ID}";
+		rr:class cim:Organisation;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.mRID;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/ISC_SPECIALORG_UNIT_LOCEXT(ISC_ID)#{ISC_ID}";
+		 	rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.name;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/ISC_SPECIALORG_UNIT_LOCEXT(BMMC)#{BMMC}";
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.description;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/ISC_SPECIALORG_UNIT_LOCEXT(PATH)#{PATH}";
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Organisation.ParentOrganization;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/ISC_SPECIALORG_UNIT_LOCEXT(ISC_ID)#{SJBMID}";
+			rr:termType rr:IRI;
+		];
+	].
+	
+<#ISC_SPECIALORG_UNIT_LOCEXT_Map_ParentOrgnization>
+	rr:logicalTable [ rr:tableName "PMS_SCYW.ISC_SPECIALORG_UNIT_LOCEXT" ];
+	
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/ISC_SPECIALORG_UNIT_LOCEXT(ISC_ID)#{SJBMID}";
+		rr:class cim:ParentOrganization;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.mRID;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/ISC_SPECIALORG_UNIT_LOCEXT(ISC_ID)#{SJBMID}";
+		 	rr:termType rr:Literal;
+		];
+	].
+	
+	

@@ -1,0 +1,172 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix cim: <http://iec.ch/TC57/2016/CIM-schema-cim17#>.
+@prefix ns: <http://nari.com/CDPSM/CIM_DEMO#>.
+@prefix tb: <http://nari.com/CDPSM/CIM_DEMO/Source/Table#>.
+@prefix cl: <http://nari.com/CDPSM/CIM_DEMO/Source/Table/Column#>
+
+<#T_DW_BZZX_SCCJ_Map_OrgnizationRole_1>
+	rr:logicalTable [ rr:tableName "T_DW_BZZX_SCCJ" ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_DW_BZZX_SCCJ(OBJ_ID)#{OBJ_ID}";
+		rr:class cim:Manufacturer;
+	];	
+	
+		
+	rr:predicateObjectMap [
+		rr:predicate cim:OrganisationRole.Organisation;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_DW_BZZX_SCCJ(OBJ_ID)#{OBJ_ID}_Organisation";
+		 	rr:termType rr:IRI;
+		];
+	].
+	
+<#T_DW_BZZX_SCCJ_Map_OrgnizationRole_2>
+	rr:logicalTable [ rr:tableName "T_DW_BZZX_SCCJ" ];
+ 	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_DW_BZZX_SCCJ(OBJ_ID)#{OBJ_ID}_Organisation";
+		rr:class cim:Organisation;
+
+	];
+	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.mRID;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_DW_BZZX_SCCJ(OBJ_ID)#{OBJ_ID}";
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.name;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_DW_BZZX_SCCJ(SCCJMC)#{SCCJMC}";
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Organisation.streetAddress;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO#{OBJ_ID}_Organisation_streetAddress";
+			rr:termType rr:IRI;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Organisation.phone1;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO#{OBJ_ID}_Organisation_phone1";
+			rr:termType rr:IRI;
+		];
+	].
+	
+	
+	
+	
+<#T_DW_BZZX_SCCJ_Map_Organisation_streetAddress>
+	rr:logicalTable [ rr:tableName "T_DW_BZZX_SCCJ" ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO#{OBJ_ID}_Organisation_streetAddress";
+		rr:class cim:StreetAddress;
+	];
+	
+	
+	
+    rr:predicateObjectMap [
+		rr:predicate cim:StreetAddress.postalCode;
+		rr:objectMap [
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_DW_BZZX_SCCJ(DQ)#{DQ}";
+			rr:termType rr:Literal;
+		];
+	];
+	
+		
+	rr:predicateObjectMap [
+		rr:predicate cim:StreetAddress.townDetail;
+		rr:objectMap [
+			rr:template "http://nari.com/CDPSM/CIM_DEMO#{OBJ_ID}_Organisation_streetAddress_townDetail";
+			rr:termType rr:IRI;
+		];
+	];
+	
+		
+	rr:predicateObjectMap [
+		rr:predicate cim:StreetAddress.streetDetail;
+		rr:objectMap [
+			rr:template "http://nari.com/CDPSM/CIM_DEMO#{OBJ_ID}_Organisation_streetAddress_streetDetail";
+			rr:termType rr:IRI;
+		];
+	].
+
+<#T_DW_BZZX_SCCJ_Map_Organisation_townDetail>
+	rr:logicalTable [ rr:tableName "T_DW_BZZX_SCCJ" ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO#{OBJ_ID}_Organisation_streetAddress_townDetail";
+		rr:class cim:TownDetail;
+	];
+	
+		
+	rr:predicateObjectMap [
+		rr:predicate cim:TownDetail.country;
+		rr:objectMap [
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_DW_BZZX_SCCJ(GJ)#{GJ}";
+			rr:termType rr:Literal;
+		];
+	];
+
+    rr:predicateObjectMap [
+		rr:predicate cim:TownDetail.name;
+		rr:objectMap [
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_DW_BZZX_SCCJ(CS)#{CS}";
+			rr:termType rr:Literal;
+		];
+	].
+	
+
+	
+<#T_DW_BZZX_SCCJ_Map_Organisation_streetDetail>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT OBJ_ID, DZ   FROM  T_DW_BZZX_SCCJ
+	WHERE DZ  IS NOT NULL 	""" ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO#{OBJ_ID}_Organisation_streetAddress_streetDetail";
+		rr:class cim:StreetDetail;
+	];
+	
+		
+	rr:predicateObjectMap [
+		rr:predicate cim:StreetDetail.addressGeneral;
+		rr:objectMap [
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_DW_BZZX_SCCJ(DZ)#{DZ}";
+			rr:termType rr:Literal;
+		];
+	].
+
+	
+<#T_DW_BZZX_SCCJ_Map_Organisation_phone1>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT OBJ_ID, LXFS   FROM  T_DW_BZZX_SCCJ
+	WHERE LXFS  IS NOT NULL 	""" ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO#{OBJ_ID}_Organisation_phone1";
+		rr:termType rr:IRI;
+		rr:class cim:TelephoneNumber;
+	];
+	
+		
+	rr:predicateObjectMap [
+		rr:predicate cim:TelephoneNumber.localNumber;
+		rr:objectMap [
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_DW_BZZX_SCCJ(LXFS)#{LXFS}";
+			rr:termType rr:Literal;
+		];
+	].
+	
+	
+	
+	
+	
+	
+	

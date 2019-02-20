@@ -1,0 +1,10 @@
+select file_name from DBA_DATA_FILES where TABLESPACE_NAME='YXJCPT_CACHER01';
+
+alter tablespace YXJCPT_CACHER01 add datafile '/u01/app/oracle/product/12.1.0/dbhome_1/dbs/pms_scyw02' size 10240M autoextend on next 10240M maxsize unlimited;
+
+alter tablespace YXJCPT_CACHER01 add datafile '/u01/app/oracle/product/12.2.0/dbhome_1/dbs/yxjcpt_cacher02.dbf' size 31G autoextend on next 10240M maxsize unlimited;
+
+alter database datafile '/u01/app/oracle/product/12.2.0/dbhome_1/dbs/yxjcpt_cacher01.dbf' resize 40g;
+
+赋予文件夹权限
+	chown -R oracle:oinstall oracledbf

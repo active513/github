@@ -1,0 +1,220 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix cim: <http://iec.ch/TC57/2016/CIM-schema-cim17#>.
+@prefix ns: <http://nari.com/CDPSM/CIM_DEMO#>.
+@prefix tb: <http://nari.com/CDPSM/CIM_DEMO/Source/Table#>.
+@prefix cl: <http://nari.com/CDPSM/CIM_DEMO/Source/Table/Column#>
+
+<#ISC_USER_LOCEXT_Map_Person>
+	rr:logicalTable [ rr:tableName "ISC_USER_LOCEXT" ];
+	
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/ISC_USER_LOCEXT(ISC_ID)#{ISC_ID}";
+		rr:class cim:Person;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.mRID;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/ISC_USER_LOCEXT(ISC_ID)#{ISC_ID}";
+		 	rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Person.firstName;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/ISC_USER_LOCEXT(RYMC)#{RYMC}";
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Person.Roles;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/ISC_USER_LOCEXT(ISC_ID)#{ISC_ID}_ROLES";
+			rr:termType rr:IRI;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Person.OrganisationRoles;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/ISC_USER_LOCEXT(SSBMID)#{SSBMID}_SSBM";
+			rr:termType rr:IRI;
+		];
+	].
+	
+<#ISC_USER_LOCEXT_Map_PersonOrganisation_Role>
+	rr:logicalTable [ rr:tableName "ISC_USER_LOCEXT" ];
+	
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/ISC_USER_LOCEXT(SSBMID)#{SSBMID}_SSBM";
+		rr:class cim:PersonOrganisationRole;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.clientID;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/ISC_USER_LOCEXT(SSBMID)#{SSBMID}_SSBM";
+		 	rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:OrganisationRole.ConfigurationEvents;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/ISC_USER_LOCEXT(SSBMID)#{SSBMID}_configuration_event";
+		 	rr:termType rr:IRI;
+		];
+	];
+	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:OrganisationRole.Organisation;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/ISC_SPECIALORG_UNIT_LOCEXT(ISC_ID)#{SSBMID}";
+		 	rr:termType rr:IRI;
+		];
+	].
+	
+<#ISC_USER_LOCEXT_Map_OrganisationRole_ConfigurationEvents>
+	rr:logicalTable [ rr:tableName "ISC_USER_LOCEXT" ];
+	
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/ISC_USER_LOCEXT(SSBMID)#{SSBMID}_configuration_event";
+		rr:class cim:ConfigurationEvent;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.mRID;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/ISC_USER_LOCEXT(SSBMID)#{SSBMID}_configuration_event";
+		 	rr:termType rr:Literal;
+		];
+	].
+	
+<#ISC_USER_LOCEXT_Map_Person_Roles>
+	rr:logicalTable [ rr:tableName "ISC_USER_LOCEXT" ];
+	
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/ISC_USER_LOCEXT(ISC_ID)#{ISC_ID}_ROLES";
+		rr:class cim:PersonRole;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.mRID;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/ISC_USER_LOCEXT(ISC_ID)#{ISC_ID}_ROLES";
+		 	rr:termType rr:Literal;
+		];
+	];
+	
+		rr:predicateObjectMap [
+		rr:predicate cim:PersonRole.Person;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/ISC_USER_LOCEXT(ISC_ID)#{ISC_ID}";
+		 	rr:termType rr:IRI;
+		];
+	].
+	
+
+<#ISC_USER_LOCEXT_Map_Author_Roles>
+	rr:logicalTable [ rr:tableName "ISC_USER_LOCEXT" ];
+	
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/ISC_USER_LOCEXT(ISC_ID)#{ISC_ID}_ROLES";
+		rr:class cim:Author;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.mRID;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/ISC_USER_LOCEXT(ISC_ID)#{ISC_ID}_ROLES";
+		 	rr:termType rr:Literal;
+		];
+	];
+	
+		rr:predicateObjectMap [
+		rr:predicate cim:PersonRole.Person;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/ISC_USER_LOCEXT(ISC_ID)#{ISC_ID}";
+		 	rr:termType rr:IRI;
+		];
+	].
+	
+<#ISC_USER_LOCEXT_Map_Issuer_Roles>
+	rr:logicalTable [ rr:tableName "ISC_USER_LOCEXT" ];
+	
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/ISC_USER_LOCEXT(ISC_ID)#{ISC_ID}_ROLES";
+		rr:class cim:Issuer;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.mRID;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/ISC_USER_LOCEXT(ISC_ID)#{ISC_ID}_ROLES";
+		 	rr:termType rr:Literal;
+		];
+	];
+	
+		rr:predicateObjectMap [
+		rr:predicate cim:PersonRole.Person;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/ISC_USER_LOCEXT(ISC_ID)#{ISC_ID}";
+		 	rr:termType rr:IRI;
+		];
+	].	
+
+
+<#ISC_USER_LOCEXT_Map_Approver_Roles>
+	rr:logicalTable [ rr:tableName "ISC_USER_LOCEXT" ];
+	
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/ISC_USER_LOCEXT(ISC_ID)#{ISC_ID}_ROLES";
+		rr:class cim:Approver;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.mRID;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/ISC_USER_LOCEXT(ISC_ID)#{ISC_ID}_ROLES";
+		 	rr:termType rr:Literal;
+		];
+	];
+	
+		rr:predicateObjectMap [
+		rr:predicate cim:PersonRole.Person;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/ISC_USER_LOCEXT(ISC_ID)#{ISC_ID}";
+		 	rr:termType rr:IRI;
+		];
+	].	
+	
+<#ISC_USER_LOCEXT_Map_Editor_Roles>
+	rr:logicalTable [ rr:tableName "ISC_USER_LOCEXT" ];
+	
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/ISC_USER_LOCEXT(ISC_ID)#{ISC_ID}_ROLES";
+		rr:class cim:Editor;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.mRID;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/ISC_USER_LOCEXT(ISC_ID)#{ISC_ID}_ROLES";
+		 	rr:termType rr:Literal;
+		];
+	];
+	
+		rr:predicateObjectMap [
+		rr:predicate cim:PersonRole.Person;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/ISC_USER_LOCEXT(ISC_ID)#{ISC_ID}";
+		 	rr:termType rr:IRI;
+		];
+	].		
+
+	
+	

@@ -1,0 +1,34 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix cim: <http://iec.ch/TC57/2016/CIM-schema-cim17#>.
+@prefix ns: <http://nari.com/CDPSM/CIM_DEMO#>.
+@prefix tb: <http://nari.com/CDPSM/CIM_DEMO/Source/Table#>.
+@prefix cl: <http://nari.com/CDPSM/CIM_DEMO/Source/Table/Column#>
+
+<#G_TG_Map_UsagePointGorup>
+	rr:logicalTable [rr:sqlQuery  SELECT
+	cast(convert(G_TG.TG_ID ,decimal(30,0)) as char) as tg , G_TG.TG_NAME FROM G_TG  """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/G_TG(TG_ID)#{tg}";
+		rr:class cim:UsagePointGroup;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.mRID;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/G_TG(TG_ID)#{tg}";
+		 	rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.name;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/G_TG(TG_NAME)#{TG_NAME}";
+			rr:termType rr:Literal;
+		];
+	].
+	
+	
+
+

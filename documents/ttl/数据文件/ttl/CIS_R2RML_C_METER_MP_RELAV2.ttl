@@ -1,0 +1,24 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix cim: <http://iec.ch/TC57/2016/CIM-schema-cim17#>.
+@prefix ns: <http://dataplatform.com/NARI#>.
+@prefix tb: <http://dataplatform.com/NARI/Source/Table#>.
+@prefix cl: <http://dataplatform.com/NARI/Source/Table/Column#>
+
+
+<#C_MP_Map_C_METER_UsagePoint>
+	rr:logicalTable [ rr:tableName "YXJCPT_CACHER01.C_METER_MP_RELA" ];
+    rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO#{METER_ID}_C_METER(METER_ID)";
+		rr:class cim:Meter;
+	];	
+	
+		
+	rr:predicateObjectMap [
+		rr:predicate cim:EndDevices.UsagePoint;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO#{MP_ID}_C_MP(MP_ID)";
+			rr:termType rr:IRI;
+		];
+	].
+	

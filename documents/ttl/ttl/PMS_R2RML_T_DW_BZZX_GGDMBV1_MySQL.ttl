@@ -1,0 +1,194 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix cim: <http://iec.ch/TC57/2016/CIM-schema-cim17#>.
+@prefix ns: <http://nari.com/CDPSM/CIM_DEMO#>.
+@prefix tb: <http://nari.com/CDPSM/CIM_DEMO/Source/Table#>.
+@prefix cl: <http://nari.com/CDPSM/CIM_DEMO/Source/Table/Column#>
+
+<#T_DW_BZZX_GGDMB_Map_BASEVOLTAGE>
+	rr:logicalTable [ rr:sqlQuery """
+       SELECT 
+	   B.BZFLBM AS B_BZFLBM , B.DM as B_DM, B.DMMC AS B_DMMC
+       FROM T_DW_BZZX_BZFLB A, T_DW_BZZX_GGDMB B where A.BZFLMC = '电压等级代码'
+	   AND A.BZFLBM = B.BZFLBM  """ ];
+	
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_DW_BZZX_GGDMB(BZFLBM)_(DM)#{B_BZFLBM}_{B_DM}";
+		rr:class cim:BaseVoltage;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.mRID;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_DW_BZZX_GGDMB(BZFLBM)_(DM)#{B_BZFLBM}_{B_DM}";
+		 	rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.name;
+		rr:objectMap [ 
+			rr:column "B_DMMC";
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:BaseVoltage.nominalVoltage;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/T_DW_BZZX_GGDMB(BZFLBM)_(DM)#{B_BZFLBM}_{B_DM}";
+			rr:termType rr:IRI;
+		];
+	].
+	
+	
+	
+<#T_DW_BZZX_GGDMB_Map_VOLTAGE>
+	   rr:logicalTable [ rr:sqlQuery """
+       SELECT 
+	   B.BZFLBM AS B_BZFLBM , B.DM as B_DM, B.DMMC AS B_DMMC ,
+	   (
+		CASE B.DM
+		WHEN '01' THEN
+			'0.006'
+		WHEN '02' THEN
+			'0.012'	
+		WHEN '03' THEN
+			'0.024'
+		WHEN '04' THEN
+			'0.036'	
+		WHEN '05' THEN
+			'0.048'
+		WHEN '06' THEN
+			'0.11'	
+		WHEN '07' THEN
+			'0.22'	
+		WHEN '08' THEN
+			'0.38'	
+		WHEN '09' THEN
+			'0.66'
+		WHEN '10' THEN
+			'1'	
+		WHEN '11' THEN
+			'0.6'
+		WHEN '12' THEN
+			'0.75'	
+		WHEN '13' THEN
+			'1.5'
+		WHEN '14' THEN
+			'3'	
+		WHEN '15' THEN
+			'2.5'
+		WHEN '20' THEN
+			'3'	
+		WHEN '21' THEN
+			'6'		
+		WHEN '22' THEN
+			'10'
+		WHEN '23' THEN
+			'15.75'	
+		WHEN '24' THEN
+			'20'	
+		WHEN '25' THEN
+			'35'	
+		WHEN '30' THEN
+			'66'
+		WHEN '31' THEN
+			'72.5'			
+		WHEN '32' THEN
+			'110'
+		WHEN '33' THEN
+			'220'	
+		WHEN '34' THEN
+			'330'
+		WHEN '35' THEN
+			'500'
+		WHEN '36' THEN
+			'500'
+		WHEN '37' THEN
+			'1000'	
+	    WHEN '51' THEN
+			'0.006'	
+		WHEN '52' THEN
+			'0.012'		
+		WHEN '53' THEN
+			'0.024'	
+		WHEN '54' THEN
+			'0.036'	
+		WHEN '55' THEN
+			'0.048'	
+		WHEN '56' THEN
+			'0.11'			
+		WHEN '60' THEN
+			'0.22'	
+		WHEN '60' THEN
+			'0.22'	
+		WHEN '70' THEN
+			'0.6'	
+		WHEN '71' THEN
+			'0.75'				
+		WHEN '72' THEN
+			'1.5'
+		WHEN '73' THEN
+			'3'
+		WHEN '76' THEN
+			'35'
+		WHEN '77' THEN
+			'30'		
+		WHEN '78' THEN
+			'50'	
+		WHEN '80' THEN
+			'120'
+		WHEN '81' THEN
+			'125'
+		WHEN '82' THEN
+			'400'		
+		WHEN '83' THEN
+			'500'	
+		WHEN '84' THEN
+			'660'
+		WHEN '85' THEN
+			'800'
+		WHEN '86' THEN
+			'1000'	
+		WHEN '87' THEN
+			'200'
+		WHEN '88' THEN
+			'320'			
+		WHEN '90' THEN
+			'166.7'	
+		END
+	) STATE 
+       FROM T_DW_BZZX_BZFLB A, T_DW_BZZX_GGDMB B where A.BZFLMC = '电压等级代码'
+	   AND A.BZFLBM = B.BZFLBM ORDER BY  B.DM """ ];
+	   
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/T_DW_BZZX_GGDMB(BZFLBM)_(DM)#{B_BZFLBM}_{B_DM}";
+		rr:class cim:Voltage;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Voltage.value;
+		rr:objectMap [
+	        rr:column "STATE";
+			rr:termType rr:Literal;
+		];
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Voltage.unit;
+		rr:objectMap [
+			rr:constant  "V";
+			rr:termType rr:Literal;
+		];
+	];	
+	rr:predicateObjectMap [
+		rr:predicate cim:Voltage.multiplier;
+		rr:objectMap [
+			rr:constant  "k";
+			rr:termType rr:Literal;
+		];
+
+	
+	].
+	

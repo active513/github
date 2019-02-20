@@ -1,0 +1,9 @@
+一.解决mysql无法远程连接
+	grant all privileges on *.* to root@"192.168.204.233" identified by "root123";
+	这相当于是给IP-xxx.xxx.xxx.xxx赋予了所有的权限，包括远程访问权限。
+
+	然后再输入
+
+	flush privileges;
+
+	这相当于是重新加载一下mysql权限，这一步必须有。

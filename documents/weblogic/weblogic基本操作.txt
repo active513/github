@@ -1,0 +1,15 @@
+一.weblogic安装目录
+	/home/oracle/Oracle/Middleware/Oracle_Home/oracle_common/bin
+
+二.weblogic配置目录
+	/home/oracle/Oracle/Middleware/Oracle_Home/wlserver/common/bin
+
+三:启动weblogic的目录
+	1./home/oracle/Oracle/Middleware/Oracle_Home/user_projects/domains/base_domain/bin
+	2. ./startWblogic.sh	
+
+四.weblogic服务端页面网址
+	http://192.168.177.49:7001/console
+
+五.weblogic项目地址
+	http://192.168.177.49:7001/DataManager/html/login.html

@@ -1,0 +1,71 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix cim: <http://iec.ch/TC57/2016/CIM-schema-cim17#>.
+@prefix ns: <http://dataplatform.com/NARI#>.
+@prefix tb: <http://dataplatform.com/NARI/Source/Table#>.
+@prefix cl: <http://dataplatform.com/NARI/Source/Table/Column#>
+
+<#C_MP_Map__UsagePoint_Realtime_Data>
+	rr:logicalTable [ rr:tableName "TEMP_STOR.E_MP_CUR_VOL_CURVE_PZH" ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO#{ID}";
+		rr:class cim:UsagePoint;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.mRID;
+		rr:objectMap [ 
+			rr:column "ID";
+		 	rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:DataInterval.StartPoint;
+		rr:objectMap [ 
+		    rr:template "http://nari.com/CDPSM/CIM_DEMO#{S_POINT}";
+			rr:termType rr:IRI;
+		];
+	];
+	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:DataInterval.EndPoint;
+		rr:objectMap [ 
+		    rr:template "http://nari.com/CDPSM/CIM_DEMO#{E_POINT}";
+			rr:termType rr:IRI;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:DataInterval.StartValue;
+		rr:objectMap [ 
+		    rr:template "http://nari.com/CDPSM/CIM_DEMO#{R_S_VALUE}";
+			rr:termType rr:IRI;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:DataInterval.EndValue;
+		rr:objectMap [ 
+		    rr:template "http://nari.com/CDPSM/CIM_DEMO#{R_E_VALUE}";
+			rr:termType rr:IRI;
+		];
+	];
+	
+    	rr:predicateObjectMap [
+		rr:predicate cim:DataInterval.StartValue.Y;
+		rr:objectMap [ 
+		    rr:template "http://nari.com/CDPSM/CIM_DEMO#{R_S_VALUE_Y}";
+			rr:termType rr:IRI;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:DataInterval.EndValue.Y;
+		rr:objectMap [ 
+		    rr:template "http://nari.com/CDPSM/CIM_DEMO#{R_E_VALUE_Y}";
+			rr:termType rr:IRI;
+		];
+	].
+	

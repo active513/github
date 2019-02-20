@@ -1,0 +1,12 @@
+一.将mysqlodbc和oracleodbc都设置为系统DSN
+
+二.Informatica连接mysql需要在客户端的E:\Informaticaclient\9.6.1\clients\PowerCenterClient\client\bin中的powrmart.ini下的ODBCDLL下添加MySQL = PMODBC.DLL
+
+三.Informatica从mysql抽取数据到oracle数据乱码，设置NLS_LANG
+		原始NLS_LANG=SIMPLIFIED CHINESE_CHINA.ZHS16GBK
+		改为NLS_LANG=AMERICAN_AMERICA.AL32UTF8
+		
+四.安装informatica服务端要将oracle的游标数改大
+	查看游标:show parameter open_cursors;
+	修改游标:alter system set open_cursors=1000;
+	提交:commit

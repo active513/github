@@ -1,0 +1,69 @@
+﻿@prefix rr: <http://www.w3.org/ns/r2rml#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix cim: <http://iec.ch/TC57/2016/CIM-schema-cim17#>.
+@prefix ns: <http://dataplatform.com/NARI#>.
+@prefix tb: <http://dataplatform.com/NARI/Source/Table#>.
+@prefix cl: <http://dataplatform.com/NARI/Source/Table/Column#>
+
+
+<#C_MP_Map__PowerTransformer_STATE>
+rr:logicalTable [ rr:sqlQuery """
+    SELECT
+	YXJCPT_CACHER01.G_TG.TG_ID, 
+	(
+		CASE G_TG.RUN_STATUS_CODE
+		WHEN CAST ('01' AS NVARCHAR2(8)) THEN
+			'连接状态_在用'
+		WHEN CAST ('02' AS NVARCHAR2(8)) THEN
+			'连接状态_停用'	
+	    WHEN CAST ('03' AS NVARCHAR2(8)) THEN
+			'连接状态_撤销'	
+		END
+	) STATE ,
+	(
+		CASE G_TG.RUN_STATUS_CODE
+		WHEN CAST ('01' AS NVARCHAR2(8)) THEN
+			'TRUE'
+		END
+	) AAA
+		FROM YXJCPT_CACHER01.G_TG WHERE RUN_STATUS_CODE='01' OR RUN_STATUS_CODE='02' OR RUN_STATUS_CODE='03' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO#{TG_ID}_G_TG(TG_ID)";
+		rr:class cim:UsagePointGroup;
+	];
+
+	rr:predicateObjectMap [
+		rr:predicate cim:Equipment.inService;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO#{AAA}";
+			rr:termType rr:Literal;
+		];
+	].
+
+
+<#C_MP_Map_UsagePointGroupGroup>
+	rr:logicalTable [ rr:tableName "YXJCPT_CACHER01.G_TG" ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO#{TG_ID}_G_TG(TG_ID)";
+		rr:class cim:UsagePointGroup;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.mRID;
+		rr:objectMap [ 
+			rr:column "TG_ID";
+		 	rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.name;
+		rr:objectMap [ 
+			rr:column "TG_NAME"; 
+			rr:termType rr:Literal;
+		];
+	].
+	
+
+	
+

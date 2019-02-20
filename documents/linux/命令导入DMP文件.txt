@@ -1,0 +1,26 @@
+imp PMS_SCYW/PMS_SCYW file=/home/oracle/YXJCPT_CACHER01/C_MP.DMP ignore=y full=y;
+
+imp PMS_SCYW/PMS_SCYW file=/home/oracle/pms_dmp/t_sb_znyc_xhzz.dmp ignore=y full=y;
+
+impdp YXJCPT_CACHER01/YXJCPT_CACHER01@orcl directory=DATA_PUMP_DIR dumpfile=C_MP_USE.DMP remap_schema=YXJCPT_CACHER01:YXJCPT_CACHER01;
+
+
+[oracle@localhost YXJCPT_CACHER01]$ cd $ORACLE_HOME
+[oracle@localhost dbhome_1]$ cd $ORACLE_BASE
+[oracle@localhost oracle]$ find ./ -name "dpdump"
+./admin/orcl/dpdump
+[oracle@localhost oracle]$ cd ./admin/orcl/dpdump
+[oracle@localhost dpdump]$ pwd
+/u01/app/oracle/admin/orcl/dpdump
+
+
+SQL> select * from dba_directories;
+
+DATA_PUMP_DIR
+/u01/app/oracle/admin/orcl/dpdump/
+
+cp /home/oracle/YXJCPT_CACHER01/C_MP.DMP /u01/app/oracle/admin/orcl/dpdump/
+
+
+查看文件大小
+du -h filename

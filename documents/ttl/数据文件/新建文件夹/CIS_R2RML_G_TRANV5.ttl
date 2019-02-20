@@ -1,0 +1,173 @@
+﻿@prefix rr: <http://www.w3.org/ns/r2rml#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix cim: <http://iec.ch/TC57/2016/CIM-schema-cim17#>.
+@prefix ns: <http://dataplatform.com/NARI#>.
+@prefix tb: <http://dataplatform.com/NARI/Source/Table#>.
+@prefix cl: <http://dataplatform.com/NARI/Source/Table/Column#>
+
+<#C_MP_Map__PowerTransformer_STATE>
+rr:logicalTable [ rr:sqlQuery """
+    SELECT
+	YXJCPT_CACHER01.G_TRAN.EQUIP_ID, 
+	(
+		CASE G_TRAN.RUN_STATUS_CODE
+		WHEN CAST ('01' AS NVARCHAR2(8)) THEN
+			'TRUE'
+		END
+	) AAA
+		FROM YXJCPT_CACHER01.G_TRAN WHERE RUN_STATUS_CODE='01' OR RUN_STATUS_CODE='02' OR RUN_STATUS_CODE='03' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO#{EQUIP_ID}_G_TRAN(EQUIP_ID)";
+		rr:class cim:PowerTransformer;
+	];
+
+	rr:predicateObjectMap [
+		rr:predicate cim:Equipment.inService;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO#{AAA}_G_TRAN(RUN_STATUS_CODE)";
+			rr:termType rr:Literal;
+		];
+	].
+
+<#C_MP_Map_PowerTransformer>
+	rr:logicalTable [ rr:tableName "YXJCPT_CACHER01.G_TRAN" ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO#{EQUIP_ID}_G_TRAN(EQUIP_ID)";
+		rr:class cim:PowerTransformer;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.mRID;
+		rr:objectMap [ 
+			rr:column "EQUIP_ID";
+		 	rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.name;
+		rr:objectMap [ 
+			rr:column "TRAN_NAME"; 
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.alias;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO#PD_{PMS_EQUIP_ID}";
+			rr:termType rr:IRI;
+		];
+	];
+	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:PowerSystemResources.Assets;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO#{EQUIP_ID}_G_TRAN_ASSET";
+			rr:termType rr:IRI;
+		];
+	].
+	
+	
+
+<#C_MP_Map_POWERTRANSFORMER_ASSET>	
+	rr:logicalTable [ rr:tableName "YXJCPT_CACHER01.G_TRAN" ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO#{EQUIP_ID}_G_TRAN_ASSET";
+		rr:class cim:Asset;
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.OrganisationRoles;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO#{ORG_NO}_G_TRAN_ASSETOWNER";
+			rr:termType rr:IRI;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Assets.OrganisationRoles;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO#{CONS_ID}_G_TRAN_ASSETUSER";
+			rr:termType rr:IRI;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Asset.AssetDeployment;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO#{EQUIP_ID}_G_TRAN_ASSET_ASSETDEPLOYMENT";
+			rr:termType rr:IRI;
+		];
+	].
+	
+<#C_MP_Map_POWERTRANSFORMER_ASSET_DEPLOYMENT>	
+    rr:logicalTable [ rr:sqlQuery """
+    SELECT
+	YXJCPT_CACHER01.G_TRAN.EQUIP_ID, 
+	(
+		CASE G_TRAN.RUN_STATUS_CODE
+		WHEN CAST ('01' AS NVARCHAR2(8)) THEN
+			'连接状态_在用'
+		WHEN CAST ('02' AS NVARCHAR2(8)) THEN
+			'连接状态_停用'	
+	    WHEN CAST ('03' AS NVARCHAR2(8)) THEN
+			'连接状态_撤销'	
+		END
+	) STATE
+		FROM YXJCPT_CACHER01.G_TRAN WHERE RUN_STATUS_CODE='01' OR RUN_STATUS_CODE='02' OR RUN_STATUS_CODE='03' """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO#{EQUIP_ID}_G_TRAN_ASSET_ASSETDEPLOYMENT";
+		rr:class cim:AssetDeployment;
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.mRID;
+		rr:objectMap [ 
+			rr:column "EQUIP_ID";
+		 	rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:UsagePoint.connectionState;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO#{STATE}_G_TRAN(RUN_STATUS_CODE)";
+			rr:termType rr:Literal;
+		];
+	].
+	
+<#C_MP_Map_POWERTRANSFORMER_ASSETOWNER>	
+    rr:logicalTable [ rr:sqlQuery """
+    SELECT 	distinct YXJCPT_CACHER01.G_TRAN.ORG_NO
+	FROM YXJCPT_CACHER01.G_TRAN  """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO#{ORG_NO}_G_TRAN_ASSETOWNER";
+		rr:class cim:AssetOwner;
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Roles.Organisation;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO#{ORG_NO}_O_ORG(ORG_NO)";
+			rr:termType rr:IRI;
+		];
+	].
+	
+<#C_MP_Map_POWERTRANSFORMER_ASSEUSER>	
+    rr:logicalTable [ rr:sqlQuery """
+    SELECT 	distinct YXJCPT_CACHER01.G_TRAN.CONS_ID
+	FROM YXJCPT_CACHER01.G_TRAN  """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO#{CONS_ID}_G_TRAN_ASSETUSER";
+		rr:class cim:AssetUser;
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Roles.Organisation;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO#{CONS_ID}_O_ORG(ORG_NO)";
+			rr:termType rr:IRI;
+		];
+	].

@@ -1,0 +1,64 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix cim: <http://iec.ch/TC57/2016/CIM-schema-cim17#>.
+@prefix ns: <http://nari.com/CDPSM/CIM_DEMO#>.
+@prefix tb: <http://nari.com/CDPSM/CIM_DEMO/Source/Table#>.
+@prefix cl: <http://nari.com/CDPSM/CIM_DEMO/Source/Table/Column#>
+
+
+
+<#S_COMPLAIN_HANDLE_Map_TroubleTicket>
+	rr:logicalTable [ rr:sqlQuery """ 
+	 SELECT APP_NO,  HANDLE_CONTENT,
+	(
+		CASE TRUE_FLAG
+		WHEN '1' THEN
+			'是'
+		WHEN '0' THEN
+			'否'
+		ELSE '其它'
+		END
+	) FLAG,
+	(
+		CASE RETURN_FLAG
+		WHEN '1' THEN
+			'是'
+		WHEN '0' THEN
+			'否'
+		ELSE '其它'	
+		END
+		
+	) RETUEN  
+	
+	FROM S_COMPLAIN_HANDLE """ ];
+ 	
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/S_95598_WKST(APP_NO)#{APP_NO}";
+		rr:class cim:SGTroubleTicket;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:SGTroubleTicket.resolvedResults;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/S_COMPLAIN_HANDLE(HANDLE_CONTENT)#{HANDLE_CONTENT}";
+			rr:termType rr:IRI;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:SGTroubleTicket.isTrue;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/S_COMPLAIN_HANDLE(TRUE_FLAG)#{FLAG}";
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:SGTroubleTicket.isReturn;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/S_COMPLAIN_HANDLE(RETURN_FLAG)#{RETUEN}";
+			rr:termType rr:Literal;
+		];
+	].
+	
+	

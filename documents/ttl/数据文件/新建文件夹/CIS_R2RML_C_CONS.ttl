@@ -1,0 +1,298 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix cim: <http://iec.ch/TC57/2016/CIM-schema-cim17#>.
+@prefix ns: <http://nari.com/CDPSM/CIM_DEMO#>.
+@prefix tb: <http://nari.com/CDPSM/CIM_DEMO/Source/Table#>.
+@prefix cl: <http://nari.com/CDPSM/CIM_DEMO/Source/Table/Column#>
+
+<#C_MP_Map_Customer>
+	rr:logicalTable [ rr:sqlQuery """
+    SELECT
+	yxjcpt_cacher01.C_CONS.CONS_ID, 
+	yxjcpt_cacher01.C_CONS.CUST_ID,
+	yxjcpt_cacher01.C_CONS.CONS_NAME,
+	yxjcpt_cacher01.C_CONS.ELEC_TYPE_CODE,
+	yxjcpt_cacher01.C_CONS.CONS_NO,
+	yxjcpt_cacher01.C_CONS.STATUS_CODE,
+	(
+		CASE ELEC_TYPE_CODE
+		WHEN CAST ('0' AS NVARCHAR2(8)) THEN
+			'用户类别_考核'
+		WHEN CAST ('100' AS NVARCHAR2(8)) THEN
+			'用户类别_大工业用电'
+	    WHEN CAST ('101' AS NVARCHAR2(8)) THEN
+			'用户类别_大工业中小化肥'		
+		WHEN CAST ('102' AS NVARCHAR2(8)) THEN
+			'用户类别_大工业其它优待'
+		WHEN CAST ('200' AS NVARCHAR2(8)) THEN
+			'用户类别_居民生活用电'
+	    WHEN CAST ('201' AS NVARCHAR2(8)) THEN
+			'用户类别_乡村居民生活用电'	
+		WHEN CAST ('202' AS NVARCHAR2(8)) THEN
+			'用户类别_城镇居民生活用电'
+		WHEN CAST ('203' AS NVARCHAR2(8)) THEN
+			'用户类别_中小学教学用电'
+	    WHEN CAST ('300' AS NVARCHAR2(8)) THEN
+			'用户类别_农业生产用电'
+		WHEN CAST ('301' AS NVARCHAR2(8)) THEN
+			'用户类别_农业排灌'
+		WHEN CAST ('302' AS NVARCHAR2(8)) THEN
+			'用户类别_贫困县农业排灌用电'
+	    WHEN CAST ('400' AS NVARCHAR2(8)) THEN
+			'用户类别_一般工商业'
+		WHEN CAST ('401' AS NVARCHAR2(8)) THEN
+			'用户类别_非居民照明'
+		WHEN CAST ('402' AS NVARCHAR2(8)) THEN
+			'用户类别_非工业'
+	    WHEN CAST ('403' AS NVARCHAR2(8)) THEN
+			'用户类别_普通工业'
+		WHEN CAST ('404' AS NVARCHAR2(8)) THEN
+			'用户类别_普通工业中小化肥'	
+		WHEN CAST ('405' AS NVARCHAR2(8)) THEN
+			'用户类别_商业用电'
+		WHEN CAST ('500' AS NVARCHAR2(8)) THEN
+			'用户类别_趸售'
+	    WHEN CAST ('501' AS NVARCHAR2(8)) THEN
+			'用户类别_趸售大工业'		
+		WHEN CAST ('502' AS NVARCHAR2(8)) THEN
+			'用户类别_趸售普工、非普工业'
+		WHEN CAST ('503' AS NVARCHAR2(8)) THEN
+			'用户类别_趸售非居民'
+	    WHEN CAST ('504' AS NVARCHAR2(8)) THEN
+			'用户类别_趸售居民生活用电'	
+		WHEN CAST ('505' AS NVARCHAR2(8)) THEN
+			'用户类别_趸售农业生产用电'
+		WHEN CAST ('506' AS NVARCHAR2(8)) THEN
+			'用户类别_趸售商业用电'
+	    WHEN CAST ('800' AS NVARCHAR2(8)) THEN
+			'用户类别_分布式能源'		
+		WHEN CAST ('801' AS NVARCHAR2(8)) THEN
+			'用户类别_光伏发电'
+		WHEN CAST ('802' AS NVARCHAR2(8)) THEN
+			'用户类别_天然气三联供发电'
+	    WHEN CAST ('803' AS NVARCHAR2(8)) THEN
+			'用户类别_生物质发电'
+		WHEN CAST ('804' AS NVARCHAR2(8)) THEN
+			'用户类别_风力发电'
+	    WHEN CAST ('805' AS NVARCHAR2(8)) THEN
+			'用户类别_地热发电'		
+		WHEN CAST ('806' AS NVARCHAR2(8)) THEN
+			'用户类别_海洋能发电'
+		WHEN CAST ('807' AS NVARCHAR2(8)) THEN
+			'用户类别_资源综合利用发电（含煤矿瓦斯发电）'
+	    WHEN CAST ('600' AS NVARCHAR2(8)) THEN
+			'用户类别_大用户直购电'	
+		 WHEN CAST ('601' AS NVARCHAR2(8)) THEN
+			'用户类别_大用户直购电'		
+		WHEN CAST ('700' AS NVARCHAR2(8)) THEN
+			'用户类别_抽水蓄能'
+		WHEN CAST ('701' AS NVARCHAR2(8)) THEN
+			'用户类别_抽水蓄能'
+	    WHEN CAST ('900' AS NVARCHAR2(8)) THEN
+			'用户类别_其它用电'		
+		WHEN CAST ('903' AS NVARCHAR2(8)) THEN
+			'用户类别_售邻省'
+	    WHEN CAST ('904' AS NVARCHAR2(8)) THEN
+			'用户类别_其他'		
+		END
+	) KIND 
+		FROM yxjcpt_cacher01.C_CONS  """ ];
+	
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO#{CONS_ID}";
+		rr:class cim:Customer;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.mRID;
+		rr:objectMap [ 
+			rr:column "CONS_ID";
+		 	rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.name;
+		rr:objectMap [ 
+			rr:column "CONS_NAME";
+		 	rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Customer.pucNumber;
+		rr:objectMap [ 
+			rr:column "CONS_NO";
+		 	rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Customer.kind;
+		rr:objectMap [ 
+			rr:column "KIND";
+		 	rr:termType rr:Literal;
+		];
+	];
+	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Roles.Organisation;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO#{CUST_ID}";
+			rr:termType rr:IRI;
+		];
+	];
+	
+	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Customer.status;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO#{CONS_ID}_status";
+			rr:termType rr:BlankNode;
+		];
+	];
+	
+	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Customer.priority;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO#{CONS_ID}_priority";
+			rr:termType rr:BlankNode;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate ns:Source;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO#{CONS_ID}_Source_BN";
+			rr:termType rr:BlankNode;
+		];	
+	].
+
+<#C_CONS_Map_CONS_ID_Source>	
+	rr:logicalTable [ rr:tableName "yxjcpt_cacher01.C_CONS" ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO#{CONS_ID}_Source_BN";
+		rr:termType rr:BlankNode;
+		rr:class ns:SourceBN;
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate ns:Source.Table;
+		rr:objectMap [
+			rr:constant tb:CIS_C_CONS;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate ns:Source.Column;
+		rr:objectMap [
+			rr:constant cl:CONS_ID;
+		];
+	].	
+	
+
+<#C_MP_Map_Customer_Status>
+	 rr:logicalTable [ rr:sqlQuery """
+    SELECT 	yxjcpt_cacher01.C_CONS.CONS_ID
+			FROM yxjcpt_cacher01.C_CONS """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO#{CONS_ID}_Status";
+		rr:class ns:Customer.Status.BN;
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Status;
+		rr:objectMap [
+			rr:template "http://nari.com/CDPSM/CIM_DEMO#{CONS_ID}_Status.Status";
+			rr:termType rr:BlankNode;
+		];
+	].
+	
+<#C_MP_Map_Customer_Status_1>
+	 rr:logicalTable [ rr:sqlQuery """
+    SELECT 	yxjcpt_cacher01.C_CONS.CONS_ID, yxjcpt_cacher01.C_CONS.STATUS_CODE,
+	(
+		CASE STATUS_CODE
+		WHEN CAST ('0' AS NVARCHAR2(8)) THEN
+			'用户状态_正常发电客户'
+		WHEN CAST ('1' AS NVARCHAR2(8)) THEN
+			'用户状态_当前新装客户'
+	    WHEN CAST ('2' AS NVARCHAR2(8)) THEN
+			'用户状态_当前变更客户'	
+		WHEN CAST ('9' AS NVARCHAR2(8)) THEN
+			'用户状态_已销户客户'
+        END
+	) STATUS_CUSTOMER
+		FROM yxjcpt_cacher01.C_CONS """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO#{CONS_ID}_Status.Status";
+		rr:class ns:Customer.Status.BN;
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Status.value;
+		rr:objectMap [
+			rr:column "STATUS_CUSTOMER"; 
+			rr:termType rr:Literal;
+		];
+	].			
+	
+<#C_MP_Map_Customer_Priority>
+	 rr:logicalTable [ rr:sqlQuery """
+    SELECT 	yxjcpt_cacher01.C_CONS.CONS_ID
+			FROM yxjcpt_cacher01.C_CONS """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO#{CONS_ID}_priority";
+		rr:class ns:Customer.Priority.BN;
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Priority;
+		rr:objectMap [
+			rr:template "http://nari.com/CDPSM/CIM_DEMO#{CONS_ID}_priority.Priority";
+			rr:termType rr:BlankNode;
+		];
+	].
+	
+<#C_MP_Map_Customer_Priority_1>
+	 rr:logicalTable [ rr:sqlQuery """
+    SELECT 	yxjcpt_cacher01.C_CONS.CONS_ID, yxjcpt_cacher01.C_CONS.RRIO_CODE,
+	(
+		CASE RRIO_CODE
+		WHEN CAST ('1' AS NVARCHAR2(8)) THEN
+			'用户优先级_特级重要用户'
+		WHEN CAST ('2' AS NVARCHAR2(8)) THEN
+			'用户优先级_一级重要用户'
+	    WHEN CAST ('2' AS NVARCHAR2(8)) THEN
+			'用户优先级_二级重要用户'	
+		WHEN CAST ('9' AS NVARCHAR2(8)) THEN
+			'用户优先级_临时性重要用户'
+        END
+	) PRIORITY_TYPE
+		FROM yxjcpt_cacher01.C_CONS """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO#{CONS_ID}_priority.Priority";
+		rr:class ns:Customer.Priority.BN;
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Priority.rank;
+		rr:objectMap [
+			rr:column "RRIO_CODE"; 
+			rr:termType rr:Literal;
+		];
+	];	
+
+    rr:predicateObjectMap [
+		rr:predicate cim:Priority.type;
+		rr:objectMap [
+			rr:column "PRIORITY_TYPE"; 
+			rr:termType rr:Literal;
+		];
+	].	
+	
+	

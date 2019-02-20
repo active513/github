@@ -1,0 +1,377 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:cim="http://iec.ch/TC57/2016/CIM-schema-cim17#" xmlns:sgcim="http://www.sgcc.com.cn/CDPSM/2017/cdpsm2017#">
+<cim:GeographicalRegion rdf:ID = "PD_16F37FCECC560ED1E0530100007F2F45">
+  <cim:IdentifiedObject.mRID>16F37FCECC560ED1E0530100007F2F45</cim:IdentifiedObject.mRID>
+  <cim:IdentifiedObject.name>成都运维检修部(检修分公司)</cim:IdentifiedObject.name>
+</cim:GeographicalRegion>
+<cim:SubGeographicalRegion rdf:ID = "PD_178">
+  <cim:IdentifiedObject.mRID>178</cim:IdentifiedObject.mRID>
+  <cim:IdentifiedObject.name>成都运维检修部(检修分公司)</cim:IdentifiedObject.name>
+  <cim:SubGeographicalRegion.Region rdf:resource="#PD_16F37FCECC560ED1E0530100007F2F45"/>
+</cim:SubGeographicalRegion>
+<cim:BaseVoltage rdf:ID = "PD_BaseVoltage_22">
+  <cim:IdentifiedObject.mRID>BaseVoltage_22</cim:IdentifiedObject.mRID>
+  <cim:IdentifiedObject.name>交流10kV</cim:IdentifiedObject.name>
+  <cim:BaseVoltage.nominalVoltage.unitMultiplier>k</cim:BaseVoltage.nominalVoltage.unitMultiplier>
+  <cim:BaseVoltage.nominalVoltage.unitSymbol>V</cim:BaseVoltage.nominalVoltage.unitSymbol>
+  <cim:BaseVoltage.nominalVoltage.value>10.00</cim:BaseVoltage.nominalVoltage.value>
+</cim:BaseVoltage>
+<cim:PSRType rdf:ID = "PD_30500000">
+  <cim:IdentifiedObject.mRID>30500000</cim:IdentifiedObject.mRID>
+  <cim:IdentifiedObject.name>站内-断路器</cim:IdentifiedObject.name>
+</cim:PSRType>
+<cim:PSRType rdf:ID = "PD_30000000">
+  <cim:IdentifiedObject.mRID>30000000</cim:IdentifiedObject.mRID>
+  <cim:IdentifiedObject.name>变电站</cim:IdentifiedObject.name>
+</cim:PSRType>
+<cim:PSRType rdf:ID = "PD_31300001">
+  <cim:IdentifiedObject.mRID>31300001</cim:IdentifiedObject.mRID>
+  <cim:IdentifiedObject.name>站内-电流互感器</cim:IdentifiedObject.name>
+</cim:PSRType>
+<cim:PSRType rdf:ID = "PD_32000000">
+  <cim:IdentifiedObject.mRID>32000000</cim:IdentifiedObject.mRID>
+  <cim:IdentifiedObject.name>站内-出线点</cim:IdentifiedObject.name>
+</cim:PSRType>
+<cim:PSRType rdf:ID = "PD_20100000">
+  <cim:IdentifiedObject.mRID>20100000</cim:IdentifiedObject.mRID>
+  <cim:IdentifiedObject.name>站外-电缆段</cim:IdentifiedObject.name>
+</cim:PSRType>
+<cim:PSRType rdf:ID = "PD_20200000">
+  <cim:IdentifiedObject.mRID>20200000</cim:IdentifiedObject.mRID>
+  <cim:IdentifiedObject.name>站外-电缆终端头</cim:IdentifiedObject.name>
+</cim:PSRType>
+<cim:PSRType rdf:ID = "PD_10200001">
+  <cim:IdentifiedObject.mRID>10200001</cim:IdentifiedObject.mRID>
+  <cim:IdentifiedObject.name>耐张-运行杆塔</cim:IdentifiedObject.name>
+</cim:PSRType>
+<cim:PSRType rdf:ID = "PD_11300000">
+  <cim:IdentifiedObject.mRID>11300000</cim:IdentifiedObject.mRID>
+  <cim:IdentifiedObject.name>柱上-隔离开关</cim:IdentifiedObject.name>
+</cim:PSRType>
+<cim:PSRType rdf:ID = "PD_31800001">
+  <cim:IdentifiedObject.mRID>31800001</cim:IdentifiedObject.mRID>
+  <cim:IdentifiedObject.name>站内-接地避雷器</cim:IdentifiedObject.name>
+</cim:PSRType>
+<cim:PSRType rdf:ID = "PD_30600001">
+  <cim:IdentifiedObject.mRID>30600001</cim:IdentifiedObject.mRID>
+  <cim:IdentifiedObject.name>站内-接地刀闸</cim:IdentifiedObject.name>
+</cim:PSRType>
+<cim:PSRType rdf:ID = "PD_11100000">
+  <cim:IdentifiedObject.mRID>11100000</cim:IdentifiedObject.mRID>
+  <cim:IdentifiedObject.name>柱上-断路器</cim:IdentifiedObject.name>
+</cim:PSRType>
+<cim:PSRType rdf:ID = "PD_31100000">
+  <cim:IdentifiedObject.mRID>31100000</cim:IdentifiedObject.mRID>
+  <cim:IdentifiedObject.name>站内-母线</cim:IdentifiedObject.name>
+</cim:PSRType>
+<cim:PSRType rdf:ID = "PD_10000100">
+  <cim:IdentifiedObject.mRID>10000100</cim:IdentifiedObject.mRID>
+  <cim:IdentifiedObject.name>站外-大馈线</cim:IdentifiedObject.name>
+</cim:PSRType>
+<cim:Breaker rdf:ID = "PD_30500000_537332">
+  <cim:IdentifiedObject.mRID>30500000_537332</cim:IdentifiedObject.mRID>
+  <cim:IdentifiedObject.name>10kV备用路905断路器</cim:IdentifiedObject.name>
+  <cim:Switch.open>false</cim:Switch.open>
+  <cim:Switch.normalOpen>false</cim:Switch.normalOpen>
+  <cim:PowerSystemResource.PSRType rdf:resource="#PD_30500000"/>
+  <cim:ConductingEquipment.BaseVoltage rdf:resource="#PD_BaseVoltage_22"/>
+  <cim:PowerSystemResource.Assets rdf:resource="#PD_9DEF2E45-6E61-4BB8-A143-C8838874FBEC-48027"/>
+  <cim:Equipment.EquipmentContainer rdf:resource="#PD_30000000_438364"/>
+</cim:Breaker>
+<cim:Substation rdf:ID = "PD_30000000_438364">
+  <cim:IdentifiedObject.mRID>30000000_438364</cim:IdentifiedObject.mRID>
+  <cim:IdentifiedObject.name>220kV十陵变电站</cim:IdentifiedObject.name>
+  <cim:PowerSystemResource.PSRType rdf:resource="#PD_30000000"/>
+  <cim:Substation.Region rdf:resource="#PD_178"/>
+  <cim:PowerSystemResource.Assets rdf:resource="#PD_41958C77-3172-4CEB-8072-16B02BCFF8DE-95729"/>
+</cim:Substation>
+<cim:CurrentTransformer rdf:ID = "PD_31300001_295945">
+  <cim:IdentifiedObject.mRID>31300001_295945</cim:IdentifiedObject.mRID>
+  <cim:IdentifiedObject.name>10kV备用路905电流互感器</cim:IdentifiedObject.name>
+  <cim:PowerSystemResource.PSRType rdf:resource="#PD_31300001"/>
+  <cim:PowerSystemResource.Assets rdf:resource="#PD_868F8E05-EEAB-41EB-A1AF-477E0E9374A0-64102,868F8E05-EEAB-41EB-A1AF-477E0E9374A0-64109"/>
+  <cim:Equipment.EquipmentContainer rdf:resource="#PD_30000000_438364"/>
+  <cim:Equipment.Terminal rdf:resource="#PD_30500000_537332_2"/>
+  <cim:Equipment.Terminal rdf:resource="#PD_30600001_1246066_1"/>
+  <cim:Equipment.Terminal rdf:resource="#PD_31800001_258285_1"/>
+  <cim:Equipment.Terminal rdf:resource="#PD_20100000_788281_1"/>
+</cim:CurrentTransformer>
+<cim:CurrentTransformer rdf:ID = "PD_31300001_303726">
+  <cim:IdentifiedObject.mRID>31300001_303726</cim:IdentifiedObject.mRID>
+  <cim:IdentifiedObject.name>10kV备用路905零序电流互感器O相</cim:IdentifiedObject.name>
+  <cim:PowerSystemResource.PSRType rdf:resource="#PD_31300001"/>
+  <cim:PowerSystemResource.Assets rdf:resource="#PD_a75405a4808a30829b575e5a540157a7526f535ec9"/>
+  <cim:Equipment.EquipmentContainer rdf:resource="#PD_30000000_438364"/>
+  <cim:Equipment.Terminal rdf:resource="#PD_30500000_537332_2"/>
+  <cim:Equipment.Terminal rdf:resource="#PD_30600001_1246066_1"/>
+  <cim:Equipment.Terminal rdf:resource="#PD_31800001_258285_1"/>
+  <cim:Equipment.Terminal rdf:resource="#PD_20100000_788281_1"/>
+</cim:CurrentTransformer>
+<cim:Junction rdf:ID = "PD_32000000_1424246">
+  <cim:IdentifiedObject.mRID>32000000_1424246</cim:IdentifiedObject.mRID>
+  <cim:IdentifiedObject.name>10kV备用路905断路器间隔</cim:IdentifiedObject.name>
+  <cim:PowerSystemResource.PSRType rdf:resource="#PD_32000000"/>
+  <cim:ConductingEquipment.BaseVoltage rdf:resource="#PD_BaseVoltage_22"/>
+  <cim:PowerSystemResource.Assets rdf:resource="#PD_SBID000000472FEFF8B3594BAC98F0DDC007F45708"/>
+  <cim:Equipment.EquipmentContainer rdf:resource="#PD_30000000_438364"/>
+</cim:Junction>
+<cim:ACLineSegment rdf:ID = "PD_20100000_788281">
+  <cim:IdentifiedObject.mRID>20100000_788281</cim:IdentifiedObject.mRID>
+  <cim:IdentifiedObject.name>10kV十陵一线出站站外-电缆</cim:IdentifiedObject.name>
+  <cim:Conductor.length.value></cim:Conductor.length.value>
+  <cim:Conductor.length.unitMultiplier></cim:Conductor.length.unitMultiplier>
+  <cim:Conductor.length.unitSymbol></cim:Conductor.length.unitSymbol>
+  <cim:PowerSystemResource.PSRType rdf:resource="#PD_20100000"/>
+  <cim:Equipment.EquipmentContainer rdf:resource="#PD_10000100_18031"/>
+  <cim:PowerSystemResource.Assets rdf:resource="#PD_SBID000000BC8A303A0BC248AEB2275CA93615E6E1"/>
+  <cim:ConductingEquipment.BaseVoltage rdf:resource="#PD_BaseVoltage_22"/>
+</cim:ACLineSegment>
+<cim:Junction rdf:ID = "PD_20200000_866589">
+  <cim:IdentifiedObject.mRID>20200000_866589</cim:IdentifiedObject.mRID>
+  <cim:IdentifiedObject.name>10kV十陵一线出站站外-电缆终端头1</cim:IdentifiedObject.name>
+  <cim:PowerSystemResource.PSRType rdf:resource="#PD_20200000"/>
+  <cim:PowerSystemResource.Assets rdf:resource="#PD_SBID00000034DB9A12574446AF9CBC625C74F56671"/>
+  <cim:Equipment.EquipmentContainer rdf:resource="#PD_10000100_18031"/>
+  <cim:ConductingEquipment.BaseVoltage rdf:resource="#PD_BaseVoltage_22"/>
+</cim:Junction>
+<cim:Junction rdf:ID = "PD_20200000_866590">
+  <cim:IdentifiedObject.mRID>20200000_866590</cim:IdentifiedObject.mRID>
+  <cim:IdentifiedObject.name>10kV十陵一线出站站外-电缆终端头2</cim:IdentifiedObject.name>
+  <cim:PowerSystemResource.PSRType rdf:resource="#PD_20200000"/>
+  <cim:PowerSystemResource.Assets rdf:resource="#PD_SBID00000033BEA72E82E1454B81E6074110669D5A"/>
+  <cim:Equipment.EquipmentContainer rdf:resource="#PD_10000100_18031"/>
+  <cim:ConductingEquipment.BaseVoltage rdf:resource="#PD_BaseVoltage_22"/>
+</cim:Junction>
+<sgcim:PoleCode rdf:ID = "PD_10200001_10238811">
+  <cim:IdentifiedObject.mRID>10200001_10238811</cim:IdentifiedObject.mRID>
+  <cim:IdentifiedObject.name>10kV十陵一线001号（左线）</cim:IdentifiedObject.name>
+  <cim:PowerSystemResource.PSRType rdf:resource="#PD_10200001"/>
+  <cim:PowerSystemResource.Assets rdf:resource="#PD_SBID00000046EC467438374065871AFF5123201574"/>
+  <cim:Equipment.EquipmentContainer rdf:resource="#PD_10000100_18031"/>
+  <sgcim:PoleCode.Terminal rdf:resource="#PD_20100000_788281_2"/>
+  <sgcim:PoleCode.Terminal rdf:resource="#PD_11300000_581738_1"/>
+</sgcim:PoleCode>
+<cim:Disconnector rdf:ID = "PD_11300000_581738">
+  <cim:IdentifiedObject.mRID>11300000_581738</cim:IdentifiedObject.mRID>
+  <cim:IdentifiedObject.name>10kV十陵一线成南#1开关刀闸</cim:IdentifiedObject.name>
+  <cim:Switch.open>false</cim:Switch.open>
+  <cim:Switch.normalOpen>false</cim:Switch.normalOpen>
+  <cim:PowerSystemResource.PSRType rdf:resource="#PD_11300000"/>
+  <cim:ConductingEquipment.BaseVoltage rdf:resource="#PD_BaseVoltage_22"/>
+  <cim:Equipment.EquipmentContainer rdf:resource="#PD_10000100_18031"/>
+  <cim:PowerSystemResource.Assets rdf:resource="#PD_8bba67cd798a30829f60802fc901608bba5d590ff2"/>
+</cim:Disconnector>
+<cim:SurgeArrester rdf:ID = "PD_31800001_258285">
+  <cim:IdentifiedObject.mRID>31800001_258285</cim:IdentifiedObject.mRID>
+  <cim:IdentifiedObject.name>905</cim:IdentifiedObject.name>
+  <cim:PowerSystemResource.PSRType rdf:resource="#PD_31800001"/>
+  <cim:PowerSystemResource.Assets rdf:resource="#PD_868F8E05-EEAB-41EB-A1AF-477E0E9374A0-83703,868F8E05-EEAB-41EB-A1AF-477E0E9374A0-83717,868F8E05-EEAB-41EB-A1AF-477E0E9374A0-83710"/>
+  <cim:Equipment.EquipmentContainer rdf:resource="#PD_30000000_438364"/>
+</cim:SurgeArrester>
+<cim:GroundDisconnector rdf:ID = "PD_30600001_1246066">
+  <cim:IdentifiedObject.mRID>30600001_1246066</cim:IdentifiedObject.mRID>
+  <cim:IdentifiedObject.name>10kV备用路90560接地隔离开关</cim:IdentifiedObject.name>
+  <cim:Switch.open>true</cim:Switch.open>
+  <cim:Switch.normalOpen>false</cim:Switch.normalOpen>
+  <cim:PowerSystemResource.PSRType rdf:resource="#PD_30600001"/>
+  <cim:ConductingEquipment.BaseVoltage rdf:resource="#PD_BaseVoltage_22"/>
+  <cim:PowerSystemResource.Assets rdf:resource="#PD_19863B12-78FD-4C42-98DA-5267BD19302B-02120"/>
+  <cim:Equipment.EquipmentContainer rdf:resource="#PD_30000000_438364"/>
+</cim:GroundDisconnector>
+<cim:Breaker rdf:ID = "PD_11100000_235057">
+  <cim:IdentifiedObject.mRID>11100000_235057</cim:IdentifiedObject.mRID>
+  <cim:IdentifiedObject.name>10kV十陵一线成南#1开关</cim:IdentifiedObject.name>
+  <cim:Switch.open>false</cim:Switch.open>
+  <cim:Switch.normalOpen>false</cim:Switch.normalOpen>
+  <cim:PowerSystemResource.PSRType rdf:resource="#PD_11100000"/>
+  <cim:ConductingEquipment.BaseVoltage rdf:resource="#PD_BaseVoltage_22"/>
+  <cim:PowerSystemResource.Assets rdf:resource="#PD_8bba29ab4e8a30829f60802fc901608bba1f3b0feb"/>
+  <cim:Equipment.EquipmentContainer rdf:resource="#PD_10000100_18031"/>
+</cim:Breaker>
+<cim:BusbarSection rdf:ID = "PD_31100000_470922">
+  <cim:IdentifiedObject.mRID>31100000_470922</cim:IdentifiedObject.mRID>
+  <cim:IdentifiedObject.name>1号主变10kV侧桥</cim:IdentifiedObject.name>
+  <cim:PowerSystemResource.PSRType rdf:resource="#PD_31100000"/>
+  <cim:ConductingEquipment.BaseVoltage rdf:resource="#PD_BaseVoltage_22"/>
+  <cim:Equipment.EquipmentContainer rdf:resource="#PD_30000000_438364"/>
+  <cim:PowerSystemResource.Assets rdf:resource="#PD_01A58CBA-DFB4-437D-8385-E2FF88EABD21-85290"/>
+</cim:BusbarSection>
+<cim:Feeder rdf:ID = "PD_10000100_18031">
+  <cim:IdentifiedObject.mRID>10000100_18031</cim:IdentifiedObject.mRID>
+  <cim:IdentifiedObject.name>10kV十陵一线大馈线</cim:IdentifiedObject.name>
+  <sgcim:Feeder.IsCurrentFeeder>true</sgcim:Feeder.IsCurrentFeeder>
+  <cim:PowerSystemResource.PSRType rdf:resource="#PD_10000100"/>
+  <cim:Feeder.NormalEnergizingSubstation rdf:resource="#PD_30000000_438364"/>
+  <cim:Feeder.NormalHeadTerminal rdf:resource="#PD_30500000_537332_2"/>
+</cim:Feeder>
+<cim:Asset rdf:ID = "PD_9DEF2E45-6E61-4BB8-A143-C8838874FBEC-48027">
+  <cim:IdentifiedObject.mRID>9DEF2E45-6E61-4BB8-A143-C8838874FBEC-48027</cim:IdentifiedObject.mRID>
+  <cim:IdentifiedObject.name>9DEF2E45-6E61-4BB8-A143-C8838874FBEC-48027</cim:IdentifiedObject.name>
+</cim:Asset>
+<cim:Asset rdf:ID = "PD_41958C77-3172-4CEB-8072-16B02BCFF8DE-95729">
+  <cim:IdentifiedObject.mRID>41958C77-3172-4CEB-8072-16B02BCFF8DE-95729</cim:IdentifiedObject.mRID>
+  <cim:IdentifiedObject.name>41958C77-3172-4CEB-8072-16B02BCFF8DE-95729</cim:IdentifiedObject.name>
+</cim:Asset>
+<cim:Asset rdf:ID = "PD_868F8E05-EEAB-41EB-A1AF-477E0E9374A0-64102,868F8E05-EEAB-41EB-A1AF-477E0E9374A0-64109">
+  <cim:IdentifiedObject.mRID>868F8E05-EEAB-41EB-A1AF-477E0E9374A0-64102,868F8E05-EEAB-41EB-A1AF-477E0E9374A0-64109</cim:IdentifiedObject.mRID>
+  <cim:IdentifiedObject.name>868F8E05-EEAB-41EB-A1AF-477E0E9374A0-64102,868F8E05-EEAB-41EB-A1AF-477E0E9374A0-64109</cim:IdentifiedObject.name>
+</cim:Asset>
+<cim:Asset rdf:ID = "PD_a75405a4808a30829b575e5a540157a7526f535ec9">
+  <cim:IdentifiedObject.mRID>a75405a4808a30829b575e5a540157a7526f535ec9</cim:IdentifiedObject.mRID>
+  <cim:IdentifiedObject.name>a75405a4808a30829b575e5a540157a7526f535ec9</cim:IdentifiedObject.name>
+</cim:Asset>
+<cim:Asset rdf:ID = "PD_SBID000000472FEFF8B3594BAC98F0DDC007F45708">
+  <cim:IdentifiedObject.mRID>SBID000000472FEFF8B3594BAC98F0DDC007F45708</cim:IdentifiedObject.mRID>
+  <cim:IdentifiedObject.name>SBID000000472FEFF8B3594BAC98F0DDC007F45708</cim:IdentifiedObject.name>
+</cim:Asset>
+<cim:Asset rdf:ID = "PD_SBID000000BC8A303A0BC248AEB2275CA93615E6E1">
+  <cim:IdentifiedObject.mRID>SBID000000BC8A303A0BC248AEB2275CA93615E6E1</cim:IdentifiedObject.mRID>
+  <cim:IdentifiedObject.name>SBID000000BC8A303A0BC248AEB2275CA93615E6E1</cim:IdentifiedObject.name>
+</cim:Asset>
+<cim:Asset rdf:ID = "PD_SBID00000034DB9A12574446AF9CBC625C74F56671">
+  <cim:IdentifiedObject.mRID>SBID00000034DB9A12574446AF9CBC625C74F56671</cim:IdentifiedObject.mRID>
+  <cim:IdentifiedObject.name>SBID00000034DB9A12574446AF9CBC625C74F56671</cim:IdentifiedObject.name>
+</cim:Asset>
+<cim:Asset rdf:ID = "PD_SBID00000033BEA72E82E1454B81E6074110669D5A">
+  <cim:IdentifiedObject.mRID>SBID00000033BEA72E82E1454B81E6074110669D5A</cim:IdentifiedObject.mRID>
+  <cim:IdentifiedObject.name>SBID00000033BEA72E82E1454B81E6074110669D5A</cim:IdentifiedObject.name>
+</cim:Asset>
+<cim:Asset rdf:ID = "PD_SBID00000046EC467438374065871AFF5123201574">
+  <cim:IdentifiedObject.mRID>SBID00000046EC467438374065871AFF5123201574</cim:IdentifiedObject.mRID>
+  <cim:IdentifiedObject.name>SBID00000046EC467438374065871AFF5123201574</cim:IdentifiedObject.name>
+</cim:Asset>
+<cim:Asset rdf:ID = "PD_8bba67cd798a30829f60802fc901608bba5d590ff2">
+  <cim:IdentifiedObject.mRID>8bba67cd798a30829f60802fc901608bba5d590ff2</cim:IdentifiedObject.mRID>
+  <cim:IdentifiedObject.name>8bba67cd798a30829f60802fc901608bba5d590ff2</cim:IdentifiedObject.name>
+</cim:Asset>
+<cim:Asset rdf:ID = "PD_868F8E05-EEAB-41EB-A1AF-477E0E9374A0-83703,868F8E05-EEAB-41EB-A1AF-477E0E9374A0-83717,868F8E05-EEAB-41EB-A1AF-477E0E9374A0-83710">
+  <cim:IdentifiedObject.mRID>868F8E05-EEAB-41EB-A1AF-477E0E9374A0-83703,868F8E05-EEAB-41EB-A1AF-477E0E9374A0-83717,868F8E05-EEAB-41EB-A1AF-477E0E9374A0-83710</cim:IdentifiedObject.mRID>
+  <cim:IdentifiedObject.name>868F8E05-EEAB-41EB-A1AF-477E0E9374A0-83703,868F8E05-EEAB-41EB-A1AF-477E0E9374A0-83717,868F8E05-EEAB-41EB-A1AF-477E0E9374A0-83710</cim:IdentifiedObject.name>
+</cim:Asset>
+<cim:Asset rdf:ID = "PD_19863B12-78FD-4C42-98DA-5267BD19302B-02120">
+  <cim:IdentifiedObject.mRID>19863B12-78FD-4C42-98DA-5267BD19302B-02120</cim:IdentifiedObject.mRID>
+  <cim:IdentifiedObject.name>19863B12-78FD-4C42-98DA-5267BD19302B-02120</cim:IdentifiedObject.name>
+</cim:Asset>
+<cim:Asset rdf:ID = "PD_8bba29ab4e8a30829f60802fc901608bba1f3b0feb">
+  <cim:IdentifiedObject.mRID>8bba29ab4e8a30829f60802fc901608bba1f3b0feb</cim:IdentifiedObject.mRID>
+  <cim:IdentifiedObject.name>8bba29ab4e8a30829f60802fc901608bba1f3b0feb</cim:IdentifiedObject.name>
+</cim:Asset>
+<cim:Asset rdf:ID = "PD_01A58CBA-DFB4-437D-8385-E2FF88EABD21-85290">
+  <cim:IdentifiedObject.mRID>01A58CBA-DFB4-437D-8385-E2FF88EABD21-85290</cim:IdentifiedObject.mRID>
+  <cim:IdentifiedObject.name>01A58CBA-DFB4-437D-8385-E2FF88EABD21-85290</cim:IdentifiedObject.name>
+</cim:Asset>
+<cim:Terminal rdf:ID = "PD_30500000_537332_1">
+  <cim:IdentifiedObject.mRID>30500000_537332_1</cim:IdentifiedObject.mRID>
+  <cim:IdentifiedObject.name>BRK_MV_30500000_537332__TO__CNODE_HYPERNODE_157670748</cim:IdentifiedObject.name>
+  <cim:Terminal.ConductingEquipment rdf:resource="#PD_30500000_537332"/>
+  <cim:Terminal.ConnectivityNode rdf:resource="#PD_157670748"/>
+  <cim:Terminal.phases rdf:resource="http://iec.ch/TC57/2016/CIM-schema-cim17#PhaseCode.ABC"/>
+</cim:Terminal>
+<cim:Terminal rdf:ID = "PD_30500000_537332_2">
+  <cim:IdentifiedObject.mRID>30500000_537332_2</cim:IdentifiedObject.mRID>
+  <cim:IdentifiedObject.name>BRK_MV_30500000_537332__TO__CNODE_HYPERNODE_157670749</cim:IdentifiedObject.name>
+  <cim:Terminal.ConductingEquipment rdf:resource="#PD_30500000_537332"/>
+  <cim:Terminal.ConnectivityNode rdf:resource="#PD_157670749"/>
+  <cim:Terminal.phases rdf:resource="http://iec.ch/TC57/2016/CIM-schema-cim17#PhaseCode.ABC"/>
+</cim:Terminal>
+<cim:Terminal rdf:ID = "PD_32000000_1424246_1">
+  <cim:IdentifiedObject.mRID>32000000_1424246_1</cim:IdentifiedObject.mRID>
+  <cim:IdentifiedObject.name>BRK_MV_32000000_1424246__TO__CNODE_HYPERNODE_157670749</cim:IdentifiedObject.name>
+  <cim:Terminal.ConductingEquipment rdf:resource="#PD_32000000_1424246"/>
+  <cim:Terminal.ConnectivityNode rdf:resource="#PD_157670749"/>
+  <cim:Terminal.phases rdf:resource="http://iec.ch/TC57/2016/CIM-schema-cim17#PhaseCode.ABC"/>
+</cim:Terminal>
+<cim:Terminal rdf:ID = "PD_20100000_788281_1">
+  <cim:IdentifiedObject.mRID>20100000_788281_1</cim:IdentifiedObject.mRID>
+  <cim:IdentifiedObject.name>BRK_MV_20100000_788281__TO__CNODE_HYPERNODE_157670749</cim:IdentifiedObject.name>
+  <cim:Terminal.ConductingEquipment rdf:resource="#PD_20100000_788281"/>
+  <cim:Terminal.ConnectivityNode rdf:resource="#PD_157670749"/>
+  <cim:Terminal.phases rdf:resource="http://iec.ch/TC57/2016/CIM-schema-cim17#PhaseCode.ABC"/>
+</cim:Terminal>
+<cim:Terminal rdf:ID = "PD_20100000_788281_2">
+  <cim:IdentifiedObject.mRID>20100000_788281_2</cim:IdentifiedObject.mRID>
+  <cim:IdentifiedObject.name>BRK_MV_20100000_788281__TO__CNODE_HYPERNODE_373045889</cim:IdentifiedObject.name>
+  <cim:Terminal.ConductingEquipment rdf:resource="#PD_20100000_788281"/>
+  <cim:Terminal.ConnectivityNode rdf:resource="#PD_373045889"/>
+  <cim:Terminal.phases rdf:resource="http://iec.ch/TC57/2016/CIM-schema-cim17#PhaseCode.ABC"/>
+</cim:Terminal>
+<cim:Terminal rdf:ID = "PD_20200000_866589_1">
+  <cim:IdentifiedObject.mRID>20200000_866589_1</cim:IdentifiedObject.mRID>
+  <cim:IdentifiedObject.name>BRK_MV_20200000_866589__TO__CNODE_HYPERNODE_157670749</cim:IdentifiedObject.name>
+  <cim:Terminal.ConductingEquipment rdf:resource="#PD_20200000_866589"/>
+  <cim:Terminal.ConnectivityNode rdf:resource="#PD_157670749"/>
+  <cim:Terminal.phases rdf:resource="http://iec.ch/TC57/2016/CIM-schema-cim17#PhaseCode.ABC"/>
+</cim:Terminal>
+<cim:Terminal rdf:ID = "PD_20200000_866590_1">
+  <cim:IdentifiedObject.mRID>20200000_866590_1</cim:IdentifiedObject.mRID>
+  <cim:IdentifiedObject.name>BRK_MV_20200000_866590__TO__CNODE_HYPERNODE_373045889</cim:IdentifiedObject.name>
+  <cim:Terminal.ConductingEquipment rdf:resource="#PD_20200000_866590"/>
+  <cim:Terminal.ConnectivityNode rdf:resource="#PD_373045889"/>
+  <cim:Terminal.phases rdf:resource="http://iec.ch/TC57/2016/CIM-schema-cim17#PhaseCode.ABC"/>
+</cim:Terminal>
+<cim:Terminal rdf:ID = "PD_11300000_581738_1">
+  <cim:IdentifiedObject.mRID>11300000_581738_1</cim:IdentifiedObject.mRID>
+  <cim:IdentifiedObject.name>BRK_MV_11300000_581738__TO__CNODE_HYPERNODE_373045889</cim:IdentifiedObject.name>
+  <cim:Terminal.ConductingEquipment rdf:resource="#PD_11300000_581738"/>
+  <cim:Terminal.ConnectivityNode rdf:resource="#PD_373045889"/>
+  <cim:Terminal.phases rdf:resource="http://iec.ch/TC57/2016/CIM-schema-cim17#PhaseCode.ABC"/>
+</cim:Terminal>
+<cim:Terminal rdf:ID = "PD_11300000_581738_2">
+  <cim:IdentifiedObject.mRID>11300000_581738_2</cim:IdentifiedObject.mRID>
+  <cim:IdentifiedObject.name>BRK_MV_11300000_581738__TO__CNODE_HYPERNODE_373046339</cim:IdentifiedObject.name>
+  <cim:Terminal.ConductingEquipment rdf:resource="#PD_11300000_581738"/>
+  <cim:Terminal.ConnectivityNode rdf:resource="#PD_373046339"/>
+  <cim:Terminal.phases rdf:resource="http://iec.ch/TC57/2016/CIM-schema-cim17#PhaseCode.ABC"/>
+</cim:Terminal>
+<cim:Terminal rdf:ID = "PD_31800001_258285_1">
+  <cim:IdentifiedObject.mRID>31800001_258285_1</cim:IdentifiedObject.mRID>
+  <cim:IdentifiedObject.name>BRK_MV_31800001_258285__TO__CNODE_HYPERNODE_157670749</cim:IdentifiedObject.name>
+  <cim:Terminal.ConductingEquipment rdf:resource="#PD_31800001_258285"/>
+  <cim:Terminal.ConnectivityNode rdf:resource="#PD_157670749"/>
+  <cim:Terminal.phases rdf:resource="http://iec.ch/TC57/2016/CIM-schema-cim17#PhaseCode.ABC"/>
+</cim:Terminal>
+<cim:Terminal rdf:ID = "PD_30600001_1246066_1">
+  <cim:IdentifiedObject.mRID>30600001_1246066_1</cim:IdentifiedObject.mRID>
+  <cim:IdentifiedObject.name>BRK_MV_30600001_1246066__TO__CNODE_HYPERNODE_157670749</cim:IdentifiedObject.name>
+  <cim:Terminal.ConductingEquipment rdf:resource="#PD_30600001_1246066"/>
+  <cim:Terminal.ConnectivityNode rdf:resource="#PD_157670749"/>
+  <cim:Terminal.phases rdf:resource="http://iec.ch/TC57/2016/CIM-schema-cim17#PhaseCode.ABC"/>
+</cim:Terminal>
+<cim:Terminal rdf:ID = "PD_11100000_235057_1">
+  <cim:IdentifiedObject.mRID>11100000_235057_1</cim:IdentifiedObject.mRID>
+  <cim:IdentifiedObject.name>BRK_MV_11100000_235057__TO__CNODE_HYPERNODE_373046339</cim:IdentifiedObject.name>
+  <cim:Terminal.ConductingEquipment rdf:resource="#PD_11100000_235057"/>
+  <cim:Terminal.ConnectivityNode rdf:resource="#PD_373046339"/>
+  <cim:Terminal.phases rdf:resource="http://iec.ch/TC57/2016/CIM-schema-cim17#PhaseCode.ABC"/>
+</cim:Terminal>
+<cim:Terminal rdf:ID = "PD_11100000_235057_2">
+  <cim:IdentifiedObject.mRID>11100000_235057_2</cim:IdentifiedObject.mRID>
+  <cim:IdentifiedObject.name>BRK_MV_11100000_235057__TO__CNODE_HYPERNODE_</cim:IdentifiedObject.name>
+  <cim:Terminal.ConductingEquipment rdf:resource="#PD_11100000_235057"/>
+  <cim:Terminal.ConnectivityNode rdf:resource="#"/>
+  <cim:Terminal.phases rdf:resource="http://iec.ch/TC57/2016/CIM-schema-cim17#PhaseCode.ABC"/>
+</cim:Terminal>
+<cim:Terminal rdf:ID = "PD_31100000_470922_1">
+  <cim:IdentifiedObject.mRID>31100000_470922_1</cim:IdentifiedObject.mRID>
+  <cim:IdentifiedObject.name>BRK_MV_31100000_470922__TO__CNODE_HYPERNODE_157670748</cim:IdentifiedObject.name>
+  <cim:Terminal.ConductingEquipment rdf:resource="#PD_31100000_470922"/>
+  <cim:Terminal.ConnectivityNode rdf:resource="#PD_157670748"/>
+  <cim:Terminal.phases rdf:resource="http://iec.ch/TC57/2016/CIM-schema-cim17#PhaseCode.ABC"/>
+</cim:Terminal>
+<cim:ConnectivityNode rdf:ID = "PD_157670748">
+  <cim:IdentifiedObject.mRID>157670748</cim:IdentifiedObject.mRID>
+  <cim:IdentifiedObject.name>CNODE_JCT_NODE_MV_157670748</cim:IdentifiedObject.name>
+</cim:ConnectivityNode>
+<cim:ConnectivityNode rdf:ID = "PD_157670749">
+  <cim:IdentifiedObject.mRID>157670749</cim:IdentifiedObject.mRID>
+  <cim:IdentifiedObject.name>CNODE_JCT_NODE_MV_157670749</cim:IdentifiedObject.name>
+</cim:ConnectivityNode>
+<cim:ConnectivityNode rdf:ID = "PD_373045889">
+  <cim:IdentifiedObject.mRID>373045889</cim:IdentifiedObject.mRID>
+  <cim:IdentifiedObject.name>CNODE_JCT_NODE_MV_373045889</cim:IdentifiedObject.name>
+</cim:ConnectivityNode>
+<cim:ConnectivityNode rdf:ID = "PD_373046339">
+  <cim:IdentifiedObject.mRID>373046339</cim:IdentifiedObject.mRID>
+  <cim:IdentifiedObject.name>CNODE_JCT_NODE_MV_373046339</cim:IdentifiedObject.name>
+</cim:ConnectivityNode>
+</rdf:RDF>

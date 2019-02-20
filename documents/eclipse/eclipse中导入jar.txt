@@ -1,0 +1,2 @@
+ÓÒ»÷ÏîÄ¿-properties-java build path-add JARS
+                   -Deployment Assembly

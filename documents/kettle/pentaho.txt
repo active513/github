@@ -1,0 +1,32 @@
+pentaho文档及下载
+	https://www.jianshu.com/p/e021c9c2a472
+
+了解pentaho在Hadoop下工作
+	https://wiki.pentaho.com/display/BAD/Understanding+How+Pentaho+works+with+Hadoop
+
+从HBase中提取数据
+	https://wiki.pentaho.com/display/BAD/Extracting+Data+from+HBase+to+Load+an+RDBMS
+
+pentaho report designer
+	https://blog.csdn.net/qq_41944754/article/details/81222180
+
+HBase作为元数据库配置
+	https://help.pentaho.com/Documentation/8.0/Products/Data_Integration/Transformation_Step_Reference/HBase_Input
+
+kettle连接HBase
+	 (配置过程中的问题)  https://blog.csdn.net/brotherdong90/article/details/48633755
+
+	 kettle7连接Hive和Hbase配置  https://blog.csdn.net/qq_36190960/article/details/80908201
+
+	 使用kettle向HBase导入数据  https://blog.csdn.net/wenjiangchun/article/details/50163123
+
+	 Kettle的HBase控件详解  https://www.tceic.com/3j913738lk4733687l21gg03.html
+
+	 Kettle的HBase控件详解  https://wenku.baidu.com/view/3d913738fe4733687f21aa03.html
+
+	 HBase Input  https://help.pentaho.com/Documentation/8.2/Products/Data_Integration/Transformation_Step_Reference/HBase_Input
+
+	 	            https://help.pentaho.com/Documentation/8.2/Data/Hadoop/Connect_to_Cluster
+
+	 kettle spoon连接hbase
+	 	https://yq.aliyun.com/articles/542842

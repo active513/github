@@ -1,0 +1,73 @@
+新建的文件夹mytest是工作区	.git里面的index(stage)是暂存区	.git版本库
+
+1.创建完成后，自报家门
+	git config --global user.name "xiaoming"
+	git config --global user.email "942991194@qq.com"
+
+一.创建版本库
+	1.mkdir创建一个目录
+	2.git init  把这个目录变为git可以管理的仓库
+
+二.把文件添加到版本库中
+	1.新建一个txt文件(readme.txt)
+	2.git add readme.txt
+	3.git commit -m "一些你想要添加的说明"
+
+三.查看状态
+	1.git status 查看仓库当前的状态
+
+四.查看文件更改情况
+	1.git diff readme.txt  查看文件修改了哪些内容
+
+五.查看仓库日志
+	1.git log  先看最近到最远的提交日志
+
+六.查看简短的日志
+	1.git log --pertty=oneline
+
+七.将readme.txt回退到上个版本(HEAD当前版本	HEAD^上版本	HEAD^^上上版本	HEAD~100上面100个版本)
+	1.git reset --hard HEAD^		回退到上一版本
+	2.git reset --hard commit_id(5d3b452)	可以回到commit id是5d3b452的这一版本(可以回到之后的版本)
+
+八.查看每一条命令
+	1.git refgit	查看历史命令
+
+九.把readme.txt文件在工作区的修改全部撤销
+	1.git checkout -- readme.txt
+
+十.撤销暂存区的修改
+	1.git reset HEAD readme.txt
+
+十一.创建SSH key
+	1.ssh-keygen -t rsa -C "942991194@qq.com"
+
+十二.关联本地库和远程库 
+	1.git remote add gitee git@gitee.com/hahahahahehehe/basicDocument.git   
+	2.ssh -T git@gitee.com
+十三.把本地库的内容推送到远程库
+	1.git push -u origin master	远程库的名字就是origin，这是Git默认的叫法，也可以改成别的(由于远程库是空的，我们第一次推送master分支时，加上了-u参数)
+	2.git push origin master(第一次之后就可以用这个命令)
+
+十四.把远程库的项目clone到本仓库
+	1.git clone git@github.com:hahahahahehehe/hehedemo.git
+
+十五.分支管理
+	1.git checkout -b dev  创建dev分支，然后切换到dev分支(相当于 1.创建dev分支 git branch dev   2.切换的dev分支 git checkout dev )
+	2.git branch	查看分支  带*的代表当前分支  
+	3.git merge  dev	合并dev分支到当前分支
+	4.git branch -d dev     删除dev分支
+
+十六.查看当前有哪些库
+	1.git remote -v
+
+十七>删除当前的指定库
+	1.git remote rm gitee
+
+十八.pull远程库文件
+	1.git pull --allow-unrelated-histories
+
+十九.消除换行
+	git config --global core.autocrlf false
+
+二十.更换编码方式
+	1.git config --global core.quotepath false

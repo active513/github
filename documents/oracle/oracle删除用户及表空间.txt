@@ -1,0 +1,11 @@
+﻿1.删除表空间：
+
+	drop tablespace INFA including contents and datafiles;
+	
+2.删除数据库用户：
+
+	drop user YXJCPT_CACHER01  cascade;
+
+3.删除表
+	
+	drop table mytable;

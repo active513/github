@@ -1,0 +1,228 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix cim: <http://iec.ch/TC57/2016/CIM-schema-cim17#>.
+@prefix ns: <http://nari.com/CDPSM/CIM_DEMO#>.
+@prefix tb: <http://nari.com/CDPSM/CIM_DEMO/Source/Table#>.
+@prefix cl: <http://nari.com/CDPSM/CIM_DEMO/Source/Table/Column#>
+
+
+
+	
+<#C_MP_Map_CustomerAgreement>	
+   rr:logicalTable [ rr:sqlQuery """
+    SELECT
+	yxjcpt_cacher01.C_CUST_AGREEMENT.CONTRACT_NO, yxjcpt_cacher01.C_CUST_AGREEMENT.CONTRACT_ID，yxjcpt_cacher01.C_CUST_AGREEMENT.TYPE_CODE，
+	yxjcpt_cacher01.C_CUST_AGREEMENT.SIGN_DATE,
+	(
+		CASE TYPE_CODE
+		WHEN CAST ('01' AS NVARCHAR2(8)) THEN
+			'高压供用电合同'
+		WHEN CAST ('02' AS NVARCHAR2(8)) THEN
+			'低压供用电合同'
+	    WHEN CAST ('03' AS NVARCHAR2(8)) THEN
+			'居民供用电合同'	
+		WHEN CAST ('04' AS NVARCHAR2(8)) THEN
+			'临时供用电合同'
+        WHEN CAST ('05' AS NVARCHAR2(8)) THEN
+			'委托转供电合同'
+	    WHEN CAST ('06' AS NVARCHAR2(8)) THEN
+			'趸售合同'	
+		WHEN CAST ('07' AS NVARCHAR2(8)) THEN
+			'发用电合同'
+        WHEN CAST ('11' AS NVARCHAR2(8)) THEN
+			'市场化零售供用电合同'
+	    WHEN CAST ('12' AS NVARCHAR2(8)) THEN
+			'市场化直接交易合同'	
+		END
+	) TYPE_CONTRACT 
+			FROM yxjcpt_cacher01.C_CUST_AGREEMENT """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO#{CONTRACT_ID}";
+		rr:class cim:CustomerAgreement;
+	
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.mRID;
+		rr:objectMap [ 
+			rr:column "CONTRACT_ID";
+		 	rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.name;
+		rr:objectMap [ 
+			rr:column "CONTRACT_NO";
+		 	rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Document.type;
+		rr:objectMap [ 
+			rr:column "TYPE_CONTRACT"; 
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Agreement.signDate;
+		rr:objectMap [ 
+			rr:column "SIGN_DATE"; 
+			rr:termType rr:Literal;
+		];
+	];
+	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Document.docStatus;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO#{CONTRACT_ID}_docStatus";
+			rr:termType rr:BlankNode;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Document.status;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO#{CONTRACT_ID}_status";
+			rr:termType rr:BlankNode;
+		];
+	];
+
+	rr:predicateObjectMap [
+		rr:predicate cim:Agreement.validityInterval;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO#{CONTRACT_ID}_validityInterval";
+			rr:termType rr:BlankNode;
+		];
+	].	
+	
+<#C_MP_Map_CustomerAgreement_validityInterval>
+	 rr:logicalTable [ rr:sqlQuery """
+    SELECT 	yxjcpt_cacher01.C_CUST_AGREEMENT.CONTRACT_ID 
+			FROM yxjcpt_cacher01.C_CUST_AGREEMENT """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO#{CONTRACT_ID}_validityInterval";
+		rr:class ns:CustomerAgreement.validityInterval.BN;
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:DateTimeInterval;
+		rr:objectMap [
+			rr:template "http://nari.com/CDPSM/CIM_DEMO#{CONTRACT_ID}_validityInterval.DateTimeInterval";
+			rr:termType rr:BlankNode;
+		];
+	].
+	
+<#C_MP_Map_CustomerAgreement_validityInterval_1>
+	 rr:logicalTable [ rr:sqlQuery """
+    SELECT 	yxjcpt_cacher01.C_CUST_AGREEMENT.CONTRACT_ID, yxjcpt_cacher01.C_CUST_AGREEMENT.END_DATE
+			FROM yxjcpt_cacher01.C_CUST_AGREEMENT """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO#{CONTRACT_ID}_validityInterval.DateTimeInterval";
+		rr:class ns:CustomerAgreement.validityInterval.BN;
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:DateTimeInterval.end;
+		rr:objectMap [
+			rr:column "END_DATE"; 
+			rr:termType rr:Literal;
+		];
+	].	
+	
+<#C_MP_Map_CustomerAgreement_docStatus>
+	 rr:logicalTable [ rr:sqlQuery """
+    SELECT 	yxjcpt_cacher01.C_CUST_AGREEMENT.CONTRACT_ID
+			FROM yxjcpt_cacher01.C_CUST_AGREEMENT """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO#{CONTRACT_ID}_docStatus";
+		rr:class ns:CustomerAgreement.docStatus.BN;
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Status;
+		rr:objectMap [
+			rr:template "http://nari.com/CDPSM/CIM_DEMO#{CONTRACT_ID}_docStatus.Status";
+			rr:termType rr:BlankNode;
+		];
+	].
+	
+<#C_MP_Map_CustomerAgreement_docStatus_1>
+	 rr:logicalTable [ rr:sqlQuery """
+    SELECT 	yxjcpt_cacher01.C_CUST_AGREEMENT.CONTRACT_ID, yxjcpt_cacher01.C_CUST_AGREEMENT.STATUS_CODE,
+	(
+		CASE STATUS_CODE
+		WHEN CAST ('1' AS NVARCHAR2(8)) THEN
+			'未签'
+		WHEN CAST ('2' AS NVARCHAR2(8)) THEN
+			'正常'
+	    WHEN CAST ('3' AS NVARCHAR2(8)) THEN
+			'超期'	
+		WHEN CAST ('4' AS NVARCHAR2(8)) THEN
+			'作废'
+        END
+	) DOCSTATUS_CONTRACT 
+		FROM yxjcpt_cacher01.C_CUST_AGREEMENT """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO#{CONTRACT_ID}_docStatus.Status";
+		rr:class ns:CustomerAgreement.docStatus.BN;
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Status.value;
+		rr:objectMap [
+			rr:column "DOCSTATUS_CONTRACT"; 
+			rr:termType rr:Literal;
+		];
+	].	
+
+<#C_MP_Map_CustomerAgreement_Status>
+	 rr:logicalTable [ rr:sqlQuery """
+    SELECT 	yxjcpt_cacher01.C_CUST_AGREEMENT.CONTRACT_ID
+			FROM yxjcpt_cacher01.C_CUST_AGREEMENT """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO#{CONTRACT_ID}_Status";
+		rr:class ns:CustomerAgreement.Status.BN;
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Status;
+		rr:objectMap [
+			rr:template "http://nari.com/CDPSM/CIM_DEMO#{CONTRACT_ID}_Status.Status";
+			rr:termType rr:BlankNode;
+		];
+	].
+	
+<#C_MP_Map_CustomerAgreement_Status_1>
+	 rr:logicalTable [ rr:sqlQuery """
+    SELECT 	yxjcpt_cacher01.C_CUST_AGREEMENT.CONTRACT_ID, yxjcpt_cacher01.C_CUST_AGREEMENT.OPER_TYPE_CODE,
+	(
+		CASE OPER_TYPE_CODE
+		WHEN CAST ('01' AS NVARCHAR2(8)) THEN
+			'新签'
+		WHEN CAST ('02' AS NVARCHAR2(8)) THEN
+			'变更'
+	    WHEN CAST ('03' AS NVARCHAR2(8)) THEN
+			'续签'	
+		WHEN CAST ('04' AS NVARCHAR2(8)) THEN
+			'补签'
+		WHEN CAST ('05' AS NVARCHAR2(8)) THEN
+			'终止'
+        END
+	) STATUS_CONTRACT 
+		FROM yxjcpt_cacher01.C_CUST_AGREEMENT """ ];
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO#{CONTRACT_ID}_Status.Status";
+		rr:class ns:CustomerAgreement.Status.BN;
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:Status.value;
+		rr:objectMap [
+			rr:column "STATUS_CONTRACT"; 
+			rr:termType rr:Literal;
+		];
+	].			

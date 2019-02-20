@@ -1,0 +1,66 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix cim: <http://iec.ch/TC57/2016/CIM-schema-cim17#>.
+@prefix ns: <http://nari.com/CDPSM/CIM_DEMO#>.
+@prefix tb: <http://nari.com/CDPSM/CIM_DEMO/Source/Table#>.
+@prefix cl: <http://nari.com/CDPSM/CIM_DEMO/Source/Table/Column#>
+
+<#DISTRICT_NO_Map_SGServiceArea>
+	rr:logicalTable [ rr:tableName "SA_C_DISTRICT" ];
+	
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/SA_C_DISTRICT(DISTRICT_NO)#{DISTRICT_NO}";
+		rr:class cim:SGServiceArea;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.mRID;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/SA_C_DISTRICT(DISTRICT_NO)#{DISTRICT_NO}";
+		 	rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:IdentifiedObject.name;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/SA_C_DISTRICT(DISTRICT_NAME)#{DISTRICT_NAME}";
+			rr:termType rr:Literal;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:SGServiceArea.PGSGServiceArea;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/SA_C_DISTRICT(DISTRICT_NO)#{P_DISTRICT_NO}";
+			rr:termType rr:IRI;
+		];
+	];
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:SGServiceArea.ServiceSupplier;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/SA_C_DISTRICT(DISTRICT_NO)#{DISTRICT_NO}_ServiceSupplier";
+			rr:termType rr:IRI;
+		];
+	].
+   
+<#DISTRICT_NO_Map_SGServiceArea_ServiceSupplier>
+	rr:logicalTable [ rr:tableName "yxjcpt_cacher01.SA_C_DISTRICT" ];
+	
+	rr:subjectMap [
+		rr:template "http://nari.com/CDPSM/CIM_DEMO/SA_C_DISTRICT(DISTRICT_NO)#{DISTRICT_NO}_ServiceSupplier";
+		rr:class cim:ServiceSupplier;
+	];	
+	
+	rr:predicateObjectMap [
+		rr:predicate cim:OrganisationRole.Organisation;
+		rr:objectMap [ 
+			rr:template "http://nari.com/CDPSM/CIM_DEMO/SA_ORG(ORG_NO)#{ORG_NO}";
+		 	rr:termType rr:IRI;
+		];
+	].
+	
+
+
+ 
